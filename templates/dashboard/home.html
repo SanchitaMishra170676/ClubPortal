@@ -1,0 +1,368 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Innogeeks Member Portal{% endblock %}
+{% block extrahead %}
+
+{% endblock extrahead %}
+  <link href="{% static 'src/css/home.css' %}" rel="stylesheet">
+  <link href="{% static 'src/css/personal_profile.css' %}" rel="stylesheet">
+{% block content %}
+<link href="{% static 'src/css/home.css' %}" rel="stylesheet">
+
+<style>
+  .image-upload > input
+{
+    display: none; 
+}
+.mdl-button--fab.mdl-button--mini-fab-i {
+  height: 40px;
+  min-width: 40px;
+  width: 40px;
+}
+.mdl-button--fab-i {
+  border-radius: 40%;
+  font-size: 24px;
+  padding: 0;
+    overflow: hidden;
+    box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
+    line-height: normal;
+}
+
+  .dash-main{
+    z-index: 12;
+    display: flex;
+    flex-wrap: wrap;
+}
+.head{
+  text-align: center;
+}
+.int-sec{
+    font-size: 1.2em;
+    overflow-y: auto;
+    height: 40vh;
+}
+.int-sec p{
+    margin: 0px;
+    padding: 15px;
+    background-color: rgba(243, 243, 243, 0.973);
+}
+.int-sec p:nth-child(even){
+    background-color: rgba(216, 216, 216, 0.466);
+}
+
+.int-sec p:hover{
+    background-color:  #dddddd;
+}
+
+.main-pd {
+  padding: 4px !important;
+}
+
+.main-mgn {
+  margin-left: 7px !important;
+  margin-right: 7px !important;
+}
+
+.font1 {
+  color: rgb(20, 19, 35);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.bg1{
+  background-color: #29363d; 
+  color: #fff;
+}
+
+.list1{
+  border: 2px solid;
+  border-color: rgb(2, 36, 99);
+  margin: 2px;
+  padding: 10px;
+}
+
+.scroll1 {
+    font-size: 1.2em;
+    overflow-y: auto;
+    height: 45vh;
+}
+
+.scroll2 {
+    font-size: 1.2em;
+    overflow-y: auto;
+    height: 60vh;
+}
+
+ /* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 13px;
+    height:50%;
+    
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none;
+    margin-right: 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(165, 165, 165, 0.712);
+    border-radius: 5px;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(85, 85, 85, 0.671);
+  }
+
+  /* TO-DO List */
+
+.container ul {
+  overflow: auto;
+}
+.add input {
+  border: none;
+  display: block;
+  line-height: 1.5;
+  padding: 8px 0 8px 10px;
+  border-bottom: 1px solid #cfcbcc;
+  outline:0;
+  border: 3px solid black;
+   }
+
+.container ul {
+  list-style: none;
+  margin-top: 15px;
+  padding: 0;
+}
+.container  ul li {
+  color: #000;
+  border-bottom: 1px solid #cfcbcc;
+  line-height: 1.2;
+  margin-top: 15px;
+} 
+.container ul li:nth-child(even){
+background-color: rgb(235, 235, 235);
+}
+
+.container ul li:hover {
+  text-decoration: line-through;
+  background-color: rgb(153, 153, 153);
+  cursor: pointer;
+}
+.conatiner ul li:last-child {
+  border-bottom: none;
+}
+
+.checked {
+  background-color: rgba(194, 194, 194, 0.555);
+  color: green !important;
+}
+
+.checked:hover {
+  text-decoration: none;
+}
+
+.checked:hover:after {
+  content: "(remove)";
+  color: tomato;
+  text-align: right;
+}
+
+@media (max-width: 500px){
+.head{
+  font-size: 1.2em;
+}
+.int-sec{
+  padding: 4px;
+}
+.para-elem{
+  font-size: .7em;
+}
+#item{
+  font-size: .7em;
+}
+}
+</style>
+<marquee behavior="" direction="">Welcome to your Innogeeks Community!</marquee>
+
+
+    <!-- ======= Dashboard Section ======= -->
+<section class="dash">
+    <div class="content">
+        <div class="tabs-sec d-none d-lg-block">
+            <button class="tab4 tab_button active-tab" onclick="openTab(event,'Main')">Main</button>
+            <button class="tab1 tab_button" onclick="openTab(event,'Ranking')">Ranking</button>
+            <button class="tab2 tab_button" onclick="openTab(event,'Statistics')">Statistics</button>
+            <button class="tab3 tab_button" onclick="openTab(event,'Profile')">Profile</button>
+        </div>
+
+        <div class="tabs-secMV d-lg-none">
+            <button class="tab4 tab_buttonMV active-tab" onclick="openTabMV(event,'Main')">Main</button>
+            <button class="tab1 tab_buttonMV" onclick="openTabMV(event,'Ranking')">Ranking</button>
+            <button class="tab2 tab_buttonMV" onclick="openTabMV(event,'Statistics')">Statistics</button>
+            <button class="tab3 tab_buttonMV" onclick="openTabMV(event,'Profile')">Profile</button>
+            
+        </div>
+      </div>
+
+      <div class="main-section">
+
+    <!-- ======= Ranking Section ======= -->
+      {% include 'dashboard/ranking.html' %}
+      
+    <!-- ======= Statistics Section ======= -->
+       {% include 'dashboard/statistics.html' %}
+      
+    <!-- ======= Profile Section ======= -->
+       {% include 'dashboard/profile.html' %}
+      
+    <!-- ======= Main Section ======= -->
+       {% include 'dashboard/main.html' %}
+    
+  </div>
+  
+</section>
+
+<!-- Dashboard Section end -->
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'src/js/home.js' %}"></script>
+<script src="{% static 'src/js/Manage-Task.js' %}"></script>
+<script >
+  (function(){
+  
+    var list_ = document.querySelector('#list_'),
+        form = document.querySelector('.form-submit'),
+        item = document.querySelector('#item');
+    
+    form.addEventListener('keypress',function(e){
+      if(e.key === 'Enter'){
+      list_.innerHTML += '<li>' + item.value + '</li>';
+      store();
+      item.value = "";
+    }
+    },false)
+    
+    list_.addEventListener('click',function(e){
+      var t = e.target;
+      if(t.classList.contains('checked')){
+        t.parentNode.removeChild(t);
+      } else {
+        t.classList.add('checked');
+      }
+      store();
+    },false)
+    
+    function store() {
+      window.localStorage.myitems = list_.innerHTML;
+    }
+    
+    function getValues() {
+      var storedValues = window.localStorage.myitems;
+      if(!storedValues) {
+        list_.innerHTML = '<li>Start Making List </li>';
+                         
+      }
+      else {
+        list_.innerHTML = storedValues;
+      }
+    }
+    getValues();
+  })();
+</script>
+<script>
+  function previewFile(input){
+  var file = $("input[type=file]").get(0).files[0];
+
+  if(file){
+      var reader = new FileReader();
+
+      reader.onload = function(){
+          $("#preview_Img").attr("src", reader.result);
+      }
+
+      reader.readAsDataURL(file);
+  }
+}
+</script>
+<script>
+  function edit_info()
+    {
+      var edit_personal_info = document.getElementById("edit_personal_info");
+      edit_personal_info.style.display = "none";
+      var save_personal_info = document.getElementById("save_personal_info");
+      save_personal_info.style.display = "block";
+      var name = document.getElementById("name");
+      name.disabled = !name.disabled;
+      var branch = document.getElementById("branch");
+      branch.disabled = !branch.disabled;
+      var phone = document.getElementById("phone");
+      phone.disabled = !phone.disabled;
+      var domain = document.getElementById("domain");
+      domain.disabled = !domain.disabled;
+    }
+
+
+</script>
+<script>
+  function edit_element(){
+    document.getElementById("form-college").style.display = "block";
+    
+    document.getElementById("info-college").style.display = "none";
+    
+}
+function edit_element2(){
+    document.getElementById("form-school").style.display = "block";
+    
+    document.getElementById("info-school").style.display = "none";
+    
+}
+function edit_element3(){
+    document.getElementById("form-int-school").style.display = "block";
+    
+    document.getElementById("info-int-school").style.display = "none";
+    
+}
+</script>
+<script>
+ 
+
+function edit_skills() {  
+  var edit = document.getElementById("edit_skills");
+  edit.style.display = "none";
+  var input_skill1 = document.getElementById("input_skill1");
+  input_skill1.disabled = !input_skill1.disabled;
+  var save_skills = document.getElementById("save_skills2");
+  save_skills.style.display = "block";
+  var save_skills = document.getElementById("save_skills1");
+  save_skills.style.display = "block";
+  
+  var save_skills = document.getElementById("save_skills3");
+  save_skills.style.display = "block";
+  var save_skills = document.getElementById("save_skills4");
+  save_skills.style.display = "block";
+  var input_skill2 = document.getElementById("input_skill2");
+  input_skill2.disabled = !input_skill2.disabled;
+  var input_skill3 = document.getElementById("input_skill3");
+  input_skill3.disabled = !input_skill3.disabled;
+  var input_skill4 = document.getElementById("input_skill4");
+  input_skill4.disabled = !input_skill4.disabled;
+  
+  }
+</script>
+<script>
+  function deleteo(a)
+  {
+    var myobj = document.getElementById(a);
+myobj.remove();
+  }
+</script>
+
+
+{% endblock  %}

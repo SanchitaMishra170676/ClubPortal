@@ -1,0 +1,36 @@
+{% load static %}
+
+<!-- Bootstrap and necessary plugins -->
+<script src="{% static 'dist/vendors/js/jquery.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/popper.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/pace.min.js' %}"></script>
+
+{% comment %} <!-- Plugins and scripts required by all views -->
+<!--Chart JS is commented out due to console errors--> {% endcomment %}
+{% comment %} <!--<script src="{% static 'dist/vendors/js/Chart.min.js' %}"></script>--> {% endcomment %}
+
+{% comment %} <!-- CoreUI main scripts --> {% endcomment %}
+
+<script src="{% static 'dist/js/app.js' %}"></script>
+
+<!-- Plugins and scripts required by this views -->
+
+<!-- Custom scripts required by this view -->
+<script src="{% static 'dist/js/views/main.js' %}"></script>
+<script src="{% static 'src/js/attendance.js' %}"></script>
+<script src="{% static 'src/js/resources.js' %}"></script>
+<script src="{% static 'src/js/project.js' %}"></script>
+<script src="{% static 'src/js/achievement.js' %}"></script>
+<script src="{% static 'src/js/home.js' %}"></script>
+<script src="{% static 'src/js/public_profile.js' %}"></script>
+<script src="{% static 'src/js/personal_profile.js' %}"></script>
+<script src="{% static 'src/js/article.js' %}"></script>
+<script src="{% static 'src/js/Assign-Task.js' %}"></script>
+<script src="{% static 'src/js/Manage-Task.js' %}"></script>
+<script src="{% static 'src/js/updates.js' %}"></script>
+<script src="{% static 'src/js/student-task.js' %}"></script>
+
+{% block script %}
+
+{% endblock %}

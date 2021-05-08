@@ -1,0 +1,198 @@
+{% extends 'home/basic.html' %}
+{% block title %}
+<title>Join Technical Community - Innogeeks | Top Student Driven Club of KIET</title>
+{% endblock title %}
+{% block registration %}
+active
+{%  endblock %}
+  {% load static %}
+  {% block content %}
+
+  <link rel="stylesheet" href="{% static 'css/rec-form.css' %}">
+  
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> 
+     <script> 
+      $(document).ready(function() { 
+          $('input[type="file"]').change(function(e) { 
+              var filess = e.target.files[0].name; 
+              $("p").text(filess + ' is the selected file.'); 
+
+          }); 
+      }); 
+  </script> 
+  {% if messages %}
+  {% for message in messages %}
+    <script> alertify.{{message.tags }}('{{message}}');</script>
+     
+  {% endfor %}
+  {% endif %}
+  <style>
+
+    .home,.gallery,.achievements,.recruitment,.queries{
+      font-size: 14px;
+    }
+  
+
+    input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid  rgb(0, 102, 204);
+    display: inline-block;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+  </style>
+ 
+<!-- PRELOADER -->
+<div class="preloader">
+  <div class="cssload-whirlpool"></div>
+</div>
+
+  <!-- form start -->
+  <div class="pd-top">
+
+<!-- #### HEADING #### -->
+
+  <div class=" d-flex justify-content-center">
+    <div class="card dark mt-4 p-2 col-12 col-lg-10 col-xl-10 d-flex justify-content-center ">
+      <div class=" p-2 align-self-center d-flex justify-content-center">
+        <h1 class="heading">Registration Form(Only for Club Members)</h1>
+      </div>
+    </div>
+  </div>
+  
+<!-- #### FORM #### -->
+  <div class="d-flex justify-content-center">
+    <div class="grad negative-margin mb-4 col-11 col-lg-9 col-xl-8">
+      <div class="row d-flex pt-4 d-flex justify-content-center">
+
+        </div>
+      <div class="card-body">
+        <form class="form-horizontal rec-form" enctype="multipart/form-data" action="/accounts/register/" method="post">
+          
+          {% csrf_token %}
+            <div class="form-group row">
+              <label for="first-name" class=" col-12 col-lg-2">First Name:</label>
+                <input class="form-control col-12 col-lg-10" type="text" name="FirstName" value=""  required placeholder="First Name">
+            </div>
+            <div class="form-group row">
+              <label for="Last Name" class="col-12 col-lg-2">Last Name:</label>
+                <input class="form-control col-12 col-lg-10" type="text" name="LastName" value=""   placeholder="Last Name" required>
+            </div>
+            <div class="form-group row">
+                      <label class="col-12 col-lg-2" for="Gender">Gender:</label>
+                      <select  class="form-control col-12 col-lg-10 " id="Gender" required name="Gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="rather not say">rather not say</option>
+                      </select>
+            </div>
+
+            <div class="form-group row">
+                      <label class="col-12 col-lg-2" for="Branch">Branch:</label>
+                      <select  style="color: rgb(50, 180, 255);" class="form-control col-12 col-lg-10 " id="" required name="Branch" >
+                        <option style=" color: rgb(0, 102, 204);" value="CSE">CSE</option>
+                        <option style=" color: rgb(0, 102, 204);" value="CO">CS</option>
+                        <option style=" color: rgb(0, 102, 204);" value="IT">IT</option>
+                        <option style=" color: rgb(0, 102, 204);" value="CSIT">CSIT</option>
+                        <option style=" color: rgb(0, 102, 204);" value="EC">ECE</option>
+                        <option style=" color: rgb(0, 102, 204);"value="EN">EN</option>
+                        <option style=" color: rgb(0, 102, 204);" value="CE">CE</option>
+                        <option style=" color: rgb(0, 102, 204);"value="ME">ME</option>
+                      </select>
+            </div>
+            <div class="form-group row">
+                      <label class="col-12 col-lg-2" for="Batch">Batch:</label>
+                      <select  class="form-control col-12 col-lg-10 " id="Batch" required name="Batch">
+                        <option value="2020-2024">2020-2024</option>
+                        <option value="2019-2023">2019-2023</option>
+                        <option value="2018-2022">2018-2022</option>
+                        <option value="2017-2021">2017-2021</option>
+                        
+                      </select>
+            </div>
+
+            
+            
+            <div class="form-group row">
+              <label for="Hostel" class="col-12 col-lg-2">Hostel:</label>
+                <!-- <input class="form-control col-12 col-lg-10" type="address" name="HostelName" value=""  required  placeholder="Hosteler/ Day-Scholar "> -->
+                <select style="color: rgb(50, 180, 255);" class="form-control col-12 col-lg-10 " id="domain" required name="HostelStatus" >
+                  <option style=" color: rgb(0, 102, 204);" value="Day-Scholar">Day-Scholar</option>
+                  <option style=" color: rgb(0, 102, 204);" value="Hosteler">Hosteler</option>
+                  <option style=" color: rgb(0, 102, 204);" value="Not Decided Yet">Not Decided Yet</option>
+                </select>
+            </div>
+            <div class="form-group row">
+              <label for="CollegeEmail" class="col-12 col-lg-2">College_Email :</label>
+                <input class="form-control col-12 col-lg-10" type="email" name="CollegeEmail" value=""  required placeholder="Email" onblur="this.style.borderColor= this.checkValidity() ? 'green' : 'red'" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+              </div>
+            <div class="form-group row">
+              <label for="Email" class="col-12 col-lg-2">Personal_Email:</label>
+                <input class="form-control col-12 col-lg-10" type="email" name="Email" value=""  required placeholder="Email" onblur="this.style.borderColor= this.checkValidity() ? 'green' : 'red'" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+              </div>
+            <div class="form-group row">
+              <label for="Phone No." class="col-12 col-lg-2">Phone no:</label>
+                <input class="form-control col-12 col-lg-10" type="tel" name="PhoneNo" value=""   required  placeholder="Phone no." onblur="this.style.borderColor= this.checkValidity() ? 'green' : 'red'" name="phone" pattern="[6-9][0-9]{9}$">
+            </div>
+            <div class="form-group row">
+                      <label  class="col-12 col-lg-2" for="Domain">Domain Choices:</label>
+                      <select style="color: rgb(50, 180, 255);" class="form-control col-12 col-lg-10 " id="domain" required name="Domain" >
+                        <option style=" color: rgb(0, 102, 204);" value="Web Development">Web Development</option>
+                        <option style=" color: rgb(0, 102, 204);" value="Android Development">Android Development</option>
+                        <option style=" color: rgb(0, 102, 204);"value="Machine Learning">Machine Learning</option>
+                        <option style=" color: rgb(0, 102, 204);"value="Internet of Things">Internet of Things</option>
+                        <option style=" color: rgb(0, 102, 204);" value="Augmented/Virtual Reality">Augmented/Virtual Reality</option>
+                      </select>
+            </div>
+
+            
+            <div class="form-group row">
+                <label for="Image" class="col-12 col-lg-2">Image:</label>
+                <label for="Image" class="custom-file-upload col-12 col-lg-10">
+                  <i class="fa fa-cloud-upload"></i> Choose your file<p> </p>
+              </label>
+              <input id="Image" name="Image" type="file" accept="image/*" />
+            
+            </div> 
+            <div class="form-group row">
+              <label for="Password" class="col-12 col-lg-2">Password :</label>
+                <input class="form-control col-12 col-lg-10" type="password" name="Password" value=""   placeholder="Enter Your Password" required>
+            </div>
+            <div class="form-group row">
+              <label for="ConfirmPassword" class="col-12 col-lg-2">Confirm Password :</label>
+                <input class="form-control col-12 col-lg-10" type="password" name="ConfirmPassword" value=""   placeholder="Retype Your Password" required>
+            </div>
+
+            <br>
+            <div class="text-center">
+                <button type="submit" name="button"><b>Submit</b> </button>
+            </div>
+            
+           
+        </form>
+      </div>
+     
+    </div>
+   
+  </div>
+ 
+  </div>
+  
+    
+<script>
+$(document).ready(function(){
+  $(".rec-form").on("submit", function(){
+    $('submit_btn').disabled = true;
+    $(".preloader").fadeIn("slow");
+
+  });//submit
+});</script>  
+  
+<!-- ======= Social Sidebar Section ======= -->
+
+<!-- End Social Sidebar Section -->
+{% endblock content %}

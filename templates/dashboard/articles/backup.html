@@ -1,0 +1,193 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/article.js' %}"></script>
+{% endblock %}
+{% block extrahead %}
+<link href="{% static 'src/css/article_list.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+
+{% block content %}
+
+<div class="animated fadeIn">
+  <div class="card p-4">
+      <div class="card-header">
+          <h4><i class="fa fa-edit"></i> Article List</h4>
+      </div>
+      {% if products %}
+      
+
+      {% else %}
+      <div class="card-body">
+          <h3>No Article Found</h3>
+      </div>
+      {% endif %}
+      <div class="row container-fluid">
+        <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+            <!-- Card -->
+      <div class="card booking-card  d-flex">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top project-list" src="{% static 'src/img/blog-post-3.jpeg' %}" alt="Card image cap">
+            <a href="#!">
+              <!-- for approved -->
+              <span class="badge badge-success float-right rounded-pill troop-level-badge">Approved</span>
+              
+              <!---->
+            </a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>We Ecommerce Website Essentials</a> 
+              
+              
+              </h4>
+            <br>
+            <a href="">
+              <i class="fa fa-external-link fa-lg" aria-hidden="true" style="float: left;"> Visit Page</i>
+            </a>
+            
+            <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="https://www.google.com/"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right;"></i></a>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+            <!-- Card -->
+      <div class="card booking-card  d-flex">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top project-list" src="{% static 'src/img/blog-post-3.jpeg' %}" alt="Card image cap">
+            <a href="#!">
+              <!-- for pending -->
+              <span class="badge badge-warning float-right rounded-pill troop-level-badge">Pending</span>
+              
+              <!---->
+            </a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>We Ecommerce Website Essentials: Does Your Site Have All 11?</a></h4><a href=""><i class="fa fa-external-link fa-lg" aria-hidden="true"> Visit Page</i></a>
+            <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="https://www.google.com/"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right;"></i></a>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+            <!-- Card -->
+      <div class="card booking-card  d-flex">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top project-list" src="{% static 'src/img/blog-post-3.jpeg' %}" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>We Ecommerce Website Essentials: Does Your Site Have All 11?</a></h4><a href=""><i class="fa fa-external-link fa-lg" aria-hidden="true"> Visit Page</i></a>
+            <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="https://www.google.com/"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right;"></i></a>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+            <!-- Card -->
+      <div class="card booking-card  d-flex">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top project-list" src="{% static 'src/img/blog-post-3.jpeg' %}" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>We Ecommerce Website Essentials: Does Your Site Have All 11?</a></h4><a href=""><i class="fa fa-external-link fa-lg" aria-hidden="true"> Visit Page</i></a>
+            <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="https://www.google.com/"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right;"></i></a>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+            <!-- Card -->
+      <div class="card booking-card  d-flex">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top project-list" src="{% static 'src/img/blog-post-3.jpeg' %}" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>We Ecommerce Website Essentials: Does Your Site Have All 11?</a></h4><a href=""><i class="fa fa-external-link fa-lg" aria-hidden="true"> Visit Page</i></a>
+            <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="https://www.google.com/"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right;"></i></a>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+            <!-- Card -->
+      <div class="card booking-card  d-flex">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            <img class="card-img-top project-list" src="{% static 'src/img/blog-post-3.jpeg' %}" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>We Ecommerce Website Essentials: Does Your Site Have All 11?</a></h4><a href=""><i class="fa fa-external-link fa-lg" aria-hidden="true"> Visit Page</i></a>
+            <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="https://www.google.com/"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right;"></i></a>
+          </div>
+        </div>
+        </div>
+    </div>
+    <!--pagination-->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+{% endblock content %}

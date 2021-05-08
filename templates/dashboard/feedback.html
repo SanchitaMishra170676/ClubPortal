@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} Feedback Form {% endblock %}
+    {% block extrahead %}
+    <link href="{% static 'src/css/feedback.css' %}" rel="stylesheet">
+    {% endblock %}
+    {% block content %}
+    
+    
+    <!-- <button onClick="feedback()">Feedback</button> -->
+    <body onload="feedback()">
+    <div class="feedback-modal">
+        <div class="modal-int">
+            <!-- <span class="close-modal">&times;</span> -->
+            <div class="modal-content">
+                <h1 class="feedback-head">
+                    Feedbacks and Suggestions
+                </h1>
+                <form action="" class="feedback-form">
+                    <div class="field">
+                        <label for="Suggestion">Any Feedback/Suggestion: </label>
+                        <input type="text" name="Suggestion" id="Suggestion"><br>
+                    </div>
+                    <div class="field">
+                        <label for="Problem">Problem you are facing: </label>
+                        <input type="text" name="Problem" id="Problem"><br>
+                    </div>
+                    <div class="field">
+                        <label for="Problem-Description">Describe your problem in detail (if any): </label>
+                        <textarea name="Problem-Description" id="Problem-Description" cols="30" rows="4"></textarea>
+                    </div>
+                    <div class="field">
+                        <label for="Domain">Your Domain:  </label>
+                        <input name="Domain" id="Domain" cols="30" rows="4"></input>
+                    </div>
+                    <div id="anony" class="field">
+                        <label for="anony">Stay Anonymous?</label>
+                        <input type="checkbox" name="anony" >
+                    </div>
+
+                    <br><br>
+
+
+
+                    <div class="feedback-submit-button">
+                        <input id="feedback-Submit-button" type="submit" value="Submit">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var modal =  document.querySelector(".feedback-modal");
+        function feedback() {
+            modal.style.display = "block";
+        }
+        document.querySelector(".close-modal").onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    </body>
+     {% endblock %}
+
+
+</html>

@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Response to your querry</title>
+
+        <style>
+            .body{
+                width: 70% !important;
+                height: 100% !important;
+                margin: 0px;
+                }
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                }
+            #triangle-up {
+                width: 0;
+                height: 0;
+                border-left: 20px solid transparent;
+                border-right: 20px solid transparent;
+                border-bottom: 25px solid rgb(5,4,19);
+                }
+                
+            .wrapper {
+                    min-height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+            .page-header, .page-footer {
+                    flex-shrink: 0;
+                }
+            .page-body {
+                    flex-grow: 1;
+                }
+                .flex-container {
+                display: flex;
+                height: 70px;
+                background-color: rgb(5,4,19);
+                }
+                .flex-container > div {
+                background-color:  rgb(5,4,19);
+                width: 25%;
+                align-self: center;
+                text-align: center;
+                line-height: 75px;
+                font-size: 13px;
+                }            
+
+        </style>
+    </head>
+    <body class="wrapper">
+
+        <div class="page-body">
+            <div class=""  style="background-color: rgb(5,4,19); border-radius: 0px 0px 50% 50%; width: 100%; padding-top:15px; padding-bottom: 15px;">
+                <img  style="width: 250px;" class="center" src="https://innogeeks.s3.amazonaws.com/img/innogeeks.png" alt="INNOGEEKS">         
+            </div>
+            
+            <div style="padding-left: 7vw; padding-right:7vw">
+                <h2>Hey Geek,</h2>
+                <h4>Thanks for writing to us!</h4>
+                <p>As far as your querry is concerned,  ..... </p>
+                <p>{{message}}</p>
+                <p style="padding:0px; margin-bottom: 5px; ">Thanks &amp; Regards</p>
+                <b><i style=" padding-bottom:20px;">Team Innogeeks</i></b>
+            </div>
+
+        </div>
+            <footer class="page-footer">
+                <div style=" display: flex; justify-content: center; margin-top: 30px; margin-bottom: 0px; padding-bottom: px;">
+                    <div id="triangle-up"></div>
+                </div>
+                <div style="background-color: rgb(5,4,19);  ">
+                    <div class="flex-container">
+                        <div><a style="color: white;" href="https://www.linkedin.com/company/innogeeks" target="blank"><span>LinkedIn</span></a></div>
+                        <div><a style="color: white;" href="https://www.instagram.com/innogeeks.kiet" target="blank"><span>Instagram</span></a></div>  
+                        <div><a style="color: white;" href="https://m.facebook.com/innogeeks.kiet " target="blank"><span>Facebook</span></a></div>  
+                        <div><a style="color: white;" href="https://m.youtube.com/channel/UCOhJvzvg5MC9_45qYyhvJGw" target="blank"><span>YouTube</span></a></div>
+                        <div><a style="color: white;" href="http://innogeeks.in" target="blank"><span>Website</span></a></div>
+                    </div>
+                </div>     
+            </footer>
+    </body>
+</html>

@@ -1,0 +1,141 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/article.js' %}"></script>
+{% endblock %}
+{% block extrahead %}
+<style>
+  
+  .pagination {
+    display: inline-block;
+    position: relative;
+  
+  }
+  
+  .pagination a {
+    color:black;
+    float: left;
+    padding: 8px 16px;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .pagination a.active {
+    background-color: rgb(0, 102, 204);
+    color: black;
+    border-radius: 50%;
+  }
+  
+  .pagination a:hover:not(.active) {
+    background-color: rgb(20, 19, 35);
+    color: white;
+    border-radius: 50%;
+  }
+  
+  </style>
+<link href="{% static 'src/css/article_list.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+
+{% block content %}
+
+ <!-- ======= Article-list Section ======= -->
+<div class="animated fadeIn">  
+  <div class="card p-4">
+      <div class="card-header">
+          <h4><i class="fa fa-edit"></i> Article List</h4>
+      </div>
+     <br>
+      {% if articles %}
+      <div class="row container-fluid">
+        {% for article in articles %}
+        <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
+            <!-- Card -->
+        <div class="card booking-card  d-flex">
+
+          <!-- Card image -->
+          <div class="view overlay">
+            {% if article.Thumbimage1 %}
+            <img class="card-img-top project-list"  src="{% static '' %}{{article.Thumbimage1}}" style="width: 100%;height:250px;" alt="Image">
+            {% else %}
+            <img class="card-img-top project-list"  src="{% static 'src/img/placeholder-img.jpg' %}" style="width: 100%;height:250px;" alt="Image">
+            {% endif %}
+            <a href="#!">
+              <!-- for approved -->
+              {% if article.is_approved %}
+              <span class="badge badge-success float-right rounded-pill troop-level-badge">approved</span>
+              {% else %}
+              <span class="badge badge-warning float-right rounded-pill troop-level-badge">Not approved</span>
+              {% endif %}              
+              <!---->
+            </a>
+          </div>
+          
+          
+
+          <!-- Card content -->
+          <div class="card-body">
+            <div>
+              <span class=" d-flex align-items-center justify-content-end">
+                <a class="btn btn-info"  href="/dashboard/update_article/{{article.id}}/">
+                  <i class="fa fa-edit edit" ></i>
+              </a>
+              <a class="btn btn-danger delete"  href="/dashboard/delete_article/{{article.id}}/">
+                 <i class="fa fa-trash-o"></i>
+              </a>
+              </span>
+            </div>
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>{{article.title|truncatewords:8}}</a> 
+              </h4>
+            
+            <p>{{article.highlights|truncatewords:40}}</p>
+
+            
+            <a target="blank" href="/blog/{{article.slug}}/">
+              <i class="fa fa-external-link fa-lg" aria-hidden="true"  style="float: left;"> Visit Page</i>
+            </a>
+            
+           
+          <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="http://innogeeks.kiet.edu/blog/{{article.slug}}/"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right;"></i></a>
+          
+          </div>
+          
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card-body">
+      <h3>No Article Found </h3> 
+    </div>
+    {% endif %}
+    <!--pagination-->
+    {% if articles.has_other_pages %}
+    <div class="pagination d-flex justify-content-center mt-4">
+    {% if hackathons.has_previous %}
+      <a href="?page={{ articles.previous_page_number }}">&laquo;</a>
+    {% else %}
+      <a href="#">&laquo;</a>
+    {% endif %}
+    {% for i in articles.paginator.page_range %}
+      {% if articles.number == i %}
+      <a href="#" class="active">{{i}}</a>
+      {% else%}
+      <a href="?page={{i}}">{{i}}</a>
+      {% endif %}
+    {% endfor %}
+      {% if articles.has_next %}
+      <a href="?page={{ articles.next_page_number }}">&raquo;</a>
+      {% else %}
+        <a href="#">&raquo;</a>
+      
+      {% endif %}
+    </div>
+  {% endif%}
+<!-- Pagination end -->
+  </div>
+</div>
+<!-- Article list section end -->
+{% endblock content %}

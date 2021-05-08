@@ -1,0 +1,483 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'src/js/personal_profile.js' %}"></script>
+
+<script>
+  $(document).ready(function(){
+
+// Add new element
+$(".add").click(function(){
+
+    // Finding total number of elements added
+    var total_element = $(".element").length;
+                
+    // last <div> with element class id
+    var lastid = $(".element:last").attr("id");
+    var split_id = lastid.split("_");
+    var nextindex = Number(split_id[1]) + 1;
+    var csrftoken = '{%csrf_token %}';
+    var max = 2;
+    // Check total number elements
+    if(total_element < max ){
+        // Adding new div container after last occurance of element class
+        $(".element:last").after("<form action='/member/personal_profile/section/skill_update/' enctype='multipart/form-data'  method='post' > "+csrftoken+ " <div class='element' id='div_"+ nextindex +"'></div> </form>");
+         /*          
+        // Adding element to <div> with delete button and save button
+        $("#div_" + nextindex).append("<input type='text' placeholder='Enter your skill'  id='txt_"+ nextindex +"'/>&nbsp;<button id='remove_" + nextindex + "' class='remove btn btn-danger'>-</button>&nbsp;<button type='submit' class='btn btn-success save_o'><i class='fa fa-floppy-o' aria-hidden='true'></i></button>");
+         */     
+         // Adding element to <div> with save button only
+          $("#div_" + nextindex).append(" <input type='text'name='Skill'  placeholder='Enter your skill'  id='txt_"+ nextindex +"'/>&nbsp;&nbsp;<button type='submit' class='btn btn-success save_o'><i class='fa fa-floppy-o' aria-hidden='true'></i></button>");  
+    }
+                
+});
+
+// Remove element
+$('.container').on('click','.remove',function(){
+            
+    var id = this.id;
+    var split_id = id.split("_");
+    var deleteindex = split_id[1];
+
+    // Remove <div> with id
+    $("#div_" + deleteindex).remove();
+});                
+});
+</script>
+{% endblock %}
+
+{% block extrahead %}
+<link href="{% static 'src/css/personal_profile.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+{% block content %}
+
+<!-- ======= Personal profile Section ======= -->  
+<div class="col-12 d-flex justify-content-center align-items-center mt-4">
+    
+  <div class="avatarDiv form-group" style="position:relative">
+
+    
+    <button class="changeImgIcon btn-info mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i"
+      style="position:absolute;top:-5px;right:20%;background:#fff;color:#404040;width: 20%; background-color: rgb(138, 181, 247);" >
+      <div class="image-upload">
+        <label for="file-input">
+          <i class="fa fa-edit" style="color: #fff;"></i>
+
+        </label>
+
+        <input id="file-input" type="file" name="image" style="display: none;" onchange="previewFile(this);"
+          accept="image/*" form="img_save_form"/>
+      </div>
+    </button>
+    <form action="/member/image_save/" id="img_save_form" method="post"
+    enctype="multipart/form-data">
+      {% csrf_token %}
+      {% if clubProfile.image %}
+          <img id="preview_Img" src="{% static '' %}{{clubProfile.image}}" alt="Placeholder" height="180px;"
+          style="border-radius: 50%;">
+      {% else %}
+          <img id="preview_Img" src="{% static 'src/img/man.png' %}" alt="Placeholder" height="180px;"
+          style="border-radius: 50%;">
+      {% endif %}
+      <button class="changeImgIcon btn-success mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i"
+      style="position:absolute;bottom:-5px;right:20%;background:#fff;background-color:#31c75e; width: 20%;" type="submit" form="img_save_form">
+      <div >
+        <label for="save">
+          <i class="fa fa-save" style="color: #fff;"></i>
+        </label>
+      </div>
+    </button>
+  </form>
+
+  </div>
+
+</div>
+  <div class="col-12 d-flex justify-content-center align-items-center mt-3">
+    <h5 class="profile-txt"></h5>
+  </div>
+
+  <div class="container my-4">
+    <div class="col shadow rounded border">
+
+      <div class="row">
+        <div class="col-sm-10 d-flex justify-content-center align-items-center mt-3">
+          <h2 class="block-head">Personal Information</h2>
+        </div>
+        <div class="col-sm-2 d-flex justify-content-center align-items-center mt-3">
+          <button type="button" class="btn btn-info" id="edit_personal_info" onclick="edit_info()"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>
+              <button type="submit" form="personal_profile_info_details" class="btn btn-success" id="save_personal_info" type="submit" style="display: none;"><i
+                class="fa fa-save " aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+
+      <div class="col-sm-12 d-flex  mt-3 align-items-center justify-content-center">
+        <p>Add your various personal information for the profile</p>
+      </div>
+      <form action="/member/personal_profile/section/info_update/" id="personal_profile_info_details" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <label for="name">Name</label>
+          <input class="form-control" name="Name" value="{{personalProfile.user.name}}" id="name" type="text" placeholder="Enter your Name" Value="" disabled>
+        </div>
+      </div>
+      <div class="row">
+
+        
+        <div class="form-group col-sm-6">
+          <label for="">Date Of Birth</label>
+          
+          
+          <input  class="form-control" id="dateinput" value="{{personalProfile.dob |date:'Y-m-d'}}" type="date" name="Dob" placeholder="date"  disabled>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="email">Email</label>
+          <input class="form-control" id="email" type="email" value="{{personalProfile.email}}" name="Email" placeholder="example@gmail.com" disabled>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="city">City</label>
+          <input class="form-control" id="city" value="{{personalProfile.city}}" name="City" type="text" placeholder="Enter your city" disabled>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="State">State</label>
+          <input class="form-control" id="State" value="{{personalProfile.state}}" name="State" type="text" placeholder="Enter your State" disabled>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="postal-code">Postal Code</label>
+          <input class="form-control" id="postalcode" value="{{personalProfile.postal_code}}" name="Postalcode" type="text" placeholder="Postal Code" disabled>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <label for="name">Short Bio to be used as Contributer Profile</label>
+          <textarea class="form-control" id="textar" name="Bio" rows="4"
+            placeholder="Innovative and deadline-driven Full-stack Web Developer with 3+ years of experience designing and developing user-centered websites from initial concept to final, polished deliverable..."
+            disabled>{{personalProfile.short_bio}}</textarea>
+        </div>
+      </div>
+    </form>
+
+
+
+    </div>
+  </div>
+
+
+<div class="container my-4">
+  <div class="col shadow rounded border">
+    <div class="row">
+      <div class="col-sm-10 d-flex justify-content-center align-items-center mt-3">
+        <h2 class="block-head">Professional Skills</h2>
+      </div>
+      <div class="col-sm-2 d-flex justify-content-center align-items-center mt-3">
+
+       
+        <button  type="button" id="add_b" class="add btn btn-info"  ><i class="fa fa-plus" aria-hidden="true"></i></button>
+        
+
+      </div>
+    </div>
+
+    <div class="col-sm-12 d-flex  mt-3 align-items-center justify-content-center">
+      <p>Add various professional skills which you have achieved and want to display on profile</p>
+    </div>
+    <div class="col-12 d-flex justify-content-center align-items-center mt-3">
+      <div class="row">
+        
+        {% for skill in skills %}
+        <h6 class="bg-primary skil_noedit ">{{skill.skill}}</h6>
+        {% endfor %}
+
+        <!-- <h6 class="bg-info skil_noedit ">Bootstrap</h6>
+        <h6 class="bg-primary skil_noedit ">CSS</h6>
+        <h6 class="bg-info skil_noedit ">JS</h6>
+        <h6 class="bg-primary skil_noedit ">C++</h6> -->
+    </div>
+      
+    </div>
+
+    <div class="col-12 d-flex justify-content-center align-items-center mt-3">
+      
+      <div class="row">
+        <div  id='div_1' class="element">
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="container my-4">
+  <div class="col shadow rounded border">
+    <div class="row">
+      <div class="col-sm-10 d-flex justify-content-center align-items-center mt-3">
+        <h2 class="block-head">Add Academic Education</h2>
+      </div>
+      <div class="col-sm-2 d-flex justify-content-center align-items-center mt-3">
+        <!-- <button onclick="add_institute()" type="button" class="btn btn-info" id="add_institute_button"
+          style="display:none;"><i class="fa fa-plus " aria-hidden="true"></i></button> -->
+        
+        <button class="btn btn-info" id="edit_education" onclick="return edit_education()"><i class="fa fa-plus "
+            aria-hidden="true"></i></button>
+        <button  class="btn btn-success" id="save_education_details" style="display:none;" type="submit" form="institute1_form"><i
+          class="fa fa-save " aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <br><br>
+    
+    <br>
+  
+    <form method="post" action="/member/personal_profile/education_update/"  id="institute1_form" >
+      {% csrf_token %}  
+      
+    <div class="row">
+      <div class="form-group col-sm-8">
+        <label for="name">Institue</label>
+        <input required name="institution" value="" class="form-control" id="institute_name" type="text" placeholder="Enter your Institute Name" disabled>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="name">Grade</label>
+        <input required name="grade" class="form-control" id="grade" type="text" placeholder="Enter your Grade"  value="" disabled>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label for="ccyear">Time Period</label>
+        <input required name="time_period" class="form-control" id="ccyear" type="text" placeholder="e.g.(2018-2022)"  value="" disabled>
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="ccyear">Qualification</label>
+        
+        <select required name="qualification" class="form-control" id="Qualification" disabled>
+          <option value="X">X</option>
+          <option value="XII">XII</option>
+          <option value="Diploma">Diploma</option>
+          <option value="B.Tech">B.Tech</option>
+          <option value="M.Tech">M.Tech</option>
+          <option value="B.Sc">B.Sc</option>
+          <option value="M.Sc">M.Sc</option>
+          <option value="BCA">BCA</option>
+          <option value="MCA">MCA</option>
+          <option value="BBA">BBA</option>
+          <option value="MBA">MBA</option>
+          <option value="B.E.">B.E.</option>
+          <option value="Others">Others</option>
+
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-12">
+        
+      </div>
+    </div>
+    </form>
+
+    <!-- ====DISPLAY==== -->
+    {% for educationProfile in educationProfiles %}
+    <div>
+      <h3>  <i> Qualification Details </i></h3>
+    </div>
+    <form method="post" action="/member/personal_profile/education_update/{{educationProfile.id}}/"  id="institute1_form" >
+      {% csrf_token %}  
+      
+    <div class="row">
+      <div class="form-group col-sm-8">
+        <label for="name">Institue</label>
+        <input name="institution" value="{{educationProfile.institution}}" class="form-control" id="institute_name" type="text" placeholder="Enter your Institute Name" disabled>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="name">Grade</label>
+        <input name="grade" class="form-control" id="grade" type="text" placeholder="Enter your Grade"  value="{{educationProfile.grade}}" disabled>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-6">
+        <label for="ccyear">Time Period</label>
+        <input name="time_period" class="form-control" id="ccyear" type="text" placeholder="e.g.(2018-2022)"  value="{{educationProfile.time_period}}" disabled>
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="ccyear">Qualification</label>
+        
+        <select name="qualification" class="form-control" id="Qualification" disabled>
+          <option value="B.Tech">B.Tech</option>
+          <option value="M.Tech">M.Tech</option>
+          <option value="B.Sc">B.Sc</option>
+          <option value="M.Sc">M.Sc</option>
+          <option value="BCA">BCA</option>
+          <option value="MCA">MCA</option>
+          <option value="BBA">BBA</option>
+          <option value="MBA">MBA</option>
+          <option value="B.E.">B.E.</option>
+          <option value="Others">Others</option>
+
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-12">
+        
+      </div>
+    </div>
+    </form>
+    {% endfor %}
+
+
+
+
+    <div class="col shadow rounded border" id="add_institute" style="display: none;">
+      <div class="row">
+        <div class="col-sm-10 d-flex justify-content-center align-items-center mt-3">
+          <h2 class="block-head">Qualification Details</h2>
+        </div>
+        <div class="col-sm-2 d-flex justify-content-center align-items-center mt-3">
+          <button onclick="coding_profile()" type="button" class="btn btn-info" id="coding_profile_button"
+          style="display:block;"><i class="fa fa-plus " aria-hidden="true"></i></button>
+          <button  class="btn btn-success" id="save_education_details" type="submit" form="institute2_form"><i class="fa fa-save "
+              aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+      <br>
+      <form action="/member/personal_profile/education_update/{{education.id}}/" id="institute2_form" method="post">
+        {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <label for="name">Institue</label>
+          <input name="institution" class="form-control" id="institute_name" type="text" placeholder="Enter your Institute Name">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="name">Grade</label>
+          <input name="grade" class="form-control" id="grade" type="text" placeholder="Enter your Grade"  value="10 SGPA" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="ccyear">Time Period</label>
+          <input name="time_period" class="form-control" id="ccyear" type="text" placeholder="e.g.(2018-2022)"  value="2019-2023" >
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="ccyear">Qualification</label>
+          <input name="qualification" class="form-control" id="Qualification" type="text" placeholder="Enter your Qualification"  value="PCM,CBSE " >
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-12">
+          
+        </div>
+      </div>
+    </form>
+    </div>
+    <div class="col shadow rounded border" id="add_institute2" style="display: none;">
+      <div class="row">
+        <div class="col-sm-10 d-flex justify-content-center align-items-center mt-3">
+          <h2 class="block-head">Qualification Details</h2>
+        </div>
+        <div class="col-sm-2 d-flex justify-content-center align-items-center mt-3">
+          
+          <button  class="btn btn-success" id="save_education_details" type="submit" form="institute3_form"><i class="fa fa-save "
+              aria-hidden="true"></i></button>
+
+        </div>
+      </div>
+      <br>
+      <form action="/member/personal_profile/education_update/{{education.id}}/" id="institute3_form" method="post">
+        {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-sm-8">
+          <label for="name">Institue</label>
+          <input name="institution" class="form-control" id="institute_name" type="text" placeholder="Enter your Institute Name">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="name">Grade</label>
+          <input name="grade" class="form-control" id="grade" type="text" placeholder="Enter your Grade"  value="10 SGPA" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="ccyear">Time Period</label>
+          <input name="time_period" class="form-control" id="ccyear" type="text" placeholder="e.g (2018-2022)"  value="2019-2023" >
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="ccyear">Qualification</label>
+          <input name="qualification " class="form-control" id="Qualification" type="text" placeholder="Enter your Qualification"  value="PCM,CBSE " >
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-12">
+          
+          <textarea style="visibility: collapse;" class="form-control" id="textarea" name="textarea-input" rows="3" placeholder="Content.."
+            ></textarea>
+        </div>
+      </div>
+    </form>
+    </div>
+
+    
+
+    <br>
+  </div>
+</div>
+<div class="container my-4">
+  <div class="col-12 shadow rounded border" id="coding_profile" >
+    <div class="row">
+      <div class="col-12 col-sm-10 d-flex justify-content-center align-items-center mt-3">
+        <h2 class="block-head">Coding Profile</h4>
+      </div>
+      <div class="col-sm-2 d-flex justify-content-center align-items-center mt-3">
+        <button class="btn btn-info" id="edit_coding_profile" onclick="edit_coding_profile()"><i class="fa fa-edit "
+          aria-hidden="true"></i></button>
+        <button  class="btn btn-success" id="save_coding_details" type="submit" form="coding-profile-form" style="display:none"><i class="fa fa-save "
+            aria-hidden="true"></i></button>
+
+      </div>
+    </div>
+    <br>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-xl-8">
+
+        <form action="/member/coding_profile/" class="coding-form"  id="coding-profile-form" method="post">
+        {% csrf_token %}
+          <div class="row cprofile-row">
+            <label for="codechef-username">Codechef Username: </label>
+            <input type="text" name="codechef" id="codechef-username" class="form-control" placeholder="N/A"  value="{{codingProfile.codechef}}" disabled> 
+          </div>
+          <div class="row cprofile-row">
+            <label for="codeforces-username">Codeforces Username: </label>
+            <input type="text" name="codeforces" id="codeforces-username" class="form-control" value="{{codingProfile.codeforces}}" placeholder="N/A" disabled>
+          </div>
+          <div class="row cprofile-row">
+            <label for="interviewbit-username">Interview Bit Username: </label>
+            <input type="text" name="interviewbit" id="interviewbit-username" class="form-control" value="{{codingProfile.interviewbit}}" placeholder="N/A" disabled>
+          </div>
+          <div class="row cprofile-row">
+            <label for="leetcode-username">Leetcode Username: </label>
+            <input type="text" name="leetcode" id="leetcode-username" class="form-control"  value="{{codingProfile.leetcode}}" placeholder="N/A" disabled>
+          </div>
+          <div class="row cprofile-row">
+            <label for="spoj-username">SPOJ Username: </label>
+            <input type="text" name="spoj" id="spoj-username" class="form-control"  value="{{codingProfile.spoj}}" placeholder="N/A" disabled>
+          </div>
+
+        </form>
+       
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</div>
+
+<!-- Personal profile section end -->
+{% endblock %}

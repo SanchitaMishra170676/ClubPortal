@@ -1,0 +1,160 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+Resources for Programming
+{% endblock title %}
+
+{% block script %}
+<script src="{% static 'src/js/resources.js' %}"></script>
+
+{% endblock  %}
+
+{% block extrahead %}
+<link href="{% static 'src/css/resources.css' %}" rel="stylesheet">
+
+{% endblock extrahead %}
+
+
+
+
+{% block content %}
+
+
+    <!-- ======= DSA Section ======= -->
+<div class="container-fluid">
+                <div class="animated fadeIn">
+
+                    <section class="resources-section">
+                        <h1 class="pagehead">
+                            DATA STRUCTURE AND ALGORITHM
+                        </h1>
+
+
+                        <div class="Basic-programming">
+                            <h1 class="sec-head" onclick="drop_down('drop1')">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Data Structures
+                            </h1>
+                            <div class="drop" id="drop1" style="display: block;">
+                               
+                                <div class="internal_sec">
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Array
+
+                                        </h4>
+                                        <img src="{% static 'src/img/ds.jpeg' %}" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Linked List
+
+                                        </h4>
+                                        <img src="{% static 'src/img/ds.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Tree
+
+                                        </h4>
+                                        <img src="{% static 'src/img/ds.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Graphs
+
+                                        </h4>
+                                        <img src="{% static 'src/img/ds.jpeg' %}"" alt="" srcset="">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="DSA">
+                            <h1 class="sec-head" onclick="drop_down('drop2')">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Algorithms
+                            </h1>
+                            <div class="drop" id="drop2" style="display: block;">
+                               
+                                <div class="internal_sec">
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Divide and Conquer
+                                        </h4>
+                                        <img src="{% static 'src/img/algo.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Djikstra's Algorithm
+                                        </h4>
+                                        <img src="{% static 'src/img/algo.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Prims Algorithm
+                                        </h4>
+                                        <img src="{% static 'src/img/algo.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Searching and Sorting
+                                        </h4>
+                                        <img src="{% static 'src/img/algo.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="Domain-related">
+                            <h1 class="sec-head" onclick="drop_down('drop3')">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Mathematics
+                            </h1>
+                            <div class="drop" id="drop3" style="display: block;">
+                               
+                                <div class="internal_sec">
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Algebra
+                                        </h4>
+                                        <img src="{% static 'src/img/maths.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Calculus
+                                        </h4>
+                                        <img src="{% static 'src/img/maths.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Statistics
+                                        </h4>
+                                        <img src="{% static 'src/img/maths.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Discrete Maths
+                                        </h4>
+                                        <img src="{% static 'src/img/maths.jpeg' %}"" alt="" srcset="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            
+            <!-- DSA Section end -->
+{% endblock content %}
+
+
+

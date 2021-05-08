@@ -1,0 +1,110 @@
+{% extends 'home/basic.html' %}
+{% block title%}
+  <title>Success Stories - Innogeeks | One of the Top Student Driven Club of KIET</title>
+  {%  endblock title%}
+{% block achievements %}
+active
+{%  endblock %}
+  {% load static %}
+  {% block content %}
+
+  <link rel="stylesheet" href="{% static 'css/achievements.css' %}">
+  <style>
+    .home,.gallery,.achievements,.recruitment,.queries{
+      font-size: 14px;
+    }
+  </style>
+<!-- PRELOADER -->
+<!-- <div class="preloader">
+  <div class="cssload-whirlpool"></div> 
+</div> -->
+  <!-- ======= Updates Sidebar Section ======= -->
+  <p class="sideNav" id="main" onclick="openNav()">U<br>P<br>D<br>A<br>T<br>E<br>S<br></p>
+  <div class="sidebar" id="mySidebar">
+    <h3 class="sidebar-heading">UPDATES</h3>
+    <a href="javascript:void(0)" class="closebtn sa" onclick="closeNav()">×</a>
+
+    <div>
+      <div class="marquee p">
+        <p>
+        <ul>
+          {% for update in updates %}
+          <li  class="updates-sec m-3 p-2"><a target="blank"class="updt" href="{{update.link}}">{{update.desc}}</a>  </li>
+          {% endfor %}
+        </ul>
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <!-- Updates Sidebar end-->
+
+<!-- ======= Social Sidebar Section ======= -->
+<ul id="social-sidebar">
+  <li>
+    <a class="entypo-mail" href="mailto:innogeeks@kiet.edu" target="blank"><span>Mail</span></a>
+  </li>
+  <li>
+    <a class="entypo-linkedin" href="https://www.linkedin.com/company/innogeeks" target="blank"><span>LinkedIn</span></a>
+  </li>
+  <li>
+    <a class="entypo-instagrem" href="https://www.instagram.com/innogeeks.kiet" target="blank"><span>Instagram</span></a>
+  </li>
+  <li>
+    <a class="entypo-facebook" href="https://m.facebook.com/innogeeks.kiet " target="blank"><span>Facebook</span></a>
+  </li>
+</ul>
+<!-- End Social Sidebar Section -->
+
+<!-- ======= Achievement Section ======= -->
+<div class="ach-page d-flex justify-content-center pt-4">
+  <h1 class="top-spacing">ACHIEVEMENTS</h1>
+</div>
+<div class="container-fluid contain">
+
+  <!-- Achievements -->
+  {% for achievement in achievements %} 
+        <div class="p-4 d-flex">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="{% static '' %}{{achievement.poster}}" class="features" alt="Innogeeks club of kiet group of institution">
+              </div>
+              <div  style="padding-top: 15px; color: white !important;" class="flip-card-back p-4 align-items-center">
+                <h2 class="pb-4">{{achievement.name}}</h2>
+                <h5 class="d-flex justify-content-start pb-2">{{ achievement.date.date}} </h5>
+              <h6 class="d-flex justify-content-start"> <b>Rank: &nbsp;</b>{{ achievement.rank}} </h6>
+              <h6 class="d-flex justify-content-start" >{{ achievement.prize}}</h6>
+              <!-- <h6 class="d-flex justify-content-start"> <b>Congratulations! :</b> </h6> -->
+              <i style="font-size: medium;" class="d-flex justify-content-start">Congratulations! {{ achievement.teamName}}</i>
+              </div>
+            </div>
+          </div>
+      </div>
+ {% endfor %}
+</div>
+
+  {% if achievements.has_other_pages %}
+    <div class="pagination d-flex justify-content-center mt-4">
+    {% if achievements.has_previous %}
+      <a href="?page={{ achievements.previous_page_number }}">&laquo;</a>
+    {% else %}
+      <a href="#">&laquo;</a>
+    {% endif %}
+    {% for i in achievements.paginator.page_range %}
+      {% if achievements.number == i %}
+      <a href="#" class="active">{{i}}</a>
+      {% else%}
+      <a href="?page={{i}}">{{i}}</a>
+      {% endif %}
+    {% endfor %}
+      {% if achievements.has_next %}
+      <a href="?page={{ achievements.next_page_number }}">&raquo;</a>
+      {% else %}
+        <a href="#">&raquo;</a>
+      
+      {% endif %}
+    </div>
+  {% endif%}
+  <!-- End Achievements Section -->
+  {% endblock content %}

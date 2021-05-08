@@ -1,0 +1,156 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Resources for Programming
+{% endblock title %}
+
+{% load static %}
+
+
+{% block script %}
+<script src="{% static 'src/js/resources.js' %}"></script>
+{% endblock  %}
+
+{% block extrahead %}
+<link href="{% static 'src/css/resources.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+{% block content %}
+
+    <!-- ======= Resources Section ======= -->
+
+<div class="container-fluid">
+                <div class="animated fadeIn">
+
+                    <section class="resources-section">
+                        <h1 class="pagehead">
+                            {{course.name}}
+                        </h1>
+                    {% if topics %}
+
+                        {% for topic in topics %}
+                        <div class="Basic-programming">
+                            <h1 class="sec-head" onclick="drop_down('drop{{topic.id}}')">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                {{topic.topic_name}}
+                            </h1>
+                            <div class="drop" id="drop{{topic.id}}" style="display: block;">
+                            <div class="internal_sec">
+                                {% for subtopic in subtopics %}
+                                        {% if subtopic.topic.id == topic.id %}
+                                        <a href="/dashboard/resources/links/{{course.name}}/{{subtopic.subtopic_name}}/"  target="_blank" style="decoration: none; color:white;">
+                                            <div class="r_card mx-2">
+                                                <h4 class="card_head">
+                                                    {{subtopic.subtopic_name}}
+                                                </h4>
+                                                {% if subtopic.image %}
+                                                <img src="{% static '' %}{{subtopic.image}}" alt="" srcset="">
+                                                {% else %}
+                                                <img src="{% static 'src/img/c-img.png' %}" alt="" srcset="">
+                                                {% endif %}
+                                            </div>
+                                        </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}    
+                    {% else %}
+                        No Resources found
+                    {% endif %}
+                    
+                        {% comment %} <div class="DSA">
+                            <h1 class="sec-head" onclick="drop_down('drop2')">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Python
+                            </h1>
+                            <div class="drop" id="drop2" style="display: block;">
+                               
+                                <div class="internal_sec">
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Python-1
+
+                                        </h4>
+                                        <img src="{% static 'src/img/p-img.jpeg' %}" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Python-2
+
+                                        </h4>
+                                        <img src="{% static 'src/img/p-img.jpeg' %}" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Python-3
+
+                                        </h4>
+                                        <img src="{% static 'src/img/p-img.jpeg' %}" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Python-4
+
+                                        </h4>
+                                        <img src="{% static 'src/img/p-img.jpeg' %}" alt="" srcset="">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="Domain-related">
+                            <h1 class="sec-head" onclick="drop_down('drop3')">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Java
+                            </h1>
+                            <div class="drop" id="drop3" style="display: block;">
+                               
+                                <div class="internal_sec">
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Java-1
+
+                                        </h4>
+                                        <img src="{% static 'src/img/j-img.png' %}" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Java-2
+
+                                        </h4>
+                                        <img src="{% static 'src/img/j-img.png' %}" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Java-3
+
+                                        </h4>
+                                        <img src="{% static 'src/img/j-img.png' %}" alt="" srcset="">
+                                    </div>
+                                    <div class="r_card">
+                                        <h4 class="card_head">
+                                            Java-4
+
+                                        </h4>
+                                        <img src="{% static 'src/img/j-img.png' %}" alt="" srcset="">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div> {% endcomment %}
+
+                    </section>
+                </div>
+
+            </div>
+            <!-- Resources section end -->
+{% endblock content %}
+
+
+

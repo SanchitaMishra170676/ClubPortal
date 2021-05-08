@@ -1,0 +1,165 @@
+{% extends 'home/basic.html' %}
+{% block contact %}
+active
+{%  endblock %}
+{% block title%}
+  <title> Contact us - Innogeeks | One of the Top Student Driven Club of KIET, Ghaziabad</title>
+  {%  endblock title%}
+  {% load static %}
+  {% block content %} 
+
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<style>
+  .home,.gallery,.achievements,.recruitment,.queries{
+    font-size: 14px;
+  }
+</style>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  {% if messages %}
+  {% for message in messages %}
+    <script> alertify.{{message.tags }}('{{message}}');</script>
+  {% endfor %}
+  {% endif %}
+   
+<!-- ======= Social Sidebar Section ======= -->
+<ul id="social-sidebar">
+  <li>
+    <a class="entypo-mail" href="mailto:innogeeks@kiet.edu" target="blank"><span>Mail</span></a>
+  </li>
+  <li>
+    <a class="entypo-linkedin" href="https://www.linkedin.com/company/innogeeks" target="blank"><span>LinkedIn</span></a>
+  </li>
+  <li>
+    <a class="entypo-instagrem" href="https://www.instagram.com/innogeeks.kiet" target="blank"><span>Instagram</span></a>
+  </li>
+  <li>
+    <a class="entypo-facebook" href="https://m.facebook.com/innogeeks.kiet " target="blank"><span>Facebook</span></a>
+  </li>
+</ul>
+<!-- End Social Sidebar Section -->
+
+ <!-- ======= Updates Sidebar Section ======= -->
+ <p class="sideNav" id="main" onclick="openNav()">U<br>P<br>D<br>A<br>T<br>E<br>S<br></p>
+ <div class="sidebar" id="mySidebar">
+   <h3 class="sidebar-heading">UPDATES</h3>
+   <a href="javascript:void(0)" class="closebtn sa" onclick="closeNav()">×</a>
+
+   <div>
+     <div class="marquee p">
+       <p>
+       <ul>
+         {% for update in updates %}
+         <li  class="updates-sec m-3 p-2"><a target="blank"class="updt" href="{{update.link}}">{{update.desc}}</a>  </li>
+         {% endfor %}
+       </ul>
+       </p>
+     </div>
+   </div>
+
+ </div>
+ <!-- Updates Sidebar end-->
+
+<!-- ======= Social Sidebar Section ======= -->
+
+
+<!-- ======= Contact Section ======= -->
+<div class="d-flex justify-content-center">
+<section id="contact" class="top-spacing contact grad mb-4 col-11 col-lg-9 col-xl-8">
+  <div class="container">
+    <div class="section-title pt-4">
+      <p>Contact Us</p>
+      <p class="section-description" >If any query , you may contact us or leave a message. </p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-lg-4 order-2 order-lg-1">
+        <div class="info">
+          <div class="address">
+            <i class="fa fa-map-marker"></i>
+            <h4>Location:</h4>
+            <p>Innogeeks, KIET Group of Institutions, Ghaziabad</p>
+          </div>
+          <div class="open-hours">
+            <i class="fa fa-clock-o"></i>
+            <h4>Open Hours:</h4>
+            <p>
+              Monday-Friday:<br>
+              09:00 AM - 07:00 PM
+            </p>
+          </div>
+          <div class="email">
+            <i class="fa fa-envelope"></i>
+            <h4>Email:</h4>
+            <p>innogeeks@kiet.edu</p>
+          </div>
+          <div class="phone">
+            <i class="fa fa-phone"></i>
+            <h4>Call:</h4>
+            <p>+91 85740 27570 , +91 84490 31904</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 mt-4 order-1 order-lg-2">
+        <form action="" method="post" role="form" class="email-form " action="/contact/">
+          {% csrf_token %} 
+          <div class="form-row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-6 form-group">
+              <input type="email" class="form-control" name="email" id="email" required placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" onblur="this.style.borderColor= this.checkValidity() ? 'green' : 'red'" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+              <div class="validate"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="message" rows="8" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+            <div class="validate"></div>
+          </div>
+          
+          <div class="text-center mb-4"><button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp; Send Message</button></div>
+        </form>
+      </div>
+    </div>
+  </div> 
+</section>
+</div>
+<div>
+
+
+  <div class="d-flex justify content center">
+  <div class="mapouter ">
+    <div class="gmap_canvas">
+      <iframe width="100%" height="500" id="gmap_canvas" style="border-radius: 10px;"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3497.906873778731!2d77.49642601503906!3d28.752197282370677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf52e5fc544e5%3A0x96173b046e2dd3c6!2sInnogeeks!5e0!3m2!1sen!2sin!4v1610399883975!5m2!1sen!2sin"
+        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        <a href="https://embedgooglemap.net/125/"></a>
+    </div>
+  </div>
+</div>
+    <style>
+      .mapouter {
+        position: relative;
+        text-align: right;
+        height: 500px;
+        width: 90%;
+      }
+
+      .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+  
+</div>
+
+  <!-- End Contact Section -->
+  {% endblock content %}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Links</title>
+  <link rel="stylesheet" href="{% static 'css/links.css' %}">
+</head>
+
+<body>
+
+
+    <!-- ======= Links Section ======= -->
+  <section>
+    <h1 class="heading">
+      {{subtopic.subtopic_name}}({{subtopic.topic.topic_name}})
+    </h1>
+
+    <div class="content">
+      <div class="tabs-sec">
+        <button class="tab_button active" onclick="openTab(event,'Videos')">Practical Videos</button>
+        <button class="tab_button" onclick="openTab(event,'Theory')">Theoritical PDFs</button>
+        <button class="tab_button" onclick="openTab(event,'Content')">Content</button>
+      </div>
+
+      <div class="main-section">
+        <div id="Theory" class="tabs" style="display:none">
+          {% if pdfs %}
+            <ul class="Theory">
+            {% for pdf in pdfs %}
+              <a href="#" style="text-decoration:None;" download={{pdf.pdf}}> <li><p>{{pdf.title}}</p></li></a>
+            {% endfor %}  
+            </ul>
+          {% else %}
+            <h3> No PDFs Found  </h3>
+          {% endif %}
+        </div>
+
+      <div id="Videos" class="tabs" >
+        {% if videolectures %}
+
+          <div class="Videos">
+          {% for video in videolectures %}
+            <div class="video_box">
+              <a href="{{video.url}}" target="_blank" style="text-decoration:none; color:blue;"><h5>{{video.title}}</h5></a>
+            </div>
+          {% endfor %}
+          </div>
+          {% else %}
+          <h3> No Videos Found  </h3>
+          {% endif %}
+      </div>
+
+        <div class="contents tabs" id="Content" style="display: none;"> 
+        {% if contents %}
+          {% for Content in contents %}
+          <h4 class="sec-head" onclick="drop_down('drop{{Content.id}}')">
+              <i class="fa fa-plus" aria-hidden="true" style="font-size: smaller;"></i> 
+              {{Content.title}}
+          </h4>
+          <div class="drop" id="drop{{Content.id}}" style="display: none;">
+            <div class="internal_sec">
+              <div class="list1 inner-text">
+                <div class="col-12 my-2 px-3">{{Content.paragraph1}}</div>
+                <div class="col-12 my-2 px-3 d-flex justify-content-center">
+                  <img class="img-fluid" src="{% static '' %}{{Content.image}}" alt="" srcset=""/>
+                </div>
+                <div class="col-12 my-2 px-3">{{Content.paragraph2}}</div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}  
+        {% else %}
+          <h3> No Content Found  </h3>
+       {% endif %}
+      </div>
+      
+    </div>
+    </div>
+</section>
+<!-- Links section end -->
+
+  <script>
+    function openTab(evt, e) {
+      var i, tabs;
+      var x = document.getElementsByClassName("tabs");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tabs = document.getElementsByClassName("tab_button");
+      for (i = 0; i < x.length; i++) {
+        tabs[i].className = tabs[i].className.replace(" active", "");
+      }
+      document.getElementById(e).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+
+<script>
+    function drop_down(e){
+  var x = document.getElementById(e);
+  if(x.style.display === "none"){
+      x.style.display = "block";
+  }
+  else{
+      x.style.display = "none";
+  }
+}
+  </script>
+
+</body>
+
+</html>

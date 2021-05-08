@@ -1,0 +1,335 @@
+{% load static %}
+
+
+<div id="Statistics" class="tabs" style="display:none">
+  <!-- ======= Statistics Section ======= -->
+  <section class="statistics-section">
+    <div class="col-12 justify-content-center"> <h2 class="stats mb-4 mt-4">Club Profile</h2></div>
+    <div class="row">
+      <div class="col-lg-4 col-sm-12">
+     
+          <div class="col-12">
+            <div class="card" style="height: 23vh;">
+              <div class="card-header bg1 justify-content-center p-3">
+                <h4 class="stats1">Achievements: {{stats.total_achievements}}</h4>
+              </div>
+              <div class="card-body row text-center">
+                <div class="col">
+                  <div class="text-value-xl font1">{{stats.private_achievements}}</div>
+                  <div class="text-uppercase text-muted small">Private</div>
+                </div>
+                <div class="c-vr"></div>
+                <div class="col">
+                  <div class="text-value-xl font1">{{stats.public_achievements}}</div>
+                  <div class="text-uppercase text-muted small">Public</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        
+          <div class="col-12">
+            <div class="card" style="height: 23vh;">
+              <div class="card-header bg1 justify-content-center p-3">
+                <h4 class="stats1">Projects: {{stats.total_projects}}</h4>
+              </div>
+              <div class="card-body row text-center">
+                <div class="col">
+                  <div class="text-value-xl font1">{{stats.private_projects}}</div>
+                  <div class="text-uppercase text-muted small">Private</div>
+                </div>
+                <div class="c-vr"></div>
+                <div class="col">
+                  <div class="text-value-xl font1">{{stats.public_projects}}</div>
+                  <div class="text-uppercase text-muted small">Public</div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        
+          <div class="col-12">
+            <div class="card" style="height: 23vh;">
+              <div class="card-header bg1 justify-content-center p-3">
+                <h4 class="stats1">Hackathons: {{stats.total_hackathons}}</h4>
+              </div>
+              <div class="card-body row text-center">
+                <div class="col">
+                  <div class="text-value-xl font1">{{stats.private_hackathons}}</div>
+                  <div class="text-uppercase text-muted small">private</div>
+                </div>
+                <div class="c-vr"></div>
+                <div class="col">
+                  <div class="text-value-xl font1">{{stats.public_hackathons}}</div>
+                  <div class="text-uppercase text-muted small">public</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+      <div class="col-12 Coding">
+        <h2 class="stats mb-3 mt-1">
+          Coding Profiles
+      </h2>
+          <div class="internal_sec">
+              <div class="col-12 list1 mb-3">
+                  <div style="overflow-x:auto;">
+                  <table class="table1">
+                    {% if codingProfile %}
+                      <tr class="tr1">
+                        <th class="th1">Platforms</th>
+                        <th class="th1">Usernames</th>
+                        <th class="th1">Profile URLs</th>
+                      </tr>
+                      <tr class="tr1">
+                        <td class="td1">1.</td>
+                        <td class="td1">Codeforces</td>
+                        {% if codingProfile.codeforces %}
+                          <td class="td1">{{codingProfile.codeforces}}</td>
+                          <td class="td1"><a href="https://codeforces.com/profile/{{codingProfile.codeforces}}" target="_blank">https://codeforces.com/profile/{{codingProfile.codeforces}}</a></td>
+                        {% else %}
+                          <td class="td1">N/A</td>
+
+                          <td class="td1"><a href="#">N/A</a></td>
+                        {% endif %}
+
+                      </tr>
+                      <tr class="tr1">
+                          <td class="td1">2.</td>
+                          <td class="td1">CodeChef</td>
+                          {% if codingProfile.codechef %}
+                          <td class="td1">{{codingProfile.codechef}}</td>
+
+                          <td class="td1"><a href="https://www.codechef.com/users/{{codingProfile.codechef}}" target="_blank">https://www.codechef.com/users/{{codingProfile.codechef}}</a></td>
+                          {% else %}
+                          <td class="td1">N/A</td>
+
+                          <td class="td1"><a href="#">N/A</a></td>
+                          {% endif %}
+                      </tr>
+                      <tr class="tr1">
+                          <td class="td1">3.</td>
+                          <td class="td1">LeetCode</td>
+                          {% if codingProfile.leetcode %}
+                          <td class="td1">{{codingProfile.leetcode}}</td>
+                          <td class="td1"><a href="https://leetcode.com/{{codingProfile.leetcode}}" target="_blank">https://leetcode.com/{{codingProfile.leetcode}}</a></td>
+                          {% else %}
+                          <td class="td1">N/A</td>
+
+                          <td class="td1"><a href="#">N/A</a></td>
+                          {% endif %}
+                      </tr>
+                      <tr class="tr1">
+                          <td class="td1">4.</td>
+                          <td class="td1">SPOJ</td>
+                          {% if codingProfile.spoj %}
+                          <td class="td1">{{codingProfile.spoj}}</td>
+                          <td class="td1"><a href="https://www.spoj.com/users/{{codingProfile.spoj}}" target="_blank">https://www.spoj.com/users/{{codingProfile.spoj}}</a></td>
+                          {% else %}
+                          <td class="td1">N/A</td>
+
+                          <td class="td1"><a href="#">N/A</a></td>
+                          {% endif %}
+                      </tr>
+                      <tr class="tr1">
+                          <td class="td1">5.</td>
+                          <td class="td1">Interviewbit</td>
+                          {% if codingProfile.interviewbit%}
+                          <td class="td1">{{codingProfile.interviewbit}}</td>
+                          <td class="td1"><a href="https://www.interviewbit.com/profile/{{codingProfile.interviewbit}}" target="_blank">https://www.interviewbit.com/profile/{{codingProfile.interviewbit}}</a></td>
+                          {% else %}
+                          <td class="td1">N/A</td>
+
+                          <td class="td1"><a href="#">N/A</a></td>
+                          {% endif %}
+
+                      </tr>
+                    {% else %}
+                      <tr>
+              <td rowspan="5" colspan="2"><div  class="d-flex justify-content-center
+              align-items-center p-3"style="height:24vh;"><h2><a href="{% url 'personal_profile'%}#coding_profile">Add Coding Profile!</a> </h2></div></td>
+                    <tr>
+                    {% endif %}
+                    </table>
+                    </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- ======= Blogs Section ======= -->
+      <div class="blogs">
+        <div class="row internal_sec">
+          <div class="col-md-5 col-sm-12 order-1">
+          <div class="list1 scroll1">
+            <h2 class="stats mb-3 mt-1">
+              Blogs Section
+          </h2>
+              <div style="overflow-x:auto;">
+              <table class="table table-hover">
+                  
+                {% if blogs %}
+                  <tr class="tr">
+                    <th class="th">Names</th>
+                    <th class="th">Domains</th>
+                    <th class="th">Blogs</th>
+                  </tr>
+                {% for blog in blogs %}
+                  <tr class="tr">
+                    <td class="td">{{blog.title}}</td>
+                    <td class="td">{{blog.domain}}</td>
+                    <td class="td"><a target="_blank" href="/blog/{{blog.slug}}/"><button class="btn btn-primary b-btn  ">View</button></a></td>
+                  </tr>
+                  {% comment %} {% else %} {% endcomment %}
+                {% endfor %}
+                {% else %}
+                  <tr>
+                  <td rowspan="6" colspan="2"><div  class="d-flex justify-content-center
+                  align-items-center p-3"style="height:24vh;"><h2><a href="{% url 'add_articles' %}">Add Articles !</a> </h2></div></td>
+                    <tr>
+                {% endif %}
+                </table>
+                </div>
+          </div>
+          </div>
+          <div class="col-md-7 col-sm-12 order-2">
+          <div class="list1 scroll1">
+            <h2 class="stats mb-3 mt-1">
+              Projects Section
+          </h2>
+              <div style="overflow-x:auto;">
+              <table class="table table-hover">
+                {% if projects %}
+                  <tr class="tr">
+                    <th class="th">Names</th>
+                    <th class="th">Category</th>
+                    <th class="th">Privacy</th>
+                    <th class="th">Github Repository</th>
+                  </tr>
+                  {% for project in projects %}
+                  <tr class="tr">
+                    <td class="td">{{project.projectName}}</td>
+                    <td class="td">{{project.category}}</td>
+                    {% if project.is_public %}
+                    <td class="td">Public</td>
+                    {% else %}
+                    <td class="td">Private</td>
+                    {% endif %}
+                    <td class="td"><a href="{{project.githubURL}}" target="_blank"><button class="btn btn-primary b-btn   px-5">View</button></a></td>
+                  </tr>
+                  {% endfor%}
+                  {% else%}
+                    <tr>
+                      <td rowspan="6" colspan="2"><div  class="d-flex justify-content-center
+                      align-items-center p-3"style="height:24vh;"><h2><a href="{% url 'add_project' %}">Add Projects!</a> </h2></div></td>
+                    <tr>
+                  {% endif%}
+                </table>
+                </div>
+          </div>
+          </div>
+      </div>
+      </div>
+      <!-- Blog section end -->
+
+      <!-- ======= Acheivement Section ======= -->
+      <div class="ach">
+        <div class="row internal_sec">
+          <div class="col-12">
+          <div class="list1 scroll1">
+            <h2 class="stats mb-3 mt-1">
+              Acheivements Section
+          </h2>
+              <div style="overflow-x:auto;">
+              <table class="table table-hover">
+                  {% if achievements%}
+                  <tr class="tr">
+                    <th class="th">Names</th>
+                    <th class="th">Category</th>
+                    <th class="th">Privacy</th>
+                    <th class="th">Certificate</th>
+                  </tr>
+                  {% for achievement in achievements %}
+                  <tr class="tr">
+                    <td class="td">{{achievement.achievementName}}</td>
+                    <td class="td">{{achievement.category}}</td>
+                    {% if project.is_public %}
+                    <td class="td">Public</td>
+                    {% else %}
+                    <td class="td">Private</td>
+                    {% endif %}
+                    <td class="td"><a href="{% url 'achievement' %}"><button class="btn btn-primary b-btn   px-5">View</button></a></td>
+                  </tr>
+                  {% endfor%}
+                  {% else%}
+                    <tr>
+                      <td rowspan="6" colspan="2"><div  class="d-flex justify-content-center
+                      align-items-center p-3"style="height:24vh;"><h2><a href="{% url 'add_achievement' %}">No Achievement Till Now!</a> </h2></div></td>
+                    <tr>
+                  {% endif%}
+                  
+                </table>
+                </div>
+          </div>
+          </div>
+      </div>
+      </div>
+      <!-- Acheivement section end -->
+      
+
+      <!-- ======= Hackathon-performance Section ======= -->
+    <div class="Hackathon-Performance">
+              <div class="internal_sec">
+                  <div class="col-12 list1 scroll2">
+                      <h3 class="stats mb-3 mt-2">Hackathon Participation</h3>
+                        <table class="table table-responsive-sm table-hover table-outline mb-0">
+                          {% if hackathons %}
+                            <thead class="thead-light">
+                              <tr>
+                                
+                                <th class="text-center">Hackathons</th>
+                                <th class="text-center">TeamName</th>
+                                <th class="text-center">Achievement</th>
+                                <th class="text-center">Visibility</th>
+                                <th class="text-center d-none d-lg-block">Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for hackathon in hackathons %}
+                                <tr>
+                                  
+                                  <td class="text-center">{{hackathon.hackathonName}}</td>
+                                  <td class="text-center">{{hackathon.teamName}}</td>
+                                  <td class="text-center">{{hackathon.achievement}}</td>
+                                  {% if hackathon.is_public %}
+                                  <td class="text-center">Public</td>
+                                  {% else%}
+                                  <td class="text-center">Private</td>
+                                  {% endif%}
+                                  <td class="text-center d-none d-lg-block">{{hackathon.date.date}}</td>
+                                </tr>
+                              {% endfor%}
+                          {% else %}
+                            <tr>
+                              <td rowspan="10" colspan="4"><div  class="d-flex justify-content-center
+                              align-items-center p-3"style="height:24vh;"><h2><a href="{% url 'add_hackathon' %}">No Hackathon Details!</a> </h2></div></td>
+                            <tr>  
+                          {% endif %}
+                            
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+      </div>
+<!--  Hackathon-performance section end -->
+
+  </section>
+  {% block ranking %}
+  {% endblock %}
+</div>
+<!-- statistics-section end -->

@@ -1,0 +1,129 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}
+Upcoming Hackathons
+{% endblock title %}
+{% block extrahead %}
+<style>
+  .pagination {
+    display: inline-block;
+    position: relative;
+  
+  }
+  
+  .pagination a {
+    color:black;
+    float: left;
+    padding: 8px 16px;
+    font-size: 14px;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .pagination a.active {
+    background-color: rgb(0, 102, 204);
+    color: black;
+    border-radius: 50%;
+  }
+  
+  .pagination a:hover:not(.active) {
+    background-color: rgb(20, 19, 35);
+    color: white;
+    border-radius: 50%;
+  }
+</style>
+<link href="{% static 'src/css/hackathon.css' %}" rel="stylesheet">
+
+{% endblock extrahead %}
+{% block content %}
+
+<!-- ======= Hackathon Section ======= -->
+<link href="{% static 'src/css/hackathon.css' %}" rel="stylesheet">
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="animated fadeIn">
+        <div class="row">
+            
+          {% if hackathons %} 
+            {% for hackathon in hackathons %}
+            <div class="col-sm-6 col-lg-3">
+                <div class="card booking-card  d-flex">
+
+                  <!-- Card image -->
+                  <div class="view overlay">
+                    {% if hackathon.image %}
+                    <a target="blank" href="{{ hackathon.link }}"><img class="card-img-top" src="{% static '' %}{{hackathon.image}}" alt="Card image cap"></a>
+                    {% else %}
+                    <a target="blank" href="{{ hackathon.link }}"><img class="card-img-top" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Card image cap"></a>
+                    {% endif %}
+                    <a href="#!">
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+                  <!-- Card content -->
+                  <div class="card-body">
+
+                    <!-- Title -->
+                    <div style="height: 50px;">
+                    <h4 class="card-title font-weight-bold"><a  href="{{ hackathon.link }}" target="blank" >{{ hackathon.name|truncatewords:4}}</a></h4>
+                  </div>
+                   <!-- <a  href="{{ hackathon.link }}" target="blank"><i class="fa fa-external-link" aria-hidden="true"></i></a> -->
+                  
+                    <!-- Data -->
+                  
+                    <p class="mb-2"><i class="fa fa-globe" aria-hidden="true"></i> {{ hackathon.mode }}</p>
+                    <!-- Text -->
+                    <div class="focus">
+                    <p class="card-text" style="height: 130px;">{{ hackathon.description|truncatewords:20 }}</p>
+                    </div>
+                    <hr class="my-3" >
+                    <p><b><i class="fa fa-clock-o" aria-hidden="true"></i> </b>	{{hackathon.deadline}}</p>
+                  
+                  </div>
+
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="">
+              <i style="color:white;">No hackathons Found </i> 
+            </div>
+            {% endif %}
+
+                             
+
+        </div>
+
+        <!-- Hackathon Section end -->
+
+
+        <!--pagination-->
+        {% if hackathons.has_other_pages %}
+        <div class="pagination d-flex justify-content-center mt-4">
+        {% if hackathons.has_previous %}
+          <a href="?page={{ hackathons.previous_page_number }}">&laquo;</a>
+        {% else %}
+          <a href="#">&laquo;</a>
+        {% endif %}
+        {% for i in hackathons.paginator.page_range %}
+          {% if hackathons.number == i %}
+          <a href="#" class="active">{{i}}</a>
+          {% else%}
+          <a href="?page={{i}}">{{i}}</a>
+          {% endif %}
+        {% endfor %}
+          {% if hackathons.has_next %}
+          <a href="?page={{ hackathons.next_page_number }}">&raquo;</a>
+          {% else %}
+            <a href="#">&raquo;</a>
+          
+          {% endif %}
+        </div>
+      {% endif%}
+<!-- Pagination end -->
+
+    </div>
+  </div>
+
+</div>
+{% endblock %} 

@@ -1,0 +1,10 @@
+*.pyc
+__pycache__/
+.vscode/
+vnv
+*.sqlite3
+media/
+# innogeeks/
+static/
+*./migrations/
+!./migrations/__init__.py

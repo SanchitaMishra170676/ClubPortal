@@ -1,0 +1,152 @@
+{% extends 'home/basic.html' %}
+{% block blog %}
+active
+{%  endblock %}
+  {% load static %}
+  {% block content %}
+  <link href="{% static 'src/css/blog_try.css' %}" rel="stylesheet">
+  <!-- PRELOADER -->
+<div class="preloader">
+  <div class="cssload-whirlpool"></div>
+</div>
+
+  
+   <!-- Page Content -->
+ <div class="container" style="padding-top: 150px;">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <!-- <h1 class="my-4 main_blog">Web Development
+          <small>Blog</small>
+        </h1> -->
+        {% if articles %}
+        <div class="row row-cols-1 row-cols-md-2">
+          {% for article in articles %}
+          <div class="col mb-4">
+            <div class="card post">
+              {% if article.Thumbimage1 %}
+              <img class="card-img-top" src="{% static '' %}{{article.Thumbimage1}}" alt="Card image cap">
+              {% else %}
+              <img class="card-img-top" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Card image cap">
+              {% endif %}
+              <div class="card-body">
+                <h3 class="mb-0">{{article.title|truncatewords:7}}</h3>
+          <div class="mb-1 text-muted">{{article.date}}</div>
+          <p class="card-text mb-auto">{{article.highlights|truncatewords:30}}</p>
+          <a href="/blog/{{article.slug}}/" class="stretched-link">Continue reading</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="card-body">
+          <h3 style="color:white;">No Article Found </h3> 
+        </div>
+        {% endif %}
+        <!-- Pagination -->
+        <!-- <ul class="pagination d-flex justify-content-center mt-4">
+          
+            <a href="#">&laquo;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">&raquo;</a>
+         
+        </ul> -->
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+        <!-- Widget [Search Bar Widget]-->
+        <!-- <div class="widget search">
+          <header>
+            <h3 class="h6" style="color: #ffffff;">Search the blog</h3>
+          </header>
+          <form action="#" class="search-form">
+            <div class="form-group">
+              <input type="search" placeholder="What are you looking for?">
+              <button type="submit" class="submit"><i class="icon-search"></i></button>
+            </div>
+          </form>
+        </div> -->
+        <!-- Widget [Categories Widget]-->
+        <div class="widget categories">
+          <header>
+            <h3 class="h6" style="color: #ffffff;" >Domains</h3>
+          </header>
+          <div class="item d-flex justify-content-between"><a href="/blogs/Web_Development/">Web Development</a><span>{{webCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/Machine_Learning">Machine Learning</a><span>{{mlCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/Android_Development/">Android development</a><span>{{androidCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/AR_VR">AR/VR</a><span>{{xrCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/InternetOf_Things/">Internet Of Things</a><span>{{iotCnt}}</span></div>
+        </div>
+        <!-- Widget [Latest Posts Widget]        -->
+        <div class="widget latest-posts">
+          <header>
+            <h3 class="h6" style="color: #ffffff;">Latest Posts</h3>
+          </header>
+          <div class="blog-posts">
+            {% if articles %} 
+            {% for latestarticle in latestarticles %}
+            <a href="/blog/{{latestarticle.slug}}/">
+              <div class="item d-flex a lign-items-start justify-content-start">
+                {% if latestarticle.Thumbimage1 %}
+                <div class="image"><img src="{% static '' %}{{latestarticle.Thumbimage1}}" alt="..." class="img-fluid"></div>
+                {% else %}
+                <div class="image"><img src="{% static 'src/img/placeholder-img.jpg' %}" alt="..." class="img-fluid"></div>
+                {% endif %} 
+                <div class="title"><strong>{{latestarticle.title|truncatewords:5}}</strong>
+                  <div class="d-flex align-items-start justify-content-start">
+                    <div class="comments">{{latestarticle.date}}</div>
+                  </div>
+                </div>
+              </div></a>
+              {% endfor %}
+              {% else %}
+              <div class="">
+                <i style="color:white;">No Article Found </i> 
+              </div>
+              {% endif %}
+            </div>
+        </div>
+        
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+
+  {% if articles.has_other_pages %}
+    <div class="pagination d-flex justify-content-center mt-4">
+    {% if articles.has_previous %}
+      <a href="?page={{ articles.previous_page_number }}">&laquo;</a>
+    {% else %}
+      <a href="#">&laquo;</a>
+    {% endif %}
+    {% for i in articles.paginator.page_range %}
+      {% if articles.number == i %}
+      <a href="#" class="active">{{i}}</a>
+      {% else%}
+      <a href="?page={{i}}">{{i}}</a>
+      {% endif %}
+    {% endfor %}
+      {% if articles.has_next %}
+      <a href="?page={{ articles.next_page_number }}">&raquo;</a>
+      {% else %}
+        <a href="#">&raquo;</a>
+      
+      {% endif %}
+    </div>
+  {% endif%}
+  
+{% endblock content %}

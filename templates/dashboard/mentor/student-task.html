@@ -1,0 +1,248 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/student-task.js' %}"></script>
+{% endblock script %}
+{% block extrahead %}
+<link href ="{% static 'src/css/student-task.css' %}" rel ="stylesheet">
+{% endblock extrahead %}
+{% block content %}
+
+<!-- ======= Student-Task Section ======= -->
+        <div class="container-fluid" style="display: flex; flex-wrap: wrap; align-items: stretch; justify-items: center; justify-content: center;">
+         
+
+<div class="tasks-int mr-5 ml-5" style="width: 520px; height: auto;">
+
+  <h1 class="d-flex justify-content-center pt-3 pb-3" >Tasks Assigned</h1>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item p-3" >
+      <div onclick="S1('T-1')"> Write well designed, testable, efficient code by using best software development practices</div>
+    <div id="T-1" class="pt-2" style="display: none;">
+      <div class="controls">
+        Resources-<a href="#">link</a>
+        <div class="git_link">
+          Enter your github link
+        <input class="form-control" placeholder="Enter github link.." id="appendedInputButton" type="text">
+        <!-- <button class="btn" style="border-radius: 5px;" type="button">Go!</button> -->
+        </div>
+        <div class="feedback mt-2">
+        Feedback
+        <textarea class="form-control" name="description"
+        placeholder="What you learned.."></textarea></div>
+        <div class="btton mt-1 d-flex  justify-content-center">
+        <button class="btn" style="border-radius: 5px;" type="button">Go!</button></div>
+        </div>
+    </div>
+    </li>
+    <li class="list-group-item p-3">
+      <div onclick="S1('T-2')">Create website layout/user interface by using standard HTML/CSS practices
+      </div>
+    <div id="T-2" class="pt-2" style="display: none;">
+      <div class="controls">
+        Resources-<a href="#">link</a>
+        <div class="git_link">
+          Enter your github link
+        <input class="form-control" placeholder="Enter github link.." id="appendedInputButton" type="text">
+        <!-- <button class="btn" style="border-radius: 5px;" type="button">Go!</button> -->
+        </div>
+        <div class="feedback mt-1">
+        Feedback
+        <textarea class="form-control" name="description"
+        placeholder="What you learned.."></textarea></div>
+        <div class="btton mt-2 d-flex  justify-content-center">
+        <button class="btn" style="border-radius: 5px;" type="button">Go!</button></div>
+        </div>
+    </div>
+    </li>
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('T-3')">Gather and refine specifications and requirements based on technical needs
+      </div>
+    <div id="T-3" class="pt-2" style="display: none;">
+      <div class="controls">
+        Resources-<a href="#">link</a>
+        <div class="git_link">
+          Enter your github link
+        <input class="form-control" placeholder="Enter github link.." id="appendedInputButton" type="text">
+        <!-- <button class="btn" style="border-radius: 5px;" type="button">Go!</button> -->
+        </div>
+        <div class="feedback mt-1">
+        Feedback
+        <textarea class="form-control" name="description"
+        placeholder="What you learned.."></textarea></div>
+        <div class="btton mt-2 d-flex  justify-content-center">
+        <button class="btn" style="border-radius: 5px;" type="button">Go!</button></div>
+        </div>
+    </div>
+    </li>
+    
+    <li class="list-group-item p-3">
+      <div onclick="S1('T-4')">Stay plugged into emerging technologies/industry trends and apply them into operations and activities
+      </div>
+    <div id="T-4" class="pt-2" style="display: none;">
+      <div class="controls">
+        Resources-<a href="#">link</a>
+        <div class="git_link">
+          Enter your github link
+        <input class="form-control" placeholder="Enter github link.." id="appendedInputButton" type="text">
+        <!-- <button class="btn" style="border-radius: 5px;" type="button">Go!</button> -->
+        </div>
+        <div class="feedback mt-1">
+        Feedback
+        <textarea class="form-control" name="description"
+        placeholder="What you learned.."></textarea></div>
+        <div class="btton mt-2 d-flex  justify-content-center">
+        <button class="btn" style="border-radius: 5px;" type="button">Go!</button></div>
+        </div>
+    </div>
+    </li>
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('T-5')">Replacing old technology with new technology,ie…replacing older technology with new technology that you've used to build the website
+      </div>
+    <div id="T-5" class="pt-2" style="display: none;">
+      <div class="controls">
+        Resources-<a href="#">link</a>
+        <div class="git_link">
+          Enter your github link
+        <input class="form-control" placeholder="Enter github link.." id="appendedInputButton" type="text">
+        <!-- <button class="btn" style="border-radius: 5px;" type="button">Go!</button> -->
+        </div>
+        <div class="feedback mt-1">
+        Feedback
+        <textarea class="form-control" name="description"
+        placeholder="What you learned.."></textarea></div>
+        <div class="btton mt-2 d-flex  justify-content-center">
+        <button class="btn" style="border-radius: 5px;" type="button">Go!</button></div>
+        </div>
+    </div>
+    </li>
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('T-6')">Replacing old technology with new technology,ie…replacing older technology with new technology that you've used to build the website
+      </div>
+    <div id="T-6" class="pt-2" style="display: none;">
+      <div class="controls">
+        Resources-<a href="#">link</a>
+        <div class="git_link">
+          Enter your github link
+        <input class="form-control" placeholder="Enter github link.." id="appendedInputButton" type="text">
+        </div>
+        <div class="feedback mt-1">
+        Feedback
+        <textarea class="form-control" name="description"
+        placeholder="What you learned.."></textarea></div>
+        <div class="btton mt-2 d-flex  justify-content-center">
+        <button class="btn" style="border-radius: 5px;" type="button">Go!</button></div>
+        </div>
+    </div>
+    </li>
+
+  </ul>
+</div>
+
+
+<div class="tasks-int" style="width: 500px; height:auto;">
+  <h1 class="d-flex justify-content-center pt-3 pb-3" >Tasks Completed</h1>
+  <ul class="list-group list-group-flush">
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('S1')">Being up-to-date with latest technologies that you've interested to build is also plays makor role being a good web developer. 
+      </div>
+    <div id="S1" class="pt-2" style="display: none;">
+      <b>
+      <div class="controls">
+       Submitted Link-<a href="#">link</a>
+       <div class="feedback">
+       Submitted Feedback-xyz.. 
+       </div>
+       <div class="resource">
+       Resource-<a href="#"></a>
+       </div>
+        </div>
+        </b>
+    </div>
+    </li>
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('S2')">Integrate data from various back-end services and databases 
+      </div>
+    <div id="S2" class="pt-2" style="display: none;">
+      <b>
+        <div class="controls">
+         Submitted Link-<a href="#">link</a>
+         <div class="feedback">
+         Submitted Feedback-xyz.. 
+         </div>
+         <div class="resource">
+         Resource-<a href="#"></a>
+         </div>
+          </div>
+          </b>
+    </div>
+    </li>
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('S3')">Stay plugged into emerging technologies/industry trends and apply them into operations and activities 
+      </div>
+    <div id="S3" class="pt-2" style="display: none;">
+      <b>
+        <div class="controls">
+         Submitted Link-<a href="#">link</a>
+         <div class="feedback">
+         Submitted Feedback-xyz.. 
+         </div>
+         <div class="resource">
+         Resource-<a href="#"></a>
+         </div>
+          </div>
+          </b>
+    </div>
+    </li>
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('S4')">Stay plugged into emerging technologies/industry trends and apply them into operations and activities 
+      </div>
+    <div id="S4" class="pt-2" style="display: none;">
+      <b>
+        <div class="controls">
+         Submitted Link-<a href="#">link</a>
+         <div class="feedback">
+         Submitted Feedback-xyz.. 
+         </div>
+         <div class="resource">
+         Resource-<a href="#"></a>
+         </div>
+          </div>
+          </b>
+    </div>
+    </li>
+
+    <li class="list-group-item p-3">
+      <div onclick="S1('S5')">Cooperate with web designers to match visual design inten.
+      </div>
+    <div id="S5" class="pt-2" style="display: none;">
+      <b>
+        <div class="controls">
+         Submitted Link-<a href="#">link</a>
+         <div class="feedback">
+         Submitted Feedback-xyz.. 
+         </div>
+         <div class="resource">
+         Resource-<a href="#"></a>
+         </div>
+          </div>
+          </b>
+    </div>
+    </li>
+    
+   
+  </ul>
+</div>
+
+</div>
+        <!-- Student-Task section end -->
+  
+{% endblock content %}
+

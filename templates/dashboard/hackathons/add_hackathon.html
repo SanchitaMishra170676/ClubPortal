@@ -1,0 +1,119 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/project.js' %}"></script>
+{% endblock  %}
+
+{% block extrahead %}
+<link href="{% static 'src/css/project.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+{% block content %}
+<!-- ======= Add Hackathon Section ======= -->
+  <div class="container-fluid">
+            <div class="animated fadeIn">
+              <div class="card">
+                <div class="card-header ">Add Hackathon-Achievement </div>
+                <div class="card-body">
+                    <form action="/dashboard/add_hackathon/" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-row">
+                        <div class=" form-group col-md-8">
+                        <h6>Name of Hackathon: *</h6> 
+                        <input type="text" class="form-control mb-3 mt-2" placeholder="Enter name of the Hackathon"
+                        name="HackathonName" placeholder="" required>
+
+                        
+                       
+                        <h6>Select Achievement type: *</h6>
+                        <select
+                        class="form-control"
+                        name="achievement"
+                         required>
+                         <option value="first">First Position</option>
+                        <option value="second">Second Position</option>
+                        <option value="top 5">Top 5</option>
+                        <option value="participation">Participation</option>
+                        </select>
+                          <br>
+                        <h6>Prize won(if any):</h6>
+                        <input name="Prize" type="text" class="form-control" id="inputtext4" placeholder="Enter prize won...">
+
+                          </div>
+                        <div class="form-group col-md-4">
+                          <div class="container-fluid"> 
+                          <h6>Image : </h6>
+                          
+                          <img id="previewImg" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Placeholder">
+                          <br>
+                          <input name="Image" type="file" name="photo" onchange="previewFile(this);" accept="image/*" >
+                        </div>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+                        <div class=" form-group col-md-8">
+                        <h6>Certificates</h6> 
+                        <input type="text"
+                        class="form-control mb-3 mt-2"
+                        name='Certificate'
+                        placeholder='Enter the link of certificates...'
+                        >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <h6>Visibility: *</h6>
+                            <select
+                              class="form-control mb-2"
+                              name="is_public"
+                              required>
+                              <option value="public">Public</option>
+                              <option value="private">Private</option>
+                            </select>
+                        </div>
+                      </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <h6>Team Name:</h6>
+                            <input type="text"
+                            class="form-control mb-3 mt-2"
+                            name='TeamName'
+                            placeholder='Enter team name..'
+                            required>
+                          </div>
+                          <div class="form-group col-md-8">
+                         <h6>Team Members(separate by comma )(if any) :</h6>
+                         <input type="text"
+                          class="form-control mb-3 mt-2"
+                          name='TeamMembers'
+                          placeholder="e.g. : xyz ,abc bcd"
+                          >
+                          </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputEmail4" class="col-form-label"><h6>TechStack:</h6></label>
+                              <input name="TechStack" type="text" class="form-control" id="inputEmail4" placeholder="Write a comma seperated name of technologies used in building this project">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputtext4" class="col-form-label"><h6>Your Role:</h6></label>
+                              <input name="YourRole" type="text" class="form-control" id="inputtext4" placeholder="About your role..">
+                            </div>
+                          </div>
+
+
+
+                        <h6>Description: *</h6>
+                        <textarea name="Description" class="form-control mb-3 mt-2" name="description"
+                        placeholder="Brief description about your Achievement" rows="3"></textarea>
+                        <button class="btn btn-success btn-ladda col-12" data-style="contract" style="border-radius: 5px; font-size: 15px;">Submit</button>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+       <!-- Add Hackathon Section end -->
+
+
+{% endblock content %}

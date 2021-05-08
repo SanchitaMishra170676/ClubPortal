@@ -1,0 +1,155 @@
+{% extends 'home/basic-plain.html' %}
+ {% load static %}
+ {% block content %}
+ <link href="{% static 'src/css/blog_try.css' %}" rel="stylesheet">
+ <!-- PRELOADER -->
+<div class="preloader">
+ <div class="cssload-whirlpool"></div>
+</div>
+
+  
+
+  <div class="container " style="margin-top: 50px;">
+    
+    <div class="row">
+      <a href="/" style="z-index: 999999; ">
+      <div class="image" style="z-index: 999999; "><img src="{% static 'src/img/logo.png' %}" style="width: 20%; " alt="Innogeeks" class="img-fluid"></div>
+    </a>
+    </div>
+    <div class="row ">
+      <!-- Latest Posts -->
+      <div class="col-md-4">
+      <aside >
+        <br><br>
+        <!-- Widget [Search Bar Widget]-->
+        <!-- <div class="widget search">
+          <header>
+            <h3 class="h6" style="color: #ffffff;">Search the blog</h3>
+          </header>
+          <form action="#" class="search-form">
+            <div class="form-group">
+              <input type="search" placeholder="What are you looking for?">
+              <button type="submit" class="submit"><i class="icon-search"></i></button>
+            </div>
+          </form>
+        </div> -->
+        <!-- Widget [Categories Widget]-->
+        <div class="widget categories">
+          <header>
+            <h3 class="h6" style="color: #ffffff;" >Domains</h3>
+          </header>
+          <div class="item d-flex justify-content-between"><a href="/blogs/Web_Development/">Web Development</a><span>{{webCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/Machine_Learning">Machine Learning</a><span>{{mlCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/Android_Development/">Android development</a><span>{{androidCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/AR_VR">AR/VR</a><span>{{xrCnt}}</span></div>
+          <div class="item d-flex justify-content-between"><a href="/blogs/InternetOf_Things/">Internet Of Things</a><span>{{iotCnt}}</span></div>
+         </div>
+        <!-- Widget [Latest Posts Widget]        -->
+        <div class="widget latest-posts">
+          <header>
+            <h3 class="h6" style="color: #ffffff;">Latest Posts</h3>
+          </header>
+          <div class="blog-posts">
+            {% if articles %}
+            {% for article in articles %}
+            <a href="/blog/{{article.slug}}/">
+              <div class="item d-flex align-items-start justify-content-start">
+                {% if article.Thumbimage1 %}
+                <div class="image"><img src="{% static '' %}{{article.Thumbimage1}}" alt="..." class="img-fluid"></div>
+                {% else %}
+                <div class="image"><img src="{% static 'src/img/placeholder-img.jpg' %}" alt="..." class="img-fluid"></div>
+                {% endif %} 
+                <div class="title"><strong>{{article.title|truncatewords:5}}</strong>
+                  <div class="d-flex align-items-start justify-content-start">
+                    <div class="comments">{{article.date}}</div>
+                  </div>
+                </div>
+              </div></a>
+              {% endfor %}
+              {% else %}
+              <div class="">
+                <i style="color:white;">No Article Found </i> 
+              </div>
+              {% endif %}
+            </div>
+        </div>
+        
+        <!-- Widget [Tags Cloud Widget]-->
+        <!-- <div class="widget tags">       
+          <header>
+            <h3 class="h6" style="color: #ffffff;">Tags</h3>
+          </header>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="/blog/blog_list/web/" class="tag">#Web-development</a></li>
+            <li class="list-inline-item"><a href="/blog/blog_list/iot/" class="tag">#IOT</a></li>
+            <li class="list-inline-item"><a href="/blog/blog_list/xr/" class="tag">#AR/VR</a></li>
+           
+            <li class="list-inline-item"><a href="/blog/blog_list/machine_learning/" class="tag">#ML</a></li>
+            <li class="list-inline-item"><a href="/blog/blog_list/android/" class="tag">#Android</a></li>
+          </ul>
+        </div>  -->
+      </aside>
+    </div>
+    <div class="col-md-8">
+      <main class="post blog-post  blog-post-x"> 
+        <div class="container" style="padding-right: 3em;padding-left: 3em; padding-bottom: 3em;">
+          <div class="post-single">
+            {% if article.Thumbimage1 %}
+            <div class="post-thumbnail"><br><br><img src="{% static '' %}{{article.Thumbimage1}}" alt="innogeeks-article" class="img-fluid"></div>
+            {% endif %}
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="category"><a href="#">Innogeeks</a><a href="#">{{article.domain}}</a></div>
+              </div>
+              <h1>{{article.title}}<a href="#"></i></a></h1>
+              <div class="post-footer d-flex align-items-end justify-content-end flex-column flex-sm-row"><a href="#" class="author d-flex align-items-end flex-wrap"></a>
+                  <div class="" style="color: antiquewhite;"><span>{{article.user}} &nbsp; | &nbsp;</span></div></a>             
+                  <div class="" style="color: antiquewhite;">{{article.date}}</div>
+                
+              </div>
+              <div class="post-body">
+                <p class="lead">{{article.highlights|linebreaks}}</p>
+                <p>{{article.description|linebreaks}}</p>
+                {% if article.Thumbimage2 %}
+                <p> <img src="{% static '' %}{{article.Thumbimage2}}" alt="img" class="img-fluid"></p>
+                {% endif %}
+                {% if article.subHeading %}
+                <h3>{{article.subHeading}}</h3>
+                {% endif %}
+                <p>{{article.content|linebreaks }}</p>
+                <pre style="color: antiquewhite;"> {{article.code}} </pre>
+                {% if article.quote %}
+                <blockquote class="blockquote">
+                 
+                  <p>{{article.quote}}</p>
+                  
+                  {% if article.quoteBy %}
+                  <footer class=""> {{article.quoteBy}}
+                    {% endif %}
+                  </footer>
+                </blockquote>
+                {% endif %}
+             </div>
+              <div class="post-tags">
+                {% if article.tag1 %}
+                <a href="#" class="tag">#{{article.tag1}}</a>
+                {% endif %}
+                {% if article.tag2 %}
+                <a href="#" class="tag">#{{article.tag2}}</a>
+                {% endif %}
+                {% if article.tag3 %}
+                <a href="#" class="tag">#{{article.tag3}}</a></div>
+                {% endif %}       
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    </div>
+  </div>
+
+   
+  <!-- End blog -->
+
+
+{% endblock %}

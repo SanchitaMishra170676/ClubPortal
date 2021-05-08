@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'src/js/project.js' %}"></script>
+{% endblock %}
+{% block extrahead %}
+
+<link href="{% static 'src/css/project.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+{% block content %}
+
+ <!-- ======= Update Achievements Section ======= -->
+  <div class="container-fluid">
+            <div class="animated fadeIn">
+              <div class="card">
+                <div class="card-header ">Update Achievement Details </div>
+                <div class="card-body">
+                    <form action="/dashboard/update_achievement/{{achievement.id}}/" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-row">
+                        <div class=" form-group col-md-8">
+                        <h6>Achievement :</h6> 
+                        <input type="text" class="form-control mb-3 mt-2" placeholder="Enter your Achievement"
+                        name="AchievementName" 
+                         value="{{achievement.achievementName}}"
+                         required>
+
+                        <h6>Category :</h6>
+                         <select
+                        class="form-control"
+                        name="Category"
+                          value="{{achievement.category}}">
+                         <option value="Technical">Technical</option>
+                        <option value="Non-technical">Non-technical</option>
+                        <option value="Academics">Academics</option>
+                        <option value="Others">Others</option>
+                        </select>
+                        <br>
+                        <h6>Your Role :</h6>
+                        <input name="Role" type="text" class="form-control" id="inputtext4" placeholder="Enter your Role" required value="{{achievement.role}}">
+
+                          </div>
+                        <div class="form-group col-md-4">
+                          <div class="container-fluid"> 
+                          <h6>Image : </h6>
+                          {% if achievement.image %}
+                          <img id="previewImg" src="{% static '' %}{{achievement.image}}" alt="Placeholder">
+                          {% else %}
+                          <img id="previewImg" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Placeholder">
+                          {% endif %}
+                          <br>
+                          <input type="file" name="Image" onchange="previewFile(this);" accept="image/*" value="{{achievement.image}}" >
+                         </div>
+                        </div>
+                        
+                      </div>
+
+                      <h6>Description :</h6>
+                        <textarea class="form-control mb-3 mt-2" name="Description"
+                        placeholder="Brief description about your Achievement" rows="5" required value="{{achievement.description}}">{{achievement.description}}</textarea>
+
+                        <div class="form-row">
+                          <div class="form-group col-md-8">
+                            <h6>Certificate :</h6> 
+                            <input type="text"
+                            class="form-control mb-3 mt-2"
+                            name='CertiURL'
+                            placeholder='Enter the link of certificate'
+                            required value="{{achievement.certiURL}}">
+                          </div>
+                          <div class="form-group col-md-4">
+                            <h6>Visibility:</h6>
+                            {% if achievement.is_public %}
+                            <select
+                              class="form-control mb-2"
+                              name="is_public"
+                              required value="public">
+                            {% else %}
+                            <select
+                              class="form-control mb-2"
+                              name="is_public" value="private"
+                              required >
+                            {% endif %}
+                              <option value="public">Public</option>
+                              <option value="private">Private</option>
+                            </select>
+                          </div>
+                        </div>
+                        <button class="btn btn-success btn-ladda col-12" type="submit" data-style="contract" style="border-radius: 5px; font-size: 15px;">Submit</button>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Update Achievement section end -->
+{% endblock content %}

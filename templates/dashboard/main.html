@@ -1,0 +1,153 @@
+{% load static %}
+<div id="Main" class="tabs" >
+
+  <section class="dash-main row justify-content-center">
+    <div class="col-sm-12 col-md-7 col-lg-7 mx-2 my-3 border1 main-pd">
+
+        <h3 class="head bg1 p-3">
+            Announcements
+        </h3>
+        <div class="int-sec main-mgn">      
+            {% if announcements %}
+            {% for announcement in announcements %} 
+            <p class="para-elem">
+                {{announcement.announcement}}
+            </p>
+            {% endfor %}
+            {% else %}
+            <p class="para-elem">
+              <h2>No Announcements</h2>
+            </p>
+            {% endif%}
+        </div>
+    </div>
+    
+      <div class="col-sm-12 col-md-4 col-lg-4 mx-2 my-3 main-pd border1">
+          <h3 class="head bg1 p-3">
+              To-do List
+          </h3>
+          <div class="int-sec" style="overflow: hidden;">
+              <div class="todo col-12">
+                  <div class="add">
+                      <form action="#" class="col-12 my-2 form-submit">
+                          <input class="col-12" type="text" name="item" id="item" placeholder="Add New" />
+                      </form>
+                      <ul id="list_"></ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+     
+  </section>
+
+  {% comment %} <div class="col-sm-12 col-md-12 d-none d-lg-block justify-content-center">
+    <div class="border1 mx-3 my-4">
+      <div class="card-header">
+          <h4><i class="fa fa-tasks"></i> Status of the given tasks</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+        <div class="col-6">
+          <h4>Tasks Assigned</h4>
+          </div>
+          <div class="col-6">
+            <h4>Status of tasks</h4>
+            </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-6">
+                <p class="font2">TASK 1</p>
+              </div>
+              <div class="col-4">
+                <p class="font2">Complete</p>
+              </div>
+              <div class="col-2">
+                <h4><i class="fa fa-check-circle d-none d-lg-block"></i> </h4>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-6">
+                <p class="font2">TASK 2</p>
+              </div>
+              <div class="col-4">
+                <p class="font2">Incomplete</p>
+              </div>
+              <div class="col-2">
+                <h4><i class="fa fa-times-circle d-none d-lg-block"></i> </h4>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-6">
+                <p class="font2">TASK 3</p>
+              </div>
+              <div class="col-4">
+                <p class="font2">Pending</p>
+              </div>
+              <div class="col-2">
+                <h4><i class="fa fa-clock-o d-none d-lg-block"></i></h4>
+              </div>
+            </div>
+      </div>
+    </div>
+    </div>
+    <div class="dash-main row justify-content-center">
+      <div class="col-11  my-4 d-lg-none main-pd border1">
+        <div class="justify-content-center" style="overflow-x: auto;">
+          <div class="card-header">
+              <h4><i class="fa fa-tasks"></i> Status of the given tasks</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+            <div class="col-6">
+              <h4>Tasks Assigned</h4>
+              </div>
+              <div class="col-6">
+                <h4>Status of tasks</h4>
+                </div>
+                </div>
+      
+                <div class="row">
+                  <div class="col-6">
+                    <p class="font2">TASK 1</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="font2">Complete</p>
+                  </div>
+                  <div class="col-2">
+                    <h4><i class="fa fa-check-circle d-none d-lg-block"></i> </h4>
+                  </div>
+                </div>
+      
+                <div class="row">
+                  <div class="col-6">
+                    <p class="font2">TASK 2</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="font2">Incomplete</p>
+                  </div>
+                  <div class="col-2">
+                    <h4><i class="fa fa-times-circle d-none d-lg-block"></i> </h4>
+                  </div>
+                </div>
+      
+                <div class="row">
+                  <div class="col-6">
+                    <p class="font2">TASK 3</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="font2">Pending</p>
+                  </div>
+                  <div class="col-2">
+                    <h4><i class="fa fa-clock-o d-none d-lg-block"></i></h4>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div> {% endcomment %}
+    {% block ranking %}
+    {% endblock %}
+</div>

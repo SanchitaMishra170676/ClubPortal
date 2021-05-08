@@ -1,0 +1,183 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'src/js/project.js' %}"></script>
+<script src="{% static 'src/js/achievement.js' %}"></script>
+{% endblock  %}
+
+{% block extrahead %}
+<style>
+  
+.pagination {
+  display: inline-block;
+  position: relative;
+
+}
+
+.pagination a {
+  color:black;
+  float: left;
+  padding: 8px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.pagination a.active {
+  background-color: rgb(0, 102, 204);
+  color: black;
+  border-radius: 50%;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: rgb(20, 19, 35);
+  color: white;
+  border-radius: 50%;
+}
+
+</style>
+<link href="{% static 'src/css/project.css' %}" rel="stylesheet">
+<link href="{% static 'src/css/hackathon_list.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+
+{% block content %}
+
+
+    <!-- ======= Project List Section ======= -->
+<div class="animated fadeIn">
+  <div class="card p-4">
+      <div class="card-header">
+          <h4><i class="fa fa-edit"></i> Project List</h4>
+      </div>
+      {% if projects %}
+      <div class="row container-fluid">
+        {% for project in projects %} 
+        <div class="col-sm-6 col-lg-4 col-lg-3 d-flex align-items-stretch " id="project{{project.id}}" onclick="drop_let('drop{{project.id}}')">
+         
+          <!-- Card -->
+      <div class="card booking-card  d-flex" style="margin-top: 15px;">
+
+          <!-- Card image -->
+          <div class="view overlay" >
+            {% if project.image %}
+            <img class="card-img-top project-list" src="{% static '' %}{{project.image}}" style="width: 100%;height:200px; " alt="Card image cap">
+            {% else %}
+            <img class="card-img-top project-list" src="{% static 'src/img/placeholder-img.jpg' %}" style="width: 100%;height:200px; " alt="Card image cap">
+            {% endif %}
+            <a href="#!">
+              <!-- for PUBLIC -->
+            
+              {% if  project.is_public %}
+              <span class="badge badge-warning float-right rounded-pill troop-level-badge">Public</span>
+              {% else %}
+              <span class="badge badge-success float-right rounded-pill troop-level-badge">Private</span>
+              {% endif%}             
+              <!---->
+            </a>
+          </div>
+         
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold"><a>{{ project.projectName }}</a></h4><a href="{{ project.githubURL }}"><i class="fa fa-github-alt fa-lg" aria-hidden="true"> GitHub Repo</i></a>
+            
+          </div>
+        </div>
+        
+        </div>
+        {% endfor %}
+       
+        {% for project in projects %} 
+      <div class="drop   col-12" id="drop{{project.id}}" style="display:none" >
+                              
+        <div class="internal_sec achievement-sec">
+          <div class="row">
+            <div class="col-sm-12">
+          <div class="card w-100 achievement-card" style="max-width: 100%;">
+            <div class="row no-gutters">
+              <div class="col-md-3">
+                {% if project.image %}
+                <img src="{% static '' %}{{project.image}}" class="card-img achievement-img" alt="...">
+                {% else %}
+                <img src="{% static 'src/img/placeholder-img.jpg' %}" class="card-img achievement-img" alt="...">
+                {% endif %}
+              </div>
+              <div class="col-md-9">
+                <div class="card-body">
+                 
+                  <div class="container">
+                    <div class="row">
+                      <h1 class="col-9 text-center justify-content-center   achievement-tab-heading">{{ project.projectName }}</h1>
+                      <span class="col-3 d-flex align-items-center justify-content-center">
+                        <a class="btn btn-info"  href="/dashboard/update_project/{{project.id}}/">
+                          <i class="fa fa-edit edit" ></i>
+                      </a>
+                      <a class="btn btn-danger delete"  href="/dashboard/delete_project/{{project.id}}/">
+                         <i class="fa fa-trash-o"></i>
+                      </a>
+                      </span>
+                    </div>
+                    
+                  </div>
+                  <p class="card-text ">
+                    <div class="row">
+                    <div class="col-sm-12 achievement-text container-fluid " id="edit1">
+                    <b>Category:</b>{{ project.category }}
+                    <br>
+                    <b>GitHub Link:</b> {{ project.githubURL }}
+                    <br>
+                    <b>Video Demo:</b>{{ project.videoURL }}
+                    <br>
+                    <b>Description :</b>{{ project.description }}
+                    </div>
+                    
+                    </div>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+     <!--pagination-->
+     {% if projects.has_other_pages %}
+     <div class="pagination d-flex justify-content-center mt-4">
+     {% if projects.has_previous %}
+       <a href="?page={{ projects.previous_page_number }}">&laquo;</a>
+     {% else %}
+       <a href="#">&laquo;</a>
+     {% endif %}
+     {% for i in projects.paginator.page_range %}
+       {% if projects.number == i %}
+       <a href="#" class="active">{{i}}</a>
+       {% else%}
+       <a href="?page={{i}}">{{i}}</a>
+       {% endif %}
+     {% endfor %}
+       {% if projects.has_next %}
+       <a href="?page={{ projects.next_page_number }}">&raquo;</a>
+       {% else %}
+         <a href="#">&raquo;</a>
+       
+       {% endif %}
+     </div>
+   {% endif%}
+<!-- Pagination end -->
+    {% else %}
+    <div class="card-body">
+      <h3>No Project Found </h3>
+    </div>
+    {% endif %}
+  </div>
+</div>
+<!-- Project List end -->
+
+{% endblock content %}

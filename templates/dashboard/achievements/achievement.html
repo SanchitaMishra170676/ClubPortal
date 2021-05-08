@@ -1,0 +1,190 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/achievement.js' %}"></script>
+{% endblock %} 
+{% block extrahead %}
+
+<style>
+  .pagination {
+  display: inline-block;
+  position: relative;
+
+}
+
+.pagination a {
+  color:black;
+  float: left;
+  padding: 8px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.pagination a.active {
+  background-color: rgb(0, 102, 204);
+  color: black;
+  border-radius: 50%;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: rgb(20, 19, 35);
+  color: white;
+  border-radius: 50%;
+}
+</style>
+<link href="{% static 'src/css/hackathon_list.css' %}" rel="stylesheet">
+{% endblock extrahead %} 
+{% block content %}
+
+<!-- ======= Achievement Section ======= -->
+<div class="animated fadeIn">
+      <div class="card p-4">
+          <div class="card-header">
+              <i class="fa fa-edit"></i> Achievement List
+          </div>
+          {% if achievements %}
+
+          <div class="container-fluid">
+            <div class="animated fadeIn">
+              <div class="animated fadeIn">
+                  <div class="row my-4">
+                    {% for achievement in achievements %}
+                    <div class="col-sm-6 col-lg-3 d-flex align-items-stretch" id='achievement-{{achievement.id}}'>
+                      <!-- Card -->
+                      <div class="card booking-card  d-flex " onclick="drop_let('drop{{achievement.id}}')">
+
+                          <!-- Card image -->
+                          <div class="view overlay">
+                            {% if achievement.image %}
+                            <img class="card-img-top" src="{% static '' %}{{achievement.image}}"  style="width: 100%;height:200px;" alt="Card image cap">
+                            {% else %}
+                            <img class="card-img-top" src="{% static 'src/img/placeholder-img.jpg' %}"  style="width: 100%;height:200px;" alt="Card image cap">
+                            {% endif  %}
+                            <a href="#!">
+                              <!-- for private -->
+                              <!-- <span class="badge badge-warning float-right rounded-pill troop-level-badge">Private</span> -->
+                              {% if achievement.is_public  %}
+                            <span class="badge badge-warning float-right rounded-pill troop-level-badge">Public</span>
+                            {% else %}
+                            <span class="badge badge-success float-right rounded-pill troop-level-badge">Private</span>
+                            {% endif %} 
+              
+                              <!---->
+                            </a>
+                          </div>
+
+                          <!-- Card content -->
+                          <div class="card-body">
+
+                            <!-- Title -->
+                            <h4 class="card-title font-weight-bold"><a>  {{ achievement.achievementName }}</a></h4>
+                            <!-- Text -->
+                            
+                            <p class="card-text">{{achievement.description|truncatechars:80}}</p>
+                            
+                          </div>
+
+                      </div>
+                    </div>
+                    {% endfor%}
+                    {% for achievement in achievements %}      
+                  
+                    <div class="drop   col-12" id="drop{{achievement.id}}" style="display:none" >
+                               
+                      <div class="internal_sec achievement-sec">
+                        <div class="row">
+                          <div class="col-sm-12">
+                        <div class="card w-100 achievement-card" style="max-width: 100%;">
+                          <div class="row no-gutters">
+                            <div class="col-md-3">
+                              {% if achievement.image %}
+                              <img src="{% static '' %}{{achievement.image}}" class="card-img achievement-img" alt="...">
+                              {% else %}
+                              <img src="{% static 'src/img/placeholder-img.jpg' %}" class="card-img achievement-img" alt="...">
+                              {% endif %}
+                            </div>
+                            <div class="col-md-9">
+                              <div class="card-body">
+                               
+                                <div class="container">
+                                  <div class="row">
+                                    <h1 class="col-9 text-center justify-content-center   achievement-tab-heading">{{achievement.role}}</h1>
+                                    <span class="col-3 d-flex align-items-center justify-content-center">
+                                      <a class="btn btn-info"  href="/dashboard/update_achievement/{{achievement.id}}/">
+                                        <i class="fa fa-edit edit" ></i>
+                                    </a>
+                                    <a class="btn btn-danger delete"  href="/dashboard/delete_achievement/{{achievement.id}}/">
+                                       <i class="fa fa-trash-o"></i>
+                                    </a>
+                                    </span>
+                                  </div>
+                                  
+                                </div>
+                                <p class="card-text ">
+                                  <div class="row">
+                                  <div class="col-sm-8 achievement-text container-fluid " id="edit1">
+                                  <b contenteditable="false">Category: </b>{{achievement.category}}
+                                  <br>
+                                  <b>Achievement : </b> {{achievement.achievementName}}
+                                  <br>
+                                  <b>Role: </b> {{achievement.role}}
+                                  <br>
+                                  <b>Description: </b><br> 
+                                  
+                                  {{achievement.description}}
+                                  
+                                    
+                                  </div>
+                                    <div class="col-sm-4">
+                                      <img class="award" src="{% static 'src/img/award.png' %}" alt="">
+                                    </div> 
+                                  </div>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    
+                   
+                  </div>
+                 <!--pagination-->
+        {% if achievements.has_other_pages %}
+        <div class="pagination d-flex justify-content-center mt-4">
+        {% if achievements.has_previous %}
+          <a href="?page={{ achievements.previous_page_number }}">&laquo;</a>
+        {% else %}
+          <a href="#">&laquo;</a>
+        {% endif %}
+        {% for i in achievements.paginator.page_range %}
+          {% if achievements.number == i %}
+          <a href="#" class="active">{{i}}</a>
+          {% else%}
+          <a href="?page={{i}}">{{i}}</a>
+          {% endif %}
+        {% endfor %}
+          {% if achievements.has_next %}
+          <a href="?page={{ achievements.next_page_number }}">&raquo;</a>
+          {% else %}
+            <a href="#">&raquo;</a>
+          
+          {% endif %}
+        </div>
+      {% endif%}
+<!-- Pagination end -->
+              </div>
+            </div>
+          </div>   
+
+          {% else %}
+          <div class="card-body">
+            <h3>No Achievement  Found  {{achievement.achievementName}}</h3>
+          </div>
+          {% endif %}
+          
+{% endblock content %}

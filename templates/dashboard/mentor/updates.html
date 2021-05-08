@@ -1,0 +1,123 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/updates.js' %}"></script>
+
+{% endblock script %}
+{% block extrahead %}
+<link href ="{% static 'src/css/updates.css' %}" rel ="stylesheet">
+
+{% endblock extrahead %}
+{% block content %}
+
+      <!-- ======= Update Task Section ======= -->
+      <div class="container-fluid updates">
+
+
+
+        <div class="updates-int">
+          <h1 class="d-flex justify-content-center pt-3 pb-3 heading" >
+            Updates for Students</h1>
+          <ul class="list-group list-group-flush list" >
+
+            <li class="list-group-item p-3">
+              <div onclick="S1('S1')">Being up-to-date with latest technologies that you've interested to build is also
+                plays makor role being a good web developer.
+              </div>
+              <div id="S1" class="pt-2" style="display:none;">
+                <b>
+                  <div class="controls">
+                    Submitted Link-<a href="#">link</a>
+                    <div class="feedback">
+                      Submitted Feedback-xyz..
+                    </div>
+                    <div class="resource">
+                      Resource-<a href="#"></a>
+                    </div>
+                  </div>
+                </b>
+              </div>
+            </li>
+
+            <li class="list-group-item p-3">
+              <div onclick="S1('S2')">Integrate data from various back-end services and databases
+              </div>
+              <div id="S2" class="pt-2" style="display:none;">
+                <b>
+                  <div class="controls">
+                    Submitted Link-<a href="#">link</a>
+                    <div class="feedback">
+                      Submitted Feedback-xyz..
+                    </div>
+                    <div class="resource">
+                      Resource-<a href="#"></a>
+                    </div>
+                  </div>
+                </b>
+              </div>
+            </li>
+
+            <li class="list-group-item p-3">
+              <div onclick="S1('S3')">Stay plugged into emerging technologies/industry trends and apply them into
+                operations and activities
+              </div>
+              <div id="S3" class="pt-2" style="display:none;">
+                <b>
+                  <div class="controls">
+                    Submitted Link-<a href="#">link</a>
+                    <div class="feedback">
+                      Submitted Feedback-xyz..
+                    </div>
+                    <div class="resource">
+                      Resource-<a href="#"></a>
+                    </div>
+                  </div>
+                </b>
+              </div>
+            </li>
+
+            <li class="list-group-item p-3">
+              <div onclick="S1('S4')">Stay plugged into emerging technologies/industry trends and apply them into
+                operations and activities
+              </div>
+              <div id="S4" class="pt-2" style="display:none;">
+                <b>
+                  <div class="controls">
+                    Submitted Link-<a href="#">link</a>
+                    <div class="feedback">
+                      Submitted Feedback-xyz..
+                    </div>
+                    <div class="resource">
+                      Resource-<a href="#"></a>
+                    </div>
+                  </div>
+                </b>
+              </div>
+            </li>
+
+            <li class="list-group-item p-3">
+              <div onclick="S1('S5')">Cooperate with web designers to match visual design inten.
+              </div>
+              <div id="S5" class="pt-2" style="display:none;">
+                <b>
+                  <div class="controls">
+                    Submitted Link-<a href="#">link</a>
+                    <div class="feedback">
+                      Submitted Feedback-xyz..
+                    </div>
+                    <div class="resource">
+                      Resource-<a href="#"></a>
+                    </div>
+                  </div>
+                </b>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+
+<!-- Update Task end -->
+   
+{% endblock content %}

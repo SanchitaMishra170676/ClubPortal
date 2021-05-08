@@ -1,0 +1,457 @@
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/project.js' %}"></script>
+{% endblock %}
+
+
+<!-- ======= Profile Section ======= -->
+<div id="Profile" class="tabs" style="display:none;">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="col-sm my-4">
+      <div class="col border1">
+        
+      <div class="col-sm-12 d-flex justify-content-center align-items-center mt-4">
+
+        <div class="avatarDiv form-group" style="position:relative">
+          {% if clubProfile.image %}
+          <img id="preview_Img" src="{% static '' %}{{clubProfile.image}}" alt="Placeholder" style="width: 150px; height: 150px; border-radius: 50%;">
+            <button class="changeImgIcon mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i" style="position:absolute;top:-5px;right:20%;background:#fff;color:#404040;" >
+          {% else %}
+            {%if clubProfile.gender == 'female' %}
+              <img id="preview_Img" src="{% static 'src/img/girl.png' %}" alt="Placeholder" style="width: 150px; height: 150px; border-radius: 50%;">
+              <button class="changeImgIcon mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i" style="position:absolute;top:-5px;right:20%;background:#fff;color:#404040;" >
+            {%else %}
+              <img id="preview_Img" src="{% static 'src/img/man.png' %}" alt="Placeholder" style="width: 150px; height: 150px; border-radius: 50%;">
+              <button class="changeImgIcon mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i" style="position:absolute;top:-5px;right:20%;background:#fff;color:#404040;" >
+            {%endif%}
+          {% endif%}
+          <button class="changeImgIcon btn-info mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i"
+          style="position:absolute;top:-5px;right:20%;background:#fff;color:#404040;width: 20%; background-color: rgb(138, 181, 247);" >
+          <div class="image-upload">
+            <label for="file-input">
+              <i class="fa fa-edit" style="color: #fff;"></i>
+
+            </label>
+
+            <input id="file-input" type="file" name="image" style="display: none;" onchange="previewFile(this);"
+              accept="image/*" form="img_save_form" default=None/>
+          </div>
+        </button>
+        <form action="/member/image_save/" id="img_save_form" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <img id="preview_Img" src="{{clubPrImage.image}}" height="180px;"
+          style="border-radius: 50%;">
+          <button class="changeImgIcon btn-success mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i" type="submit"
+          style="position:absolute;bottom:-5px;right:20%;background:#fff;background-color:#31c75e; width: 20%;"  form="img_save_form">
+          <div >
+            <label for="save">
+              <i class="fa fa-save" style="color: #fff;"></i>
+            </label>
+          </div>
+        </button>
+      </form>
+     
+          
+      </div>
+      </div>
+        
+      </div>
+    </div>
+    
+    <!-- ======= Coding Profile Section ======= -->
+      <div class="col-sm my-4">
+        <div style="overflow-x:auto; overflow-y: auto;" class="border1">
+          <table class="table1">
+            <tr class="tr1">
+              <th class="th1">Platforms</th>
+              <th class="th1">Usernames</th>
+            </tr>
+          {% if codingProfile %}
+            <tr class="tr1">
+              
+              <td class="td1">Codeforces </td>
+              <td class="td1"><a href="">{{codingProfile.codeforces}}</a></td>
+              
+            </tr>
+            <tr class="tr1">
+               
+                <td class="td1">CodeChef</td>
+                <td class="td1"><a href="">{{codingProfile.codechef}}</a></td>
+                
+            </tr>
+            <tr class="tr1">
+                
+                <td class="td1">LeetCode</td>
+                <td class="td1"><a href="">{{codingProfile.leetcode}}</a></td>
+                
+            </tr>
+            <tr class="tr1">
+               
+                <td class="td1">SPOJ</td>
+                <td class="td1"><a href="">{{codingProfile.spoj}}</a></td>
+                
+            </tr>
+            <tr class="tr1">
+                
+                <td class="td1">Interviewbit</td>
+                <td class="td1"><a href="">{{codingProfile.interviewbit}}</a></td>
+                
+            </tr>
+          {% else %}
+            <tr>
+              <td rowspan="5" colspan="2"><div  class="d-flex justify-content-center
+              align-items-center p-3"style="height:24vh;"><h2><a href="{% url 'personal_profile'%}#coding_profile">Add Coding Profile!</a> </h2></div></td> 
+          {% endif %}
+          </table>
+        </div>
+      </div>
+      <!-- Coding profile section end -->
+
+  </div>
+    
+  
+  <!-- ======= Members-profile Section ======= -->
+  <div class="col-md-8 my-4">
+    <div class="col-sm border1">
+      <form action="/member/profile/" method="post" id="personal_profile_info_details" enctype="multipart/form-data">
+          <div class="row pl-3 pr-3">
+          <div class="col-sm-11 d-flex justify-content-center align-items-center mt-3">
+            <h2 >Information</h2>
+          </div>
+          <div class="col-sm-1 d-flex justify-content-center align-items-center mt-3" >
+            <button  type="button" class="btn btn-info" id="edit_personal_info" onclick="edit_info()"><i class="fa fa-edit " aria-hidden="true"></i></button>
+            <button type="submit" form="personal_profile_info_details" class="btn btn-success" id="save_personal_info" style="display: none;"><i
+              class="fa fa-save " aria-hidden="true"></i></button>
+          </div>
+        </div>
+          
+            <div class="col-sm-12 d-flex mb-3 mt-3 align-items-center justify-content-center">
+              <p>Add your College information for the profile</p>
+            </div>
+            
+              {% csrf_token %}
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="name">Name</label>
+                <input class="form-control" name="name" id="name" type="text" placeholder="N/A" value="{{clubProfile.name}}" disabled>
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="">Gender</label>
+                <select class="form-control" id="gender" name="gender" value="{{clubProfile.gender}}" disabled>
+                {% if clubProfile.gender == 'male' %}
+                <option value="male" selected>Male</option>
+                <option value="female">Female</option>
+                <option value="rather not say">Rather not say</option>
+                {% elif clubProfile.gender == 'female' %}
+                <option value="male">Male</option>
+                <option value="female" selected>Female</option>
+                <option value="rather not say">Rather not say</option>
+                {% elif clubProfile.gender == 'rather not say' %}
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="rather not say" selected>Rather not say</option>
+                {% endif %}
+                </select>
+              </div>
+            </div>
+          <div class="row">
+            <div class="form-group col-sm-6">
+              <label for="">Branch</label>
+              <select class="form-control" id="branch" name="branch" value="{{clubProfile.branch}}" disabled>
+              {% if clubProfile.branch == 'IT' %}
+              <option value="IT" selected>IT</option>
+              <option value="CSIT">CSIT</option>
+              <option value="CSE">CSE</option>
+              <option value="CO">CO</option>
+              <option value="ECE">ECE</option>
+              <option value="EN">EN</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+              {% elif clubProfile.branch == 'CSIT' %}
+              <option value="IT">IT</option>
+              <option value="CSIT" selected>CSIT</option>
+              <option value="CSE">CSE</option>
+              <option value="CO">CO</option>
+              <option value="ECE">ECE</option>
+              <option value="EN">EN</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+              {% elif clubProfile.branch == 'CSE' %}
+              <option value="IT">IT</option>
+              <option value="CSIT">CSIT</option>
+              <option value="CSE" selected>CSE</option>
+              <option value="CO">CO</option>
+              <option value="ECE">ECE</option>
+              <option value="EN">EN</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+              {% elif clubProfile.branch == 'CO' %}
+              <option value="IT">IT</option>
+              <option value="CSIT">CSIT</option>
+              <option value="CSE">CSE</option>
+              <option value="CO" selected>CO</option>
+              <option value="ECE">ECE</option>
+              <option value="EN">EN</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+              {% elif clubProfile.branch == 'ECE' %}
+              <option value="IT">IT</option>
+              <option value="CSIT">CSIT</option>
+              <option value="CSE">CSE</option>
+              <option value="CO">CO</option>
+              <option value="ECE" selected>ECE</option>
+              <option value="EN">EN</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+              {% elif clubProfile.branch == 'EN' %}
+              <option value="IT">IT</option>
+              <option value="CSIT">CSIT</option>
+              <option value="CSE">CSE</option>
+              <option value="CO">CO</option>
+              <option value="ECE">ECE</option>
+              <option value="EN" selected>EN</option>
+              <option value="ME">ME</option>
+              <option value="CE">CE</option>
+              {% elif clubProfile.branch == 'ME' %}
+              <option value="IT">IT</option>
+              <option value="CSIT">CSIT</option>
+              <option value="CSE">CSE</option>
+              <option value="CO">CO</option>
+              <option value="ECE">ECE</option>
+              <option value="EN">EN</option>
+              <option value="ME" selected>ME</option>
+              <option value="CE">CE</option>
+              {% elif clubProfile.branch == 'CE' %}
+              <option value="IT">IT</option>
+              <option value="CSIT">CSIT</option>
+              <option value="CSE">CSE</option>
+              <option value="CO">CO</option>
+              <option value="ECE">ECE</option>
+              <option value="EN">EN</option>
+              <option value="ME">ME</option>
+              <option value="CE" selected>CE</option>
+              {% endif %}
+              </select>
+            </div>
+            <div class="form-group col-sm-6">
+              <label for="email">College Email ID</label>
+              <input class="form-control" id="college_email" name="college_email" type="email" placeholder="N/A" value="{{clubProfile.college_email}}" disabled>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="name">Domain</label>
+              <select class="form-control" id="domain" name="domain" value="{{clubProfile.domain}}" disabled>
+              {% if clubProfile.domain == 'Web Development' %}
+              <option value="Web Development" selected>Web Development</option>
+              <option value="Android Development">Android</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="IOT">Internet of Things</option>
+              <option value="AR/VR">AR/VR</option>
+              {% elif clubProfile.domain == 'Android Development' %}
+              <option value="Web Development">Web Development</option>
+              <option value="Android Development" selected>Android</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="IOT">Internet of Things</option>
+              <option value="AR/VR">AR/VR</option>
+              {% elif clubProfile.domain == 'Machine Learning' %}
+              <option value="Web Development">Web Development</option>
+              <option value="Android Development">Android</option>
+              <option value="Machine Learning" selected>Machine Learning</option>
+              <option value="IOT">Internet of Things</option>
+              <option value="AR/VR">AR/VR</option>
+              {% elif clubProfile.domain == 'IOT' %}
+              <option value="Web Development">Web Development</option>
+              <option value="Android Development">Android</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="IOT" selected>Internet of Things</option>
+              <option value="AR/VR">AR/VR</option>
+              {% elif clubProfile.domain == 'AR/VR' %}
+              <option value="Web Development">Web Development</option>
+              <option value="Android Development">Android</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="IOT">Internet of Things</option>
+              <option value="AR/VR" selected>AR/VR</option>
+              {% endif %}
+              </select>
+            </div>
+          </div>
+
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="city">Batch</label>
+                <input class="form-control" id="batch" name="batch" type="text" placeholder="N/A" value="{{clubProfile.batch}}"disabled>
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" id="phone" name="phone" value="{{clubProfile.phone}}" class="form-control" placeholder="N/A" disabled>
+              </div>
+             
+            </div>
+          </form>            
+        
+    </div>
+  </div>
+</div>
+{% comment %} <div class="row">
+  <div class="col-sm my-4">
+  <div class="col-12 border1">
+    <div style="overflow-x:auto;">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th colspan="2" class="text-center">Interview Bit</th>
+          <th colspan="2" class="text-center">CodeChef</th>
+          <th colspan="2" class="text-center">LeetCode</th>
+          <th colspan="2" class="text-center">SPOJ</th>
+          <th colspan="2" class="text-center">Codeforces</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">Solved</td>
+          <td class="text-center">Rating</td>
+          <td class="text-center">Solved</td>
+          <td class="text-center">Rating</td>
+          <td class="text-center">Solved</td>
+          <td class="text-center">Rating</td>
+          <td class="text-center">Solved</td>
+          <td class="text-center">Rating</td>
+          <td class="text-center">Solved</td>
+          <td class="text-center">Rating</td>
+        </tr>
+        <tr>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">{{codingSolved.codechef}}</td>
+          <td class="text-center">{{codingRating.codechef}}</td>
+          <td class="text-center">28</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">{{codingSolved.codeforces}}</td>
+          <td class="text-center">{{codingRating.codeforces}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+</div> {% endcomment %}
+{% comment %} <div class="row">
+              <div class="col-md-4">
+                <div class="col-sm my-4">
+                  <div class="my-4">
+                    <div class="col border1 scroll2">
+                      <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-center align-items-center mt-3">
+                          <h2 class="block-head">Professional Skills</h2>
+                        </div>
+                        <div class="col-sm-12 d-flex justify-content-center align-items-center mt-3"> <button class="btn btn-info" id="edit_skills" onclick="return edit_skills()"><i class="fa fa-edit "
+                              aria-hidden="true"></i></button>
+                        </div>
+                      </div>
+                  
+                      <div class="col-sm-12 d-flex mt-3 align-items-center justify-content-center">
+                        <p>Add various professional skills which you have achieved and wants to deisplay on profile</p>
+                      </div>
+                      {% if skills %}
+                      {% for skill in skills %}
+                      <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3" id="sk{{skill.id}}">
+                          
+                        <input type="text" class="form-control" id="input_skill1" value="{{skill.skill}}" disabled >
+                        <div class="input-group-append" style="display: none;" id="save_skills1">
+                          <button class="btn btn-danger " onclick="window.location.href='/member/delete_skill/{{skill.id}}'" ><i class="fa fa-trash-o"aria-hidden="true"></i></button><button class="btn btn-success " type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </div>
+                      </div>
+                    </form>
+                    {% endfor%}
+                    {%else %}
+                    <div> No Skills added</div>
+                    {% endif %}
+                    
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+  <div class="col-md-8">
+    <div class="col-sm my-4">
+      <div class="col border1 scroll2">
+        <div class="row">
+          <div class="col-sm-12 d-flex justify-content-center align-items-center mt-3">
+            <h2 >Education details<br></h2>
+            
+          </div>
+          
+        </div>
+                              
+        <div class="row  my-4">
+          <div class="col-sm-12" >
+          {% for educationProfile in educationProfiles %}
+            <div class="col border1 m-2" style="background-color: #dddddd;" id="info-college" style="overflow-x: auto;"><br>
+              <div class="row" style="overflow-x: auto;">
+                <div class="col-sm-1">
+                  <img src="{% static 'img/kiet_logo.png' %}" alt="" class="edu_details_img text-center justify-content-center align-items-center" style=" max-height: 50px; height:auto;width:auto;">
+                </div>
+                <div class="col-sm-10">
+                  <h5 id="college" style="display:block;margin-left:1.2em;">{{educationProfile.institution}}</h5>
+                  <p style="display: block;margin-left:1.2em;" id="degree-name">{{educationProfile.qualification}} , {{educationProfile.time_period}}, Grade: {{educationProfile.grade}}</p>
+                </div>
+                <div class="col-sm-2 " >
+                  <button  type="button" class="btn btn-info" id="edit_edu_details" onclick="edit_element()"><i class="fa fa-edit " aria-hidden="true"></i></button>
+                 
+                  
+                </div>
+              </div>
+           
+          </div>
+          {% endfor %}
+          
+            {% for educationProfile in educationProfiles %}
+            <form action="/member/update_education_profile/{{educationProfile.id}}/" method="post">
+              {% csrf_token %}
+                <div class="col shadow rounded border" id="form-college" style="background-color: rgb(218, 211, 211); display: none;">
+                  <div class="row">
+                    <div class="col-sm-10">
+                      <div class="row">
+                  
+                        <div class="col-sm-8">
+                          <br>
+                        <input type="text" name="institution" id="college-name" value="{{educationProfile.institution}}" class="form-control" >
+                      </div>
+                      <div class="col-sm-4">
+                        <br>
+                      <input type="text" name="grade" id="grade" value="{{educationProfile.grade}}" class="form-control" >
+                    </div>
+                    </div><br>
+                    
+                        <div class="row">
+                          <div class="col-sm-6"><input type="text" name="qualification" class="form-control" id="degree" value="{{educationProfile.qualification}}" /></div>
+                          
+                          <div class="col-sm-6"><input type="text" name="time_period" id="year-pass" value="{{educationProfile.time_period}}" class="form-control" /></div>
+                          <br><br>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 d-flex justify-content-center align-items-center">
+                      <button  type="submit" class="btn btn-success" id="save_college_details"  type="submit"><i class="fa fa-save " aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                  
+                </div>
+          
+            </form>
+        {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+  {% block ranking %}
+  {% endblock %}
+</div>
+<!-- Profile section start -->

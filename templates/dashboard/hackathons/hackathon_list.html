@@ -1,0 +1,181 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'src/js/achievement.js' %}"></script>
+{% endblock script %}
+
+{% block extrahead %}
+
+<link href="{% static 'src/css/hackathon_list.css' %}" rel="stylesheet">
+<link href="{% static 'src/css/article_list.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+
+{% block content %}
+
+<!-- ======= Hackathon List Section ======= -->
+<div class="animated fadeIn">
+      <div class="card p-4">
+          <div class="card-header">
+              <i class="fa fa-edit"></i> Hackathon-Achievement List
+          </div>
+
+          {% if not hackathons %}
+          <div class="card-body">
+            <h3>No Hackthon Won Detail Found  {{hackathon.hackathonName}}</h3>
+          </div>
+          
+          {% else %}
+          
+          <div class="container-fluid">
+            <div class="animated fadeIn">
+              <div class="animated fadeIn">
+                  <div class="row my-4">
+                    {% for hackathon in hackathons %}
+                    <div class="col-sm-6 col-lg-3 d-flex align-items-stretch" id='hackathon-{{hackathon.id}}' >
+                      <!-- Card -->
+                      
+                      <div class="card booking-card  d-flex " onclick="drop_let('drop{{hackathon.id}}')">
+
+                          <!-- Card image -->
+                          <div class="view overlay">
+                            {% if hackathon.image %}
+                            <img class="card-img-top" src="{% static '' %}{{hackathon.image}}"  style="width: 100%;height:200px;" alt="Card image cap">
+                            {% else %}
+                            <img class="card-img-top" src="{% static 'src/img/placeholder-img.jpg' %}"  style="width: 100%;height:200px;" alt="Card image cap">
+                            {% endif %}
+                            <!-- for PUBLIC -->
+                            {% if hackathon.is_public  %}
+                            <span class="badge badge-warning float-right rounded-pill troop-level-badge">Public</span>
+                            {% else %}
+                            <span class="badge badge-success float-right rounded-pill troop-level-badge">Private</span>
+                            {% endif %} 
+              
+                            <!---->
+                          </div> 
+
+                          <!-- Card content -->
+                          <div class="card-body">
+
+                            <!-- Title -->
+                            <h4 class="card-title font-weight-bold"><a> abc {{ hackathon.hackathonName }}</a></h4>
+                            <!-- Text -->
+                            
+                            <p class="card-text">{{hackathon.description|truncatechars:80}}</p>
+                            
+                          </div>
+
+                      </div>
+                    </div>
+                    {% endfor%}
+                    {% for hackathon in hackathons %}      
+                    <div class="drop col-12" id="drop{{hackathon.id}}" style="display:none" >
+                                
+                      <div class="internal_sec achievement-sec">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card w-100 achievement-card" style="max-width: 100%;">
+                            <div class="row no-gutters">
+                              <div class="col-md-3">
+                              
+                              {% if hackathon.image %}
+                               <img src="{% static '' %}{{hackathon.image}}" class="card-img achievement-img" alt="...">
+                              {% else %}
+                               <img src="{% static 'src/img/placeholder-img.jpg' %}" class="card-img achievement-img" alt="...">
+                              {% endif %} 
+                              </div>
+                            <div class="col-md-9">
+                              <div class="card-body">
+                               
+                                <div class="container">
+                                  <div class="row">
+                                    <h1 class="col-9 text-center justify-content-center   achievement-tab-heading">{{hackathon.role}}</h1>
+                                    <span class="col-3 d-flex align-items-center justify-content-center">
+                                      <a class="btn btn-info"   href="/dashboard/update_hackathon/{{hackathon.id}}/">
+                                        <i class="fa fa-edit edit" ></i>
+                                    </a>
+                                    <a class="btn btn-danger delete"  href="/dashboard/delete_hackathon/{{hackathon.id}}/">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                    </span>
+                                  </div>
+                                  
+                                </div>
+                                <p class="card-text ">
+                                  <div class="row">
+                                  <div class="col-sm-8 achievement-text container-fluid " id="edit{{hackathon.id}}">
+                                  <b contenteditable="false">HackathonName : </b>{{hackathon.hackathonName}}
+                                  <br>
+                                  <b>TeamName: </b> {{hackathon.teamName}}
+                                  <br>
+                                  <b>Achievement: </b> {{hackathon.achievement}}
+                                  <br>
+                                  <b>TeamMembers:</b>
+                                  {{hackathon.teamMembers}}
+                                  
+
+                                  
+                                    
+                                  </div>
+                                    <div class="col-sm-4">
+                                      <img class="award" src="{% static 'src/img/award.png' %}" alt="">
+                                    </div> 
+                                  </div>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        </div>
+                      </div>
+                  </div>
+                    {% endfor %}
+                    
+                               
+                  </div>
+                  <!-- Hackathon List end -->
+                  <!--pagination-->
+                      {% if hackathons.has_other_pages %}
+                      <div style="z-index: 99999;" class="pagination d-flex justify-content-center mt-4">
+                      {% if hackathons.has_previous %}
+                        <a href="?page={{ hackathons.previous_page_number }}">&laquo;</a>
+                      {% else %}
+                        <a href="#">&laquo;</a>
+                      {% endif %}
+                      {% for i in hackathons.paginator.page_range %}
+                        {% if hackathons.number == i %}
+                        <a href="#" class="active">{{i}}</a>
+                        {% else%}
+                        <a href="?page={{i}}">{{i}}</a>
+                        {% endif %}
+                      {% endfor %}
+                        {% if hackathons.has_next %}
+                        <a href="?page={{ hackathons.next_page_number }}">&raquo;</a>
+                        {% else %}
+                          <a href="#">&raquo;</a>
+                        
+                        {% endif %}
+                      </div>
+                    {% endif%}
+              <!-- Pagination end -->
+                  
+                  {% endif %}
+                  
+              </div>
+            </div>
+          </div> 
+
+        
+
+        </div>
+        
+      </div>         
+
+
+        
+        
+      
+
+{% endblock content %}

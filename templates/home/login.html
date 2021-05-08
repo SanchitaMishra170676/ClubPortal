@@ -1,0 +1,71 @@
+
+ {% extends 'home/basic-plain.html' %}
+ {% block title%}
+  <title>Login - Innogeeks | A Great Technical Community of Ghaziabad/NCR</title>
+  {%  endblock title%}
+ {% load static %}
+ {% block content %}
+
+ 
+  <!-- ======= Login Section ======= -->
+  <div class="" >
+    <div class="col-12 ">
+        <div class="d-flex justify-content-center ">
+        <div class="col-12 col-md-8 col-lg-6 " style="margin-top: 50px;">
+            <a href="/"><img class="logo-img" src="{% static 'img/innogeeks.png' %}" alt="Innogeeks ,KIET Group Of Institution,Best Technical club in India" style="width:100%; ";></a>
+        </div>  
+        </div>
+    </div>
+    <div class="row" style="margin:0px !important ;">
+        
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-7 col-xl-5" >
+            <div class="d-flex justify-content-center ">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="card dark" >
+                    <div class="d-flex justify-content-center">  
+                    <h1 class="heading p-4">LOGIN</h1>  
+                    </div>                            
+                
+                <div class="col-12 ">
+                    <form class="form-horizontal rec-form"  method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="form-group row ">
+                            <label for="User-name" class="col-12 form-text" style="color: rgb(0, 102, 204);">User Name:</label>
+                              <input class="form-control col-12 col-lg-12" type="text" name="username" value=""  required placeholder="User Name">
+                        </div>
+                        <div class="form-group row ">
+                            <label for="password" class="col-12 form-text" style="color: rgb(0, 102, 204);">Password:</label>
+                            <input class="form-control col-12 col-lg-12 pl-2" type="password" name="password" value=""  required placeholder="Password">
+                        </div>
+                        <div class=" row  ">
+                            <div class=" col-12 d-flex justify-content-center">
+                                <button class="" type="submit" class="form-control mt-2 ">Login</button>
+                            </div>    
+                        </div> 
+                        <div class="row  p-4">
+                           <a href="/accounts/password_reset/">  <i>Forgot Password?</i> </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>  
+            </div>
+        </div>
+       
+    </div>
+<!-- Password-reset-confirm end-->   
+
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  {% if messages %}
+  {% for message in messages %}
+    <script> alertify.{{message.tags }}('{{message}}');</script>
+  {% endfor %}
+  {% endif %}
+   
+  
+  
+
+  {% endblock %}

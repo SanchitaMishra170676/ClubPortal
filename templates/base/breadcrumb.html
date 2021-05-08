@@ -1,0 +1,29 @@
+{% load static %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Admin</a></li>
+    <li class="breadcrumb-item active">Dashboard</li>
+
+   
+    
+    <!-- Breadcrumb Menu Start-->
+    <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+            <a class="btn" href="#"><i class="icon-speech"></i></a>
+            <a class="btn" href="{% url 'home' %}"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+            
+        </div>
+    </li>
+    <!-- Breadcrumb Menu end -->
+
+    {% block breadcrumb %}
+    
+    {% endblock %}
+</ol>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  {% if messages %}
+  {% for message in messages %}
+    <script> alertify.{{message.tags }}('{{message}}');</script>
+  {% endfor %}
+  {% endif %}

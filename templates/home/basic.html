@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Innogeeks at KIET Group of Institutions is a technical club which promotes peer-to-peer learning.Our moto is to encourage students to explore future technology. ">
+  {% comment %} <meta name="keywords" content="KIET,innogeeks,kiet,INNOGEEKS,Innogeeks,Technical Society, Ghaziabad,technical, student,iot, android, java,css, html,javascript, django, python,AR/VR,XR, Augmented Reality, technical content, blog,kiet, innogeeks"> {% endcomment %}
+  <meta name="google-site-verification" content="_LbYWkDtqY9LlW6pWlVoC5iNqMGp8OQOvf3wYatrSzs" />
+  {% block title%}
+  
+  {%  endblock title%}
+  
+
+  <style>
+    team-color:hover {
+      color: rgb(0, 102, 204);
+    }
+  </style>
+  
+  <!-- FAVICON -->
+  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css"
+    integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+ 
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <link rel="stylesheet" href="{% static 'css/particles.css' %}">
+  <link href="{% static 'assets/icofont/icofont.min.css' %}" rel="stylesheet">
+  <!-- Alertify.js -->
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+
+   
+
+<!-- 
+    RTL version
+-->
+
+
+</head>
+<body>
+
+  <div class="container-fluid" style="background: rgb(0,0,0);" id="particles-js"></div>
+
+<!-- Header start -->
+<header id="header" class="fixed-top">
+  <!-- <div class="container"> -->
+
+  <div class="d-block d-lg-none d-flex justify-content-start">
+    <a href="/" class="logo"><img src="{% static 'img/innogeeks.png' %}" alt="logo" class="img-fluid"></a>
+  </div>
+
+  <div class="row">
+    <div class="d-none d-lg-block">
+      <a href="/" class="logo"><img src="{% static 'img/innogeeks.png' %}" alt="logo" class="img-fluid"></a>
+    </div>
+
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+        <li class="home {%  block home %}{% endblock %}"><a href="/">Home</a></li>
+        <li class="achievements {%  block achievements %}{% endblock %}"><a href="/achievements/">Achievements</a></li>
+        {% comment %}<li class="{%  block about %}{% endblock %}"><a href="/#about" class="scrollto">About</a></li>{% endcomment %}
+        {% comment %} <li class="recruitment {%  block recruitment %}{% endblock %}"><a href="/recruitment/">Recruitment</a></li> {% endcomment %}
+        <li class="registration {%  block registration %}{% endblock %}"><a href="{% url 'register'%}">Registration</a></li>
+        <li class="gallery {%  block gallery %}{% endblock %}"><a href="/gallery/">Gallery</a></li> 
+        <li class="queries {%  block contact %}{% endblock %}"><a href="/contact/">Queries</a></li>
+        {% comment %}<li class="blog {%  block blog %}{% endblock %}"><a href="/blogs/">Blogs</a></li>{% endcomment %}
+        <!-- <li><a href="">Articles</a></li> -->
+        <!-- <li><a href="">Contact</a></li> -->
+        <li class="signin text-center"><a href="/accounts/login/">Sign In</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <!-- </div> -->
+</header>
+<!-- End Header -->
+
+
+  
+  
+
+    {% block content %}
+    {% endblock %}
+
+ <!-- ======= Footer ======= -->
+ <footer>
+  <div class="container-fluid footer">
+    <div class="container">
+      <div class="d-none d-lg-block">
+        <div class="row">
+          <div class="col-lg-3 d-flex justify-content-center">
+            <a href="/" class="logo"><img src="{% static 'img/innogeeks.png' %}" alt="logo" class="img-fluid"></a>
+          </div>
+          <div class="col-lg-3 d-flex justify-content-center">
+            <div class="footer-widget">
+              <h3>Quick Links</h3>
+              <div><i class="fa fa-caret-right"></i> <a href="/#about" class="fta">About Us </a></div>
+              <div><i class="fa fa-caret-right"></i> <a href="/#domains" class="fta">Domains</a></div>
+              <div><i class="fa fa-caret-right"></i> <a href="/#achievement" class="fta">Achievements</a></div>
+              <div><i class="fa fa-caret-right"></i> <a href="/contact/" class="fta">Contact Us</a></div>
+            </div>
+          </div>
+          <div class="col-lg-3 d-flex justify-content-center">
+            <div class="footer-widget">
+              <h3>Social</h3>
+              <div><i class="fa fa-facebook"></i> <a target="_blank" href=" https://m.facebook.com/innogeeks.kiet " class="fta">Facebook</a></div>
+              <div><i class="fa fa-instagram"></i> <a target="_blank" href="https://www.instagram.com/innogeeks.kiet" class="fta">Instagram</a></div>
+              <div><i class="fa fa-linkedin"></i> <a target="_blank" href=" https://www.linkedin.com/company/innogeeks" class="fta">LinkedIn</a></div>
+              <div><i class="fa fa-youtube-play"></i> <a target="_blank" href="https://m.youtube.com/channel/UCOhJvzvg5MC9_45qYyhvJGw" class="fta">YouTube</a></div>
+            </div>
+          </div>
+          <div class="col-lg-3 d-flex justify-content-center">
+            <div class="footer-widget">
+              <h3>Contact Us</h3>
+              <div class="fta"><i class="fa fa-map-marker"></i> KIET, Ghaziabad </div>
+              <div class="fta"><i class="fa fa-phone"></i> (+91) 85740 27570 , 84490 31904 </div>
+              <div class="fta"><i class="fa fa-envelope"></i> innogeeks@kiet.edu</div>
+              <div class="fta"><i class="fa fa-clock-o"></i> Mon - Fri, 09 AM - 07 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 footer-end">
+        <p class="ft">Designed By <a target="_blank" href="{% url 'team' %}" class="team_color">Team Innogeeks (KIET GROUP OF INSTITUTIONS)</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+  <!-- jQuery and Bootstrap Bundle -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  
+  <script src="{% static 'js/particles.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  <!-- Preloader -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(window).load(function() {
+$('.cssload-whirlpool').fadeOut();
+$('.preloader').delay(500).fadeOut('slow');
+$('body').delay(500).css({'overflow':'visible'});
+})
+</script>
+  {%  block js %}{% endblock %}
+
+</body>
+</html>
+

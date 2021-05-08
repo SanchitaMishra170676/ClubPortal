@@ -1,0 +1,143 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'src/js/project.js' %}"></script>
+{% endblock  %}
+
+{% block extrahead %}
+<link href="{% static 'src/css/project.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+
+{% block content %}
+ 
+
+    <!-- ======= Update Project Section ======= -->
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header ">Add Project </div>
+      <div class="card-body">
+          <form action="/dashboard/update_project/{{project.id}}/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-md-8">
+              <h6>Project Name</h6>
+              <input type="text" class="form-control mb-3 mt-2" 
+              name="ProjectName" value="{{ project.projectName }}" placeholder="Enter Project Name" required>
+
+              <h6>Category</h6>
+              <select
+              class="form-control" 
+              name="Category"
+              value="{{ project.category }}"
+               required>
+               <option value="Hackathon">Hackathon</option>
+              <option value="Internship">Internship</option>
+              <option value="Freelancing Project">Freelancing Project</option>
+              <option value="Others">Others</option>
+              </select>
+              <br>
+              <h6>Technologies used:</h6>
+                <input type="text"
+                class="form-control mb-3 mt-2"
+                name="TechUsed"
+                value="{{ project.techUsed }}"
+                placeholder="Write a comma seperated list of technologies used in building this project" rows="2"
+                required>
+
+               
+            </div>
+
+              <div class="form-group col-md-4">
+              <div class="container-fluid"> 
+              <h6>Image : </h6>
+              {% if project.image %}
+              <img id="previewImg" src="{% static '' %}{{project.image}}" alt="Placeholder">
+              {% else %}
+              <img id="previewImg" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Placeholder">
+              {% endif %}
+              <br>
+              <input type="file"  name="Image" onchange="previewFile(this);" accept="image/*" value="{{project.image}}" >
+            </div>
+            </div>
+            </div>
+
+            <h6> Description :</h6>
+                <textarea class="form-control mb-3 mt-2" name="Description" rows="3" value="" placeholder="Brief description about your project..">{{ project.description }}</textarea>
+
+
+              <div class="form-row">
+                <div class="col-md-10 mb3">
+              <h6>Team Members(separate by comma )</h6>
+              <input type="text"
+              class="form-control mb-3 mt-2"
+              name='TeamMembers'
+              value="{{ project.teamMembers}}"
+              placeholder='Enter team members name..'
+              required>
+            </div>
+            <div class="col-md-2 mb3">
+              <h6>Visiblity</h6>
+              {% if achievement.is_public %}
+              <select
+                  class="form-control mb-2"
+                  name="is_public"
+                  required value="public">
+              {% else %}
+               <select
+                  class="form-control mb-2"
+                  name="is_public" value="private"
+                  required >
+              {% endif %}
+              
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+              
+              </select>
+            </div>
+            </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+              <h6>GitHub Link:</h6>
+              <input type="text"
+              class="form-control mb-3 mt-2"
+              name="GithubURL"
+              value="{{ project.githubURL}}"
+              placeholder="Add link to github,wensite,app,etc where the project can be tested live"
+              required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h6>Video Demo:</h6>
+              <input type="text"
+              class="form-control mb-3 mt-2"
+              name="VideoURL"
+              value="{{ project.videoURL}}"
+              placeholder="Add Link of video demoing the functioning of the project"
+              required>
+            </div>
+            </div>
+
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="text" class="col-form-label"><h6>Your Role :</h6></label>
+                    <input type="text" name="YourRole" value="{{ project.yourRole}}" class="form-control" id="tech" placeholder="Your role in building the project...">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputtext4" class="col-form-label"><h6> Time taken to complete this project</h6></label>
+                    <input type="text" class="form-control" value="{{ project.time}}" name="Time" id="inputtext4" placeholder="Number of days...">
+                  </div>
+                </div>
+              
+              <button class="btn btn-success btn-ladda col-12" type="submit" data-style="contract" style="border-radius: 5px; font-size: 15px;">Submit</button>
+
+          </form>
+
+      </div>
+  </div>
+
+</div>
+<!-- Update Project section end -->
+
+{% endblock %}

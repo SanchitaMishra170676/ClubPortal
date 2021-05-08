@@ -1,0 +1,88 @@
+{% extends 'home/basic.html' %}
+{% block gallery %}
+active
+{%  endblock %}
+{% block title %}
+<title> Photo Gallery - Innogeeks| Best Engineering Society at KIET</title>
+{% endblock title %}
+
+  {% load static %}
+  {% block content %}
+    <!-- PRELOADER -->
+<!-- <div class="preloader">
+  <div class="cssload-whirlpool"></div>
+</div> -->
+<link rel="stylesheet" href="{% static 'css/achievements.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+  <style>
+    .home,.gallery,.achievements,.recruitment,.queries{
+      font-size: 14px;
+    }
+  </style>
+   
+   <!-- ======= Gallery Section ======= -->
+        <div class=" d-flex justify-content-center">
+          <div class="card dark mt-4 p-2 col-12 col-lg-10 col-xl-10 d-flex justify-content-center "  style="background-color:transparent;">
+            <div  class="   align-self-center d-flex justify-content-center">
+              <h1 class="heading top-spacing">Gallery</h1>
+            </div>
+          </div>
+        </div>
+      <div class="gallery-wrapper" >
+        {% for gallery in gallerys %} 
+        <div class="gallery-container h-2">
+          <div class="gallery-item">
+            <div class="image">
+              <img src="{% static '' %}{{gallery.image}}" alt="Innogeeks technical club of kiet group of institution Ghaziabad">
+            </div>
+          </div>
+        </div>
+        <!-- <div class="gallery-container h-2">
+          <div class="gallery-item">
+            <div class="image">
+              <img src="{% static '' %}{{gallery.image}}">
+            </div>
+          </div>
+        </div>
+        <div class="gallery-container h-3">
+          <div class="gallery-item">
+            <div class="image">
+              <img src="{% static '' %}{{gallery.image}}">
+            </div>
+          </div>
+        </div> -->
+        {% endfor %}
+      </div>
+    
+     <!-- Gallery section end -->
+
+
+
+     <!-- Pagination -->
+      {% if gallerys.has_other_pages %}
+      <div style="z-index: 9999;" class="pagination d-flex justify-content-center mt-4">
+      {% if gallerys.has_previous %}
+        <a href="?page={{ gallerys.previous_page_number }}">&laquo;</a>
+      {% else %}
+        <a href="#">&laquo;</a>
+      {% endif %}
+      {% for i in gallerys.paginator.page_range %}
+        {% if gallerys.number == i %}
+        <a href="#" class="active">{{i}}</a>
+        {% else%}
+        <a href="?page={{i}}">{{i}}</a>
+        {% endif %}
+      {% endfor %}
+        {% if gallerys.has_next %}
+        <a href="?page={{ gallerys.next_page_number }}">&raquo;</a>
+        {% else %}
+          <a href="#">&raquo;</a>
+        
+        {% endif%}
+      </div>
+    {% endif%}
+  
+    <script src="{% static 'js/gallery.js' %}"></script>
+    {% endblock content %}
+    <!-- Pagination end -->

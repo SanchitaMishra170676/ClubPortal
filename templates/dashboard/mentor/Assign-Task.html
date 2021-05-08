@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/Assign-Task.js' %}"></script>
+{% endblock script %}
+{% block extrahead %}
+<link href ="{% static 'src/css/Assign-task.css' %}" rel ="stylesheet">
+{% endblock extrahead %}
+
+{% block content %}
+
+<!-- ======= Assign-Task Section ======= -->
+            <div class="tabs-sec">
+                <button class="tab_button active-tab" onclick="openTab(event,'left')">Create Task</button>
+                <button class="tab_button" onclick="openTab(event,'right')">Create New Update</button>
+              </div>
+
+            <section class="assign-task">
+                <div id="left" class="left tabs">
+                    <section class="int-sec">
+                        <h1 class="heading">
+                            Create New Task 
+                        </h1>
+                        <form action="" class="tasks">
+                            <div class="field">
+                                <label for="Task-name">Task name: </label>
+                                <input type="text" name="Task-name" id="Task-name"><br>
+                            </div>
+                            <div class="field">
+                                <label for="Task-duration">Duration (in hrs.): </label>
+                                <input type="text" name="Task-duration" id="Task-duration"><br>
+                            </div>
+                            <div class="field">
+                                <label for="Task-Description">Task Description: </label>
+                                <textarea name="Task-Description" id="Task-Description" cols="30" rows="4"></textarea>
+                            </div>
+                            <div class="field">
+                                <label for="Related-resources">Related Resources: </label>
+                                <input type="text" name="Related-resources" id="Related-resources">
+                            </div>
+
+                            <input id="Submit-button" type="submit" value="Create Task">
+                        </form>
+                    </section>
+
+                </div>
+                <div id="right" class="right tabs"  style="display: none;">
+                    <section class="int-sec">
+                        <h1 class="heading">
+                            Create New Update
+                        </h1>
+                        <form action="" class="tasks">
+                            <div class="field">
+                                <label for="Update-name">Update name: </label>
+                                <input type="text" name="Update-name" id="Update-name"><br>
+                            </div>
+                            <div class="field">
+                                <label for="Task-duration">Duration (in hrs.): </label>
+                                <input type="text" name="Task-duration" id="Task-duration"><br>
+                            </div>
+                            <div class="field">
+                                <label for="Update-Description">Update Description: </label>
+                                <textarea name="Update-Description" id="Update-Description" cols="30" rows="4"></textarea><br>
+                            </div>
+                            <input id="Submit-button" type="submit" value="Add Update">
+                        </form>
+
+                    </section>
+                </div>
+            </section>
+
+            <!-- Assing-Task end-->
+    {% endblock content %}

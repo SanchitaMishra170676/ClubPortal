@@ -1,0 +1,131 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block script %}
+{% comment %} <script src="{% static 'src/js/articles.js' %}"></script> {% endcomment %}
+<script src="{% static 'src/js/project.js' %}"></script>
+{% endblock script %}
+
+{% block extrahead %}
+<link href="{% static 'src/css/project.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+
+{% block content %}
+
+ <!-- ======= Add Article Section ======= -->
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header ">Write Article</div>
+      <div class="card-body">
+          <form action="/dashboard/add_articles/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class=" form-group col-md-8">
+              <h6>Title Of The Article: *</h6> 
+              <input type="text" class="form-control mb-3 mt-2" 
+              name="title" placeholder="Write suitable title for your article.." required >
+
+              <h6>Domain: *</h6>
+               <select
+              class="form-control"
+              name="domain"
+               >
+              <option value="Web_Development">Web Development</option>
+              <option value="Machine_Learning">Machine Learning</option>
+              <option value="Android_Development">Android Development
+              </option>
+              <option value="AR_VR">AR/VR
+              </option>
+              <option value="Internet_Of_Things">Internet Of Things
+              </option>
+              </select>
+              <br>
+              
+              <h6>Paragraph or statement to be highlighted: *</h6> 
+              <input type="text" class="form-control mb-3 mt-2" 
+              name="highlights" placeholder="Write paragraph or statement to be highlighted: " >
+                </div>
+              <div class="form-group col-md-4">
+                <div class="container-fluid"> 
+                <h6>Thumbnail Image: </h6>
+                
+                <img id="previewImg" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Placeholder">
+                <br>
+                <input type="file" name="TImage" onchange="previewFile(this);" accept="image/*" >
+              </div>
+              </div>
+            </div>
+
+
+            <h6>Description: *</h6>
+            <textarea class="form-control mb-3 mt-2" name="Description"
+            placeholder="Write breif info or description related to your article" rows="8"></textarea>
+
+            <div class="form-row">
+              <div class="form-group col-md-8">
+              <h6>Sub Heading(if any):</h6>
+              <input type="text"
+              class="form-control mb-3 mt-2"
+              name='SubHeading'
+              placeholder='Write suitable subheading related to your article..'
+              >
+            </div>
+            <div class="form-group col-md-4">
+              <h6>Image:</h6>
+              <input name="Image" type="file" class="form-control mb-3 "
+              
+              
+              id="file"
+              accept="image/*"
+              >
+            </div>
+            </div>
+              
+            <h6>Article: *</h6>
+            <textarea class="form-control mb-3 mt-2" name="Content"
+            placeholder="Proceed with your article" rows="30" required></textarea>
+
+            <h6>Code Snippet (if any):</h6>
+            <textarea class="form-control mb-3 mt-2" name="Code"
+            placeholder="Proceed with your code here..." rows="20" ></textarea>
+
+              <h6>Quote(if any):</h6> 
+              <input type="text" class="form-control mb-3 mt-2" 
+              name="Quote" placeholder="Write suitable Quote for your article.." >
+
+              <h6>Quote By:</h6>
+            <input type="text" class="form-control mb-3 mt-2" 
+              name="quoteBy" placeholder="Link of your article" >
+
+              <div class="form-row">
+                <div class=" form-group col-md-4">
+                  <h6>#Hashtag(1):</h6>
+                  <input type="text" class="form-control mb-3 mt-2" 
+              name="Tag1" placeholder="mention suitable hashtag for your article.." >
+                </div>
+                <div class=" form-group col-md-4">
+                  <h6>#Hashtag(2):</h6>
+                  <input type="text" class="form-control mb-3 mt-2" 
+              name="Tag2" placeholder="mention suitable hashtag for your article.."  >
+                </div>
+                <div class=" form-group col-md-4">
+                  <h6>#Hashtag(3):</h6>
+                  <input type="text" class="form-control mb-3 mt-2" 
+              name="Tag3" placeholder="mention suitable hashtag for your article.."  >
+                </div>
+              </div>
+
+
+              <button class="btn btn-success btn-ladda col-12" type="submit" data-style="contract" style="border-radius: 5px; font-size: 15px;">Submit</button>
+
+
+          </form>
+
+      </div>
+  </div>
+
+</div>
+<!-- Add Article Section end -->
+
+{% endblock content %}

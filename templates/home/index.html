@@ -1,0 +1,457 @@
+{% extends 'home/basic.html' %}
+{% block home %}
+active
+{%  endblock %}
+{% block title%}
+  <title>Innogeeks | Best Technical Society of KIET Group of Institutions</title>
+{%  endblock title%}
+  {% load static %}
+  {% block content %}
+  <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+  <style>
+    .home,.gallery,.achievements,.recruitment,.queries{
+      font-size: 14px;
+    }
+    .txt {
+      color: white;
+      font-size: 16px;
+      text-align: justify;
+    }
+  </style>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  {% if messages %}
+  {% for message in messages %}
+    <script> alertify.{{message.tags }}('{{message}}');</script>
+  {% endfor %}
+  {% endif %}
+   
+
+ <!-- PRELOADER -->
+{% comment %} <div class="preloader">
+        <div class="cssload-whirlpool"></div>
+</div> {% endcomment %}
+  
+  <!-- Carousel start --> 
+  <main class="demo-6">
+    <div class="slideshow">
+
+      <div class="slides slides--images">
+
+        <div class="slide slide--current">
+          <div class="slide__img" style="background-image: url({% static 'img/1-car.png' %})"></div>
+        </div>
+        {% for carouselImg in carouselImgs %}
+        <div class="slide">
+          <div class="slide__img" style="background-image: url({% static '' %}{{carouselImg.image}}); width:100% !important;"></div>
+        </div>
+        {% endfor %}
+        <!-- <div class="slide">
+          <div class="slide__img" style="background-image: url({% static 'img/6-car.png' %})"></div>
+        </div>
+        <div class="slide">
+          <div class="slide__img" style="background-image: url({% static 'img/3.png' %})"></div>
+        </div>
+        <div class="slide">
+          <div class="slide__img" style="background-image: url({% static 'img/4.png' %})"></div>
+        </div>
+        <div class="slide">
+          <div class="slide__img" style="background-image: url({% static 'img/5.png' %})"></div>
+        </div> -->
+      </div>
+      <div class="slides slides--titles">
+        <div class="slide slide--current">
+          <!-- <h2 class="slide__title">Innovate</h2> -->
+        </div>
+
+        {% for carouselImg in carouselImgs %}
+        <div class="slide">
+          <!-- <h2 class="slide__title">Discover</h2> -->
+        </div>
+        {% endfor %}
+
+      </div>
+      <nav class="slidenav">
+        <button class="slidenav__item slidenav__item--prev"></button>
+        <span></span>
+        <button class="slidenav__item slidenav__item--next"></button>
+      </nav>
+    </div>
+  </main>
+  <!-- Carousel end-->
+
+  <!-- ======= Updates Sidebar Section ======= -->
+  <p class="sideNav" id="main" onclick="openNav()">U<br>P<br>D<br>A<br>T<br>E<br>S<br></p>
+  <div class="sidebar" id="mySidebar">
+    <h3 class="sidebar-heading">UPDATES</h3>
+    <a href="javascript:void(0)" class="closebtn sa" onclick="closeNav()">×</a>
+
+    <div>
+      <div class="marquee p">
+        <p>
+        <ul>
+          {% for update in updates %}
+          <li  class="updates-sec m-3 p-2"><a target="blank"class="updt" href="{{update.link}}">{{update.desc}}</a>  </li>
+          {% endfor %}
+        </ul>
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <!-- Updates Sidebar end-->
+<!-- ======= About Section ======= -->
+<section id="about" class="about">
+
+  <div class="container-fluid aboutdiv">
+
+    <div class="row">
+
+      <div class="col-lg-6 order-1 order-lg-2 align-self-center">
+        <div class="about-img align-self-center">
+          <img src="{% static 'img/about.jpg' %}" class="center" alt="Innogeeks technical club of kiet group of institution Ghaziabad">
+
+        </div>
+      </div>
+      <div class="col-lg-6 pt-lg-0 order-2 order-lg-1 content">
+        <h1 id="headingWhoWeAre">WHO WE ARE !!</h1>
+        <p class="font-italic pfont">
+          Innogeeks is an appreciable initiative by the faculty and students to bring the institute on same platform
+          with national as well as international institutions.
+        </p>
+        <ul class="pfont">
+          <li><i class="icofont-check-circled"></i>The club aims to technically strengthen the students by integrating
+            their skills in the various fields of Engineering and Technology, So as to cop up with the highly
+            competitive environment. </li>
+          <li><i class="icofont-check-circled"></i>It is formed to stimulate the students, to provide a platform where
+            the ideas of student could be nurtured and prepare students in such a way that they can face any hurdles
+            in the way of learning and can deal with the ever changing or dynamic technology.</li>
+          <li><i class="icofont-check-circled"></i>It’s a great workspace, a comprehensive inventory, ample guidance
+            from senior students. The mission is to inspire the innovators within everyone.</li>
+          <li><i class="icofont-check-circled"></i> Innogeeks enhances the students practical knowledge horizon by
+            organizing the classes, seminar within the college.</li>
+          <li><i class="icofont-check-circled"></i>The activities of the club have been well formulated to develop
+            interest and competence of the students in the related technologies with emphasis on application aspects
+            of the concepts. </li>
+          <li><i class="icofont-check-circled"></i>The club will surely embark a new journey for this institute and
+            provide the students with the best possible opportunities that can be accumulated and bring creative minds
+            to work on innovative ideas.</li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======= Domains Section ======= -->
+<section id="domains" class="domains mt-2">
+  <div class="container-fluid domainsdiv">
+    <!--heading-->
+    <div class="domain-title">
+      <h2>DOMAINS</h2>
+      <p>Check Our Domains</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <ul class="nav nav-tabs flex-column">
+          <li class="nav-item">
+            <a class="nav-link active show" data-toggle="tab" href="#tab-1"><img class="logos" src="{% static 'img/webd.svg' %}" alt="Web-Development of innogeeks club">
+              Web-Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-2"><img class="logos" src="{% static 'img/ml.svg' %}" alt="Machine-Learning of innogeeks club">
+              Machine-Learning</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-3"><img class="logos" src="{% static 'img/android.svg' %}" alt="Android-Development of innogeeks club">
+              Android-Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-4"><img class="logos" src="{% static 'img/ar.svg' %}" alt="AR VR EXTENDED REALITY of innogeeks club"> Extended
+              Reality</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-5"><img class="logos" src="{% static 'img/iot.svg' %}" alt="IOT, INTERNET OF THINGS ,innogeeks,kiet">Internet Of
+              Things</a>
+          </li>
+        </ul>
+      </div>
+      <!--web development-->
+      <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="tab-content">
+          <div class="tab-pane active show" id="tab-1">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Web-Development</h3>
+                <p>In this era, when the Internet has captivated a massive portion of world's population, websites
+                   have become a part and parcel of our lives. Web Development is undoubtedly a never-dying technology;
+                    with consistent improvement and changing trends, it is becoming more and more alluring.
+                </p>
+                <p class="d-none d-lg-block">
+                  Starting from the basic HTML, CSS, and JavaScript to complete MEAN/MERN stack development (MongoDB, 
+                  Express, Angular/ React, Node) the complete journey is full of learning and excitement. The best part is - it 
+                  never ends, so many different technologies can be clubbed together with the web. 
+                  Rightly said web is worldwide,  it is a fast-paced, challenging career centered on creative problem-solving 
+                  and continuous innovation. As a web developer, you work with a multidisciplinary team of designers, other developers, 
+                  and marketers to realize your projects.</p>
+              
+              </div>
+
+              <div class="col-lg-4 order-1 order-lg-2 align-self-center">
+                <img src="{% static 'img/webd.png' %}" alt="Innogeeks technical club of kiet group of institution Ghaziabad" class="img-fluid dom-img ">
+
+              </div>
+            </div>
+          </div>
+          <!--machine-learning-->
+          <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3> Machine-Learning</h3>
+                <p>Machine learning is a branch of artificial intelligence (AI) focused on building applications that
+                  learn from data and improve their accuracy over time without being programmed to do so. It's the
+                  idea to implement generic algorithms to predict the result or tell us something interesting about a
+                  set of data without you having to write any custom code specific to the problem.Instead of writing
+                  code, you feed data to the generic algorithm and it builds its own logic based on the data.</p>
+                <p class="d-none d-lg-block">There is just too much data being produced and without an automated system based on machine
+                  learning to learn from such systems, we are nowhere.The future of Machine Learning looks promising
+                  as the skilled talent pool for Machine Learning engineers is not yet enough to meet the growing
+                  demand for trained professionals. And, we are yet to see the full potential of machine learning
+                  beyond self-driving cars, fraud detection devices,or retail trends analyses.</p>
+              </div>
+
+              <div class="col-lg-4 order-1 order-lg-2 align-self-center">
+                <img src="{% static 'img/ml.png' %}" alt="Innogeeks technical club of kiet group of institution Ghaziabad" class="img-fluid dom-img">
+
+              </div>
+            </div>
+          </div>
+          <!--android-development-->
+          <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Android-Development</h3>
+                <p>What's the first thing you do when you use an android device? You start looking into its features
+                  and for that you need an app. Android development involves the approach to build apps which are
+                  capable of running on the Android OS.</p>
+                <p class="d-none d-lg-block">What's the first thing you do when you use an android device? You start looking into its features
+                  and for that you need an app. Android development involves the approach to build apps which are
+                  capable of running on the Android OS. Future of this domain just keeps getting better especially
+                  after the arrival of Flutter which is used to develop platform independent application, which means
+                  you can be an Android and an iOS developer at the same time!!
+                  So being an Android Developer, you're never out of demand as long as there are smart phones!!
+                </p>
+              </div>
+
+              <div class="col-lg-4 order-1 order-lg-2 align-self-center">
+                <img src="{% static 'img/android.png' %}" alt="Innogeeks technical club of kiet group of institution Ghaziabad" class="img-fluid dom-img">
+
+              </div>
+            </div>
+          </div>
+          <!--AR/VR-->
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>AR/VR</h3>
+                <p>AR/VR is where we build virtual digital experiences that can interact with the real world objects,
+                  or make computer aided simulations that take you into a new virtual world. In AR, we understand our
+                  environment, then use that data to convey information, on the other hand in VR we take the user into
+                  a computer simulated virtual world.</p>
+                <p class="d-none d-lg-block">It is one of the trendy tech, and is on its way to overtake the market by mass. We at innogeeks
+                  work together to make new creative solutions, use-cases for the real world that leaves an impact. XR
+                  ( An umbrella word used for AR/VR/MR ) will be the new “Android” in the coming future, playing a
+                  significant role in our life, in the same way smartphones are now a part of our daily life.</p>
+              </div>
+
+              <div class="col-lg-4 order-1 order-lg-2 align-self-center">
+                <img src="{% static 'img/ar.png' %}" alt="Innogeeks technical club of kiet group of institution Ghaziabad" class="img-fluid dom-img">
+
+              </div>
+            </div>
+          </div>
+          <!--IOT-->
+          <div class="tab-pane" id="tab-5"> 
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Internet Of Things</h3>
+                <p>Ever you have thought that you wake up in morning and a hot cup of coffee is waiting for you. Its
+                  cool right? Well technology like this is no longer a dream. With internet of things, many devices in
+                  your home can relate to each other and send information across. But do you know what exactly it is?
+                </p>
+                <p class="d-none d-lg-block">The Internet of Things (IoT) describes the network of physical objects “things” that are embedded
+                  with sensors, software, and other technologies for the purpose of connecting and exchanging data
+                  with other devices and systems over the internet. IoT wants to connect all potential objects to
+                  interact each other on the internet to provide secure, comfort life for human. Common instances for
+                  embedded computing devices are MP3 players, MRI, traffic lights, microwave ovens, washing machines
+                  and dishwashers, GPS even heart monitoring implants or biochip etc. </p>
+              </div>
+              <div class="col-lg-4 order-1 order-lg-2 align-self-center">
+                <img src="{% static 'img/iot.png' %}" alt="Innogeeks technical club of kiet group of institution Ghaziabad" class="img-fluid dom-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- End domains Section -->
+
+<!-- ======= Achievements Section ======= -->
+<section class="Achievements-section" id="achievement">
+  <div class="row">
+    <div class="col-md-9 col-lg-9 col-sm-12">
+      <div class="d-flex justify-content-start">
+        <h1 class="heading">
+          Achievements
+        </h1>
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-3 col-sm-12">
+      <div class="d-flex justify-content-end seemore" style="margin-top: 5vh;">
+        
+          <a href="/achievements/">See More</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <br>
+  
+  <p class="txt d-none d-lg-block">
+          "Things work out best for those who make the best of how things work out"
+          The students at our club have often left everybody awestruck with their hardwork and perseverance. With consistent participation in hackathons and other coding competition, the results we have achieved are simply outstanding. From representing our country at a national level to winning international level hackathons we have been everywhere! Our success rates have been wonderful and we aim to continue  the hardwork to get results even more extraordinary.
+        </p>
+
+  <div class="gallery-section">
+    <div class="gallery-list owl-carousel achievements-carousel">
+      {% for achievement in achievements %} 
+      <div class="item animate" data-animate="fadeInUp">
+        <div class="portfolio-item">
+          <div class="thumb">
+            <img style="height: 310px;"  src="{% static '' %}{{achievement.poster}}" alt="Innogeeks technical club of kiet group of institution Ghaziabad">
+          </div>
+          <div class="thumb-inner animate" data-animate="fadeInUp">
+            <h3  class="d-flex justify-content-centre pb-4">{{ achievement.name }}</h3>
+            <h5 class="pb-2">{{ achievement.date.date}}</h5>
+            <h6> <b>Rank: &nbsp;</b>{{ achievement.rank}} </h6>
+            <h6 >{{ achievement.prize}}</h6>
+            <h6> <b>Congratulations!</b>  &nbsp; {{ achievement.teamName}}</h6>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+<!-- End Achievements Section -->
+
+<!-- ======= Founders Section ======= -->
+<div class="container-fluid founder">
+  <h2 class="founders">FOUNDERS</h2>
+  <div class="row justify-content-center">
+    {% for founder in founders %}
+      <div class="col-12 col-xl-2 col-md-4 d-flex justify-content-center p-3">
+            <div class="single-team">
+              <img src="{% static '' %}{{founder.coreImage}}" alt="founder image of INOGEEEKS TECHNICAL CLUB OF KIET GROUP OF INSTITUTION GHAZIABAD">
+              <div class="team-text">
+                 <h2>{{ founder.name }}</h2>
+              <!-- <p>developer</p> -->
+              <p>
+                <a href="{{ founder.linkedIn }}" target="blank"><i class="fa fa-linkedin"></i></a>
+                <a href="mailto:{{ founder.email }}" target="blank"><i class="fa fa-envelope"></i></a>
+              </p>
+            </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+
+  
+</div>
+<!-- End Founders Section -->
+
+<!-- ======= Social Sidebar Section ======= -->
+<ul id="social-sidebar">
+  <li>
+    <a class="entypo-mail" href="mailto:innogeeks@kiet.edu" target="blank"><span>Mail</span></a>
+  </li>
+  <li>
+    <a class="entypo-linkedin" href="https://www.linkedin.com/company/innogeeks" target="blank"><span>LinkedIn</span></a>
+  </li>
+  <li>
+    <a class="entypo-instagrem" href="https://www.instagram.com/innogeeks.kiet" target="blank"><span>Instagram</span></a>
+  </li>
+  <li>
+    <a class="entypo-facebook" href="https://m.facebook.com/innogeeks.kiet " target="blank"><span>Facebook</span></a>
+  </li>
+</ul>
+<!-- End Social Sidebar Section -->
+
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials">
+  <h1 class="heading">
+    Testimonials
+  </h1>
+  <div class="owl-carousel testimonials-carousel">
+    {% for testimonial in testimonials %}
+    <div class="testimonial-item">
+      <img style="height: 200px;" src="{% static '' %}{{testimonial.Image}}" class="testimonial-img" alt="Innogeeks technical club of kiet group of institution Ghaziabad">
+      <h3>{{ testimonial.name }}</h3>
+      <h4>{{ testimonial.position }}</h4>
+      <p>
+        <i class="fa fa-quote-left quote-icon-left"></i>
+        {{testimonial.message}}
+        <i class="fa fa-quote-right quote-icon-right"></i>
+      </p>
+    </div>
+    {% endfor %}
+</section>
+<!-- End Testimonials Section -->
+
+<!-- ======= CoreTeam Section ======= -->
+<section class="Alumni-section">
+  <h1 class="heading">
+    Core Team Members
+  </h1>
+  <p class="txt d-none d-lg-block">
+      Together Everyone Achieves More
+      This sounds simple, but executing this itself is no minor feat. We, at Innogeeks, an exceptional club of about 120 students from all years, are managed by a Core Team, which look out for the club members in all prospects. It is their dedication and hard work behind the scene that makes this amalgam of domains - A Beautiful Alloy. The Core Team represent the club and have maintained the status of club as the best technical society in the college.
+  </p>
+  <div class="gallery-section">
+    <div class="gallery-list owl-carousel">
+      {% for coreMember in coreMembers %}
+      <div class="item animate" data-animate="fadeInUp">
+        
+        <div class="portfolio-item">
+          <div class="thumb">
+            <img style="height: 310px;" src="{% static '' %}{{coreMember.coreImage}}" alt="Innogeeks technical club of kiet group of institution Ghaziabad">
+          </div>
+          <div class="thumb-inner animate" data-animate="fadeInUp">
+            <h4>{{ coreMember.name }}</h4>
+            <p>{{ coreMember.branch }} ({{ coreMember.year }})</p><br>
+            <!-- <a class="entypo-facebook"></a> -->
+            <a href="{{ coreMember.gitHub }}" target="blank" class="entypo-github"></a>
+            <a href="{{ coreMember.linkedIn }}" target="blank" class="entypo-linkedin"></a>
+            <a href="{{ coreMember.instagram }}" target="blank" class="entypo-instagrem"></a>
+          </div> 
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+ 
+</section>
+<!-- End CoreTeam Section -->
+
+{% endblock content %}
+
+{%  block js %}
+<script src="{% static 'js/carousel.js' %}"></script>
+<script src="{% static 'js/carousel1.js' %}"></script>
+
+{% endblock %}

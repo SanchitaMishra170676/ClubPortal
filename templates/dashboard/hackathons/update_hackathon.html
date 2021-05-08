@@ -1,0 +1,137 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'src/js/project.js' %}"></script>
+{% endblock  %}
+
+{% block extrahead %}
+<link href="{% static 'src/css/project.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+{% block content %}
+<!-- ======= Update Hackathon Section ======= -->
+  <div class="container-fluid">
+            <div class="animated fadeIn">
+              <div class="card">
+                <div class="card-header ">Update Hackathon-details </div>
+                <div class="card-body">
+                    <form action="/dashboard/update_hackathon/{{hackathon.id}}/" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-row">
+                        <div class=" form-group col-md-8">
+                        <h6>Name of Hackathon :</h6> 
+                        <input type="text" class="form-control mb-3 mt-2" placeholder="Enter name of the Hackathon" value="{{hackathon.hackathonName}}"
+                        name="HackathonName" placeholder="" >
+
+                        
+                       
+                        <h6>Select Achievement  type:</h6>
+                        <select
+                        class="form-control"
+                        name="achievement"
+                          value="{{hackathon.achievement}}">
+                         <option value="first">First Position</option>
+                        <option value="second">Second Position</option>
+                        <option value="top 5">Top 5</option>
+                        <option value="participation">Participation</option>
+                        </select>
+                          <br>
+                        <h6>Prize won(if any):</h6>
+                        <input name="Prize" type="text" class="form-control" id="inputtext4" placeholder="Enter prize won..." value="{{hackathon.prize}}">
+
+                          </div>
+                        <div class="form-group col-md-4">
+                          <div class="container-fluid"> 
+                          <h6>Image : </h6>
+                          {% if hackathon.image %}
+                          <img id="previewImg" src="{% static '' %}{{hackathon.image}}" alt="Innogeeks">
+                          {% else %}
+                          <img id="previewImg" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Innogeeks">
+                          {% endif %}
+                          <br>
+                          <input type="file" name="Image" onchange="previewFile(this);" accept="image/*" value="{{hackathon.image}}">
+                         </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-row">
+                        <div class=" form-group col-md-8">
+                        <h6>Certificates</h6> 
+                        <input type="text"
+                        class="form-control mb-3 mt-2"
+                        name='Certificate'
+                        placeholder='Enter the link of certificates...' value={{hackathon.certificate}}
+                        >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <h6>Visibility:</h6>
+                            {% if achievement.is_public %}
+                            <select
+                              class="form-control mb-2"
+                              name="is_public"
+                              required value="public">
+                            {% else %}
+                            <select
+                              class="form-control mb-2"
+                              name="is_public" value="private"
+                              required >
+                            {% endif %}
+                              <option value="public">Public</option>
+                              <option value="private">Private</option>
+                            </select>
+                        </div>
+                      </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <h6>Team Name :</h6>
+                            <input type="text"
+                            class="form-control mb-3 mt-2"
+                            name='TeamName'
+                            placeholder='Enter team name..'
+                            value="{{hackathon.teamName}}"
+                            >
+                          </div>
+                          <div class="form-group col-md-8">
+                         <h6>Team Members(separate by comma )(if any) :</h6>
+                         <input type="text"
+                          class="form-control mb-3 mt-2"
+                          name='TeamMembers'
+                          value="{{hackathon.teamMembers}}"
+                          placeholder="e.g. : xyz ,abc bcd"
+                          
+                          >
+                          </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputEmail4" class="col-form-label"><h6>TechStack :</h6></label>
+                              <input name="TechStack" type="text" class="form-control" id="inputEmail4" 
+                              value="{{hackathon.techStack}}"
+                              placeholder="Write a comma seperated name of technologies used in building this project">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputtext4" class="col-form-label"><h6>Your Role :</h6></label>
+                              <input name="YourRole" type="text" 
+                              value="{{hackathon.yourRole}}"
+                              class="form-control" id="inputtext4" placeholder="About your role..">
+                            </div>
+                          </div>
+
+
+
+                        <h6>Description :</h6>
+                        <textarea name="Description" class="form-control mb-3 mt-2" name="description"
+                        placeholder="Brief description about your Achievement" rows="3" value="{{hackathon.description}}">{{hackathon.description}}</textarea>
+                        <button class="btn btn-success btn-ladda col-12" data-style="contract" style="border-radius: 5px; font-size: 15px;">Submit</button>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+       
+<!-- Update Hackathon section end -->
+
+{% endblock content %}
