@@ -1,0 +1,629 @@
+[
+{
+  "model": "home.contact",
+  "pk": 2,
+  "fields": {
+    "name": "Uddeshya",
+    "message": "Testing Mail feature",
+    "subject": "Test Mail",
+    "email": "uddeshya.2k@gmail.com"
+  }
+},
+{
+  "model": "home.contact",
+  "pk": 3,
+  "fields": {
+    "name": "SANCHITA MISHRA",
+    "message": "Regarding google IT certificate",
+    "subject": "Regarding google IT certificate",
+    "email": "sanchitamishra170676@gmail.com"
+  }
+},
+{
+  "model": "home.contact",
+  "pk": 4,
+  "fields": {
+    "name": "experoment 2",
+    "message": "Hi",
+    "subject": "English",
+    "email": "s@gmail.com"
+  }
+},
+{
+  "model": "home.contact",
+  "pk": 5,
+  "fields": {
+    "name": "500939901576",
+    "message": "Hi",
+    "subject": "English",
+    "email": "anjali@gmail.com"
+  }
+},
+{
+  "model": "home.achievement",
+  "pk": 1,
+  "fields": {
+    "name": "One Hackathon",
+    "teamName": "Quaranteam",
+    "rank": "National Winner",
+    "prize": "$200",
+    "poster": "media/Home/Achievements/One_Hachthon_zk4b6N6.jpg",
+    "active": true,
+    "date": null
+  }
+},
+{
+  "model": "home.achievement",
+  "pk": 2,
+  "fields": {
+    "name": "CCET Chandigarh",
+    "teamName": "Pratishtha Tiwari, Anshika Verma, Harsh",
+    "rank": "Winner",
+    "prize": "25,000 Rs.",
+    "poster": "media/Home/Achievements/Tech_Savvy_Event.jpg",
+    "active": true,
+    "date": null
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "akash.1721it1014@kiet.edu",
+  "fields": {
+    "name": "Akash Bajpai",
+    "branch": "IT",
+    "year": "IV",
+    "linkedIn": "https://www.linkedin.com/in/akash4bajpai/",
+    "gitHub": "https://github.com/KIRAkash/",
+    "instagram": "https://www.instagram.com/_akash_bajpai",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Akash_Bajpai.png",
+    "date": "2021-01-02T13:46:28.496Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "akp998rahul@gmail.com",
+  "fields": {
+    "name": "Ankit Kumar",
+    "branch": "CSE",
+    "year": "IV",
+    "linkedIn": "https://www.linkedin.com/in/ankit-kumar-41a378180/",
+    "gitHub": "https://github.com/simply-hollow/",
+    "instagram": "https://www.instagram.com/_simply_hollow_",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Ankit_-_ANKIT_KUMAR.jpg",
+    "date": "2021-01-02T13:52:25.701Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "anshikaverma558@gmail.com",
+  "fields": {
+    "name": "Anshika Verma",
+    "branch": "IT",
+    "year": "IV",
+    "linkedIn": "https://www.linkedin.com/in/anshika-verma-9607a216b/",
+    "gitHub": "https://github.com/Anshika-Verma",
+    "instagram": "https://www.instagram.com/anshika3511",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Anshika_Verma.png",
+    "date": "2021-01-02T13:49:56.213Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "anushka.1822ec1037@kiet.edu",
+  "fields": {
+    "name": "Anushka Sharma",
+    "branch": "ECE",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/anushka-sharma-b2b008185",
+    "gitHub": "https://github.com/Anushka-ece",
+    "instagram": "",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Anushka_Sharma.png",
+    "date": "2021-01-02T13:38:10.675Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "er.shivam.jks@gmail.com",
+  "fields": {
+    "name": "Shivam Singh Chauhan",
+    "branch": "CSE",
+    "year": "IV",
+    "linkedIn": "https://www.linkedin.com/in/shivam-singh-chauhan-54792215b/",
+    "gitHub": "",
+    "instagram": "https://www.instagram.com/shivamsinghchauha",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Shivam_Singh.png",
+    "date": "2021-01-02T13:55:48.292Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "harsh.1822co1031@kiet.edu",
+  "fields": {
+    "name": "Harsh Gupta",
+    "branch": "CS",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/harsh-gupta-7ab67a18b",
+    "gitHub": "https://github.com/Harsh-Gupta9897",
+    "instagram": "https://instagram.com/_guptaharsh__",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Harsh_Gupta.png",
+    "date": "2021-01-02T13:26:33.680Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "isha.1721ec1064@kiet.edu",
+  "fields": {
+    "name": "Isha Bansal",
+    "branch": "IT",
+    "year": "IV",
+    "linkedIn": "https://www.linkedin.com/in/isha-bansal-98670516b/",
+    "gitHub": "https://github.com/Ishanu12",
+    "instagram": "https://www.instagram.com/ishu.cr7",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Isha_Bansal.png",
+    "date": "2021-01-02T13:47:40.728Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "kritikasingh4019@gmail.com",
+  "fields": {
+    "name": "Kritika Singh",
+    "branch": "EI",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/kritikasingh19/",
+    "gitHub": "https://github.com/KritiSingh19",
+    "instagram": "https://www.instagram.com/_kritiisingh_",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Kritika_2_-_KRITIKA_SINGH.jpeg",
+    "date": "2021-01-02T13:40:42.972Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "madhurjain055@gmail.com",
+  "fields": {
+    "name": "Madhur Jain",
+    "branch": "IT",
+    "year": "IV",
+    "linkedIn": "https://www.linkedin.com/in/madhur-jain-786bb0192/",
+    "gitHub": "https://github.com/",
+    "instagram": "https://www.instagram.com/_itsmemj__",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/madhur_-_Madhur_Jain.jpg",
+    "date": "2021-01-02T13:51:18.469Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "muskaanmittal2001@gmail.com",
+  "fields": {
+    "name": "Muskaan Mittal",
+    "branch": "ECE",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/muskaan-mittal-8a32b618b/",
+    "gitHub": "https://github.com/muskaanmittal",
+    "instagram": "https://www.instagram.com/mi_muskaan",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Muskan_Mittal.png",
+    "date": "2021-01-08T10:56:55.940Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "naman.1822csi1020@kiet.edu",
+  "fields": {
+    "name": "Naman Mehrotra",
+    "branch": "CSIT",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/naman-mehrotra/",
+    "gitHub": "https://github.com/Naman1011",
+    "instagram": "https://www.instagram.com/mehrotra_naman",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Naman_Mehrotra.png",
+    "date": "2021-01-03T15:14:30.666Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "prakhar.1822ec1108@kiet.edu",
+  "fields": {
+    "name": "Prakhar Yadav",
+    "branch": "ECE",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/prakhar-yadav-a11182199",
+    "gitHub": "https://github.com/yadavprakhar",
+    "instagram": "https://www.instagram.com/prakhar553",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Prakhar_Yadav.png",
+    "date": "2021-01-03T15:16:39.021Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "rashisaini151999@gmail.com",
+  "fields": {
+    "name": "Rashi Saini",
+    "branch": "CSE",
+    "year": "IV",
+    "linkedIn": "http://www.linkedin.com/in/rashisaini15",
+    "gitHub": "https://github.com/rashi151999",
+    "instagram": "https://www.instagram.com/rashisaini15",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Rashi_Saini.jpeg",
+    "date": "2021-01-02T13:54:02.688Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "ravi.1822ec1123@kiet.edu",
+  "fields": {
+    "name": "Ravi Kumar Vishwakarma",
+    "branch": "ECE",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/ravik27280",
+    "gitHub": "https://github.com/Ravik27280",
+    "instagram": "https://www.instagram.com/ravi.kumar27280",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Ravi_Kumar.png",
+    "date": "2021-01-03T15:10:16.755Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "rohankhurana.cse@gmail.com",
+  "fields": {
+    "name": "Rohan Khurana",
+    "branch": "CSE",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/rohan-khurana-cse/",
+    "gitHub": "https://github.com/rohankhdbzmf/",
+    "instagram": "https://www.instagram.com/rohan_khurana__",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Rohan_Khurana.png",
+    "date": "2021-01-03T14:53:28.946Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "sakshmika2000@gmail.com",
+  "fields": {
+    "name": "Sakshmika Agarwal",
+    "branch": "ECE",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/sakshmika-agarwal",
+    "gitHub": "https://github.com/sakshmika",
+    "instagram": "https://www.instagram.com/jovial._.joy",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Sakshmika_Agarwal_-_Sakshmika_Agarwal_ZDzl2DD.jpg",
+    "date": "2021-01-02T13:39:48.647Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "shreyaasthana983@gmail.com",
+  "fields": {
+    "name": "Shreya Asthana",
+    "branch": "IT",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/shreya-asthana-it",
+    "gitHub": "https://www.github.com/shreya113",
+    "instagram": "https://www.instagram.com/shreya_a456",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Shreya_Asthana.png",
+    "date": "2021-01-02T13:41:56.415Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "uddeshya.1822co1062@kiet.edu",
+  "fields": {
+    "name": "Uddeshya",
+    "branch": "CS",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/uddeshya11/",
+    "gitHub": "https://github.com/11PRINCE",
+    "instagram": "https://www.instagram.com/_._uddeshya_._",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Uddeshya.png",
+    "date": "2021-01-02T13:35:34.369Z",
+    "active": true
+  }
+},
+{
+  "model": "home.core_team_member",
+  "pk": "vedanshkgupta@gmail.com",
+  "fields": {
+    "name": "Vedansh Kumar Gupta",
+    "branch": "IT",
+    "year": "III",
+    "linkedIn": "https://www.linkedin.com/in/vedansh-kumar-gupta-b154b4194/",
+    "gitHub": "https://github.com/VedanshKumarGupta",
+    "instagram": "https://www.instagram.com/kumar_vedansh",
+    "facebook": "",
+    "coreImage": "media/Home/core_team_members/Vedansh_Kumar_Gupta.png",
+    "date": "2021-01-02T13:44:47.589Z",
+    "active": true
+  }
+},
+{
+  "model": "home.founder",
+  "pk": "Hk06418@gmail.com",
+  "fields": {
+    "name": "Harsh Kumar",
+    "linkedIn": "https://www.linkedin.com/in/hk06418/",
+    "gitHub": "",
+    "instagram": "",
+    "facebook": "",
+    "coreImage": "media/Home/Founders/Harsh_Kumar.png"
+  }
+},
+{
+  "model": "home.founder",
+  "pk": "gautamvikash731@gmail.com",
+  "fields": {
+    "name": "Vikas Gautam",
+    "linkedIn": "https://www.linkedin.com/in/vikas-gautam-944379151",
+    "gitHub": "",
+    "instagram": "",
+    "facebook": "",
+    "coreImage": "media/Home/Founders/Vikas_Gautam.png"
+  }
+},
+{
+  "model": "home.founder",
+  "pk": "harshrawat66@gmail.com",
+  "fields": {
+    "name": "Harsh Rawat",
+    "linkedIn": "harshrawat66@gmail.com",
+    "gitHub": "",
+    "instagram": "",
+    "facebook": "",
+    "coreImage": "media/Home/Founders/Harsh_Rawat.png"
+  }
+},
+{
+  "model": "home.founder",
+  "pk": "pratishtha60@gmail.com",
+  "fields": {
+    "name": "Pratishtha Tiwari",
+    "linkedIn": "https://www.linkedin.com/in/pratishta-tiwari/",
+    "gitHub": "",
+    "instagram": "",
+    "facebook": "",
+    "coreImage": "media/Home/Founders/Pratishtha_Tiwari.png"
+  }
+},
+{
+  "model": "home.founder",
+  "pk": "sakshamsaini123@gmail.com",
+  "fields": {
+    "name": "Saksham Saini",
+    "linkedIn": "https://www.linkedin.com/in/saksham-saini",
+    "gitHub": "",
+    "instagram": "",
+    "facebook": "",
+    "coreImage": "media/Home/Founders/Saksham_Saini.png"
+  }
+},
+{
+  "model": "home.testimonial",
+  "pk": 1,
+  "fields": {
+    "name": "Dr. Adesh Kumar Pandey",
+    "message": "Progress is impossible without change, and those who cannot change their minds cannot change anything.",
+    "Image": "media/Home/Testimonials/AdeshPandey.jpg",
+    "position": "HoD, IT & CSIT",
+    "active": true
+  }
+},
+{
+  "model": "home.testimonial",
+  "pk": 2,
+  "fields": {
+    "name": "Ms. Nidhi Goyal",
+    "message": "Some men see things as they are and ask why. Others dream things that never were and ask why not.",
+    "Image": "media/Home/Testimonials/nidhi.png",
+    "position": "Assistant Professor",
+    "active": true
+  }
+},
+{
+  "model": "home.testimonial",
+  "pk": 3,
+  "fields": {
+    "name": "Mr. Dinesh Kumar",
+    "message": "Make it a rule never to give a child a book you would not read yourself.",
+    "Image": "media/Home/Testimonials/Dinesh_Kumar.jpg",
+    "position": "Assistant Professor",
+    "active": true
+  }
+},
+{
+  "model": "home.testimonial",
+  "pk": 4,
+  "fields": {
+    "name": "Dr. C.M. Batra",
+    "message": "A life spent making mistakes is not only more honorable, but more useful than a life spent doing nothing.",
+    "Image": "media/Home/Testimonials/CM_Batra.jpg",
+    "position": "HoD, Applied Science",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 3,
+  "fields": {
+    "name": "1",
+    "image": "media/Home/Gallery/IMG_1734.JPG",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 4,
+  "fields": {
+    "name": "2",
+    "image": "media/Home/Gallery/IMG_1747.JPG",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 5,
+  "fields": {
+    "name": "3",
+    "image": "media/Home/Gallery/IMG_1740.JPG",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 6,
+  "fields": {
+    "name": "4",
+    "image": "media/Home/Gallery/IMG_1738.JPG",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 7,
+  "fields": {
+    "name": "5",
+    "image": "media/Home/Gallery/20190902_180553.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 8,
+  "fields": {
+    "name": "6",
+    "image": "media/Home/Gallery/IMG_20190903_175406.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 9,
+  "fields": {
+    "name": "7",
+    "image": "media/Home/Gallery/IMG-20190903-WA0065_2.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 10,
+  "fields": {
+    "name": "8",
+    "image": "media/Home/Gallery/IMG-20190826-WA0025.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 11,
+  "fields": {
+    "name": "9",
+    "image": "media/Home/Gallery/IMG_20190826_153358.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 12,
+  "fields": {
+    "name": "10",
+    "image": "media/Home/Gallery/IMG-20190918-WA0073.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 13,
+  "fields": {
+    "name": "11",
+    "image": "media/Home/Gallery/IMG-20200305-WA0072.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 14,
+  "fields": {
+    "name": "12",
+    "image": "media/Home/Gallery/0.2.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 16,
+  "fields": {
+    "name": "14",
+    "image": "media/Home/Gallery/DSC_0996_1.JPG",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 17,
+  "fields": {
+    "name": "15",
+    "image": "media/Home/Gallery/cc.png",
+    "active": true
+  }
+},
+{
+  "model": "home.gallery",
+  "pk": 18,
+  "fields": {
+    "name": "16",
+    "image": "media/Home/Gallery/IMG_20190916_164355.jpg",
+    "active": true
+  }
+},
+{
+  "model": "home.update",
+  "pk": 1,
+  "fields": {
+    "desc": "Update 1 for trial",
+    "link": "http://13.232.39.100:8000",
+    "active": true
+  }
+},
+{
+  "model": "home.update",
+  "pk": 2,
+  "fields": {
+    "desc": "Update 2 for trial",
+    "link": "http://13.232.39.100:8000/",
+    "active": true
+  }
+}
+]
