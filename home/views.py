@@ -50,6 +50,8 @@ def home(request):
         announcements = Announcement.objects.order_by('-date').all()
         try: 
             request.session['clubprofile'] = [ i.name for i in ClubProfile.objects.get(user=request.user).courses.all()]
+            request.session['image'] = ClubProfile.objects.get(user=request.user).image.url
+            request.session['gender'] = ClubProfile.objects.get(user=request.user).gender
             clubProfile = ClubProfile.objects.get(user=request.user)
             try:    
                 #statistics

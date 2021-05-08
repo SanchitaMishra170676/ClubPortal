@@ -17,10 +17,14 @@
         <li class="nav-item dropdown mr-2">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
-                {% if request.user.userprofile %}
-                <img src="{{ request.user.userprofile.photo.url }}" class="img-avatar" alt="admin Innogeeks technical club of kiet group of institution Ghaziabad">
+                {% if request.session.image %}
+                <img src="{{request.session.image}}" class="img-avatar" alt="admin Innogeeks technical club of kiet group of institution Ghaziabad">
                 {% else %}
+                  {%if request.session.gender == 'female' %}
+                <img src="{% static 'src/img/girl.png' %}" class="img-avatar" alt="Innogeeks technical club of kiet group of institution Ghaziabad Anynumos ">
+                 {% else %}
                 <img src="{% static 'src/img/man.png' %}" class="img-avatar" alt="Innogeeks technical club of kiet group of institution Ghaziabad Anynumos ">
+                  {% endif %}
                 {% endif %}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
@@ -35,7 +39,7 @@
                 {% comment %} <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a> {% endcomment %}
                 {% comment %} <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a> {% endcomment %}
                 {% comment %} <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-secondary">42</span></a> {% endcomment %}
-                <a class="dropdown-item" href="{% url 'personal_profile' %}"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item" href="{% url 'personal_profile' %}"><i class="fa fa-user"></i> Profile {{request.session.clubProfile.image}}</a>
                 <!-- <a class="dropdown-item" href="{% url 'feedback' %}"><i class="fa fa-user"></i> Feedback</a> -->
                 <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a>
             </div>

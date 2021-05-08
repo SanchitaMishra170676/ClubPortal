@@ -97,8 +97,10 @@ def achievement(request):
 @login_required
 def personal_profile(request):
     context = { 'personalProfile':{},'codingProfile':{},'educationProfiles':{},'skills':{},'clubProfile':{}}
+
     try:
         cpuser  = ClubProfile.objects.filter(user=request.user)
+        request.session['image'] = cpuser[0].image.url
         if(len(cpuser)==1):
             context['clubProfile']= cpuser[0]  
         user = ClubProfile.objects.filter(user=request.user)

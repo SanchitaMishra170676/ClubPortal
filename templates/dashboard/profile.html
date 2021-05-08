@@ -71,31 +71,51 @@
             <tr class="tr1">
               
               <td class="td1">Codeforces </td>
-              <td class="td1"><a href="">{{codingProfile.codeforces}}</a></td>
-              
+              {% if codingProfile.codeforces %}
+                <td class="td1"><a href="https://codeforces.com/profile/{{codingProfile.codeforces}}" target="_blank">{{codingProfile.codeforces}}</a></td>
+              {% else %}
+
+                <td class="td1"><a href="#">N/A</a></td>
+              {% endif %}
+    
             </tr>
             <tr class="tr1">
                
                 <td class="td1">CodeChef</td>
-                <td class="td1"><a href="">{{codingProfile.codechef}}</a></td>
+                {% if codingProfile.codechef %}
+
+                  <td class="td1"><a href="https://www.codechef.com/users/{{codingProfile.codechef}}" target="_blank">{{codingProfile.codechef}}</a></td>
+                  {% else %}
+
+                  <td class="td1"><a href="#">N/A</a></td>
+                {% endif %}
                 
             </tr>
             <tr class="tr1">
-                
                 <td class="td1">LeetCode</td>
-                <td class="td1"><a href="">{{codingProfile.leetcode}}</a></td>
-                
+                {% if codingProfile.leetcode %}
+                  <td class="td1"><a href="https://leetcode.com/{{codingProfile.leetcode}}" target="_blank">{{codingProfile.leetcode}}</a></td>
+                  {% else %}
+                  <td class="td1"><a href="#">N/A</a></td>
+                  {% endif %}
             </tr>
             <tr class="tr1">
-               
                 <td class="td1">SPOJ</td>
-                <td class="td1"><a href="">{{codingProfile.spoj}}</a></td>
+                {% if codingProfile.spoj %}
+                  <td class="td1"><a href="https://www.spoj.com/users/{{codingProfile.spoj}}" target="_blank">{{codingProfile.spoj}}</a></td>
+                  {% else %}
+                  <td class="td1"><a href="#">N/A</a></td>
+                  {% endif %}
                 
             </tr>
             <tr class="tr1">
                 
                 <td class="td1">Interviewbit</td>
-                <td class="td1"><a href="">{{codingProfile.interviewbit}}</a></td>
+                {% if codingProfile.interviewbit%}
+                <td class="td1"><a href="https://www.interviewbit.com/profile/{{codingProfile.interviewbit}}" target="_blank">{{codingProfile.interviewbit}}</a></td>
+                {% else %}
+                <td class="td1"><a href="#">N/A</a></td>
+                {% endif %}
                 
             </tr>
           {% else %}
