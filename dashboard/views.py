@@ -166,7 +166,7 @@ def add_articles(request):
 """ Function to display all articles """
 @login_required
 def article_list(request):
-    atcls = Article.objects.filter(user=request.user)
+    atcls = Article.objects.order_by('-date').filter(user=request.user)
     # Pagination
     page = request.GET.get('page',1)
     paginator = Paginator(atcls,6)
@@ -310,7 +310,7 @@ def update_project(request,pk):
 """ Function to display list of all projects"""
 @login_required
 def project(request):
-    prjs = Project.objects.filter(user=request.user)
+    prjs = Project.objects.order_by('-date').filter(user=request.user)
     # Pagination
     page = request.GET.get('page',1)
     paginator = Paginator(prjs,6)
