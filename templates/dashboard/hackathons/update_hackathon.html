@@ -1,4 +1,8 @@
 {% extends 'base/base.html' %}
+{% block bca %}
+<li class=""><a href="{% url 'hackathon_list' %}">&nbsp / &nbsp Hackathon List</a></li>
+<li class="breadcrumb-item active"> &nbsp / &nbsp Update Hackathon </li>
+ {% endblock %}
 {% load static %}
 {% block script %}
 <script src="{% static 'src/js/project.js' %}"></script>

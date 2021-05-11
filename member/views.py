@@ -16,12 +16,12 @@ def coding_profile(request):
                 codingProfile = CodingProfile.objects.get(user=cpuser)
                 codingProfile.codechef = request.POST['codechef']
                 codingProfile.codeforces = request.POST['codeforces']
-                codingProfile.spoj = request.POST['spoj']
+                codingProfile.spoj = request.POST['spoj'] 
                 codingProfile.interviewbit = request.POST['interviewbit']
                 codingProfile.leetcode = request.POST['leetcode']
                 codingProfile.save()
                 messages.success(request,'Coding Profiles updated successfully!')
-                return redirect('home')
+                return redirect('personal_profile')
 
             except:
                 user = cpuser
@@ -33,7 +33,7 @@ def coding_profile(request):
                 codingProfile = CodingProfile(user=user, codeforces=codeforces,codechef=codechef,interviewbit=interviewbit,spoj=spoj,leetcode=leetcode)
                 codingProfile.save()
                 messages.success(request,'Coding Profiles Created Successfully!')
-                return redirect('home')
+                return redirect('personal_profile')
             
         except:
             messages.error(request,"No Club profile exist, please contact admin")

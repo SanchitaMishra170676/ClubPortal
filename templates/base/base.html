@@ -67,8 +67,30 @@
     <main class="main">
 
         <!-- Breadcrumb -->
-        {% include 'base/breadcrumb.html' %}
-
+        <ol class="breadcrumb">
+            <li class=""><a href="{% url 'home' %}">Dashboard</a></li>
+            {% block bcp %} {% endblock %}
+             {% block bca %} {% endblock %}
+          <!-- inside bcp block:
+             <li class="">  &nbsp / &nbsp </li> 
+             inside bca block
+            <li class="breadcrumb-item active"> &nbsp / &nbsp </li> -->
+           
+            
+            <!-- Breadcrumb Menu Start-->
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="{% url 'home' %}"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    
+                </div>
+            </li>
+            <!-- Breadcrumb Menu end -->
+        
+            {% block breadcrumb %}
+            
+            {% endblock %}
+        </ol>
+        
         
 
         <!-- Page contents -->

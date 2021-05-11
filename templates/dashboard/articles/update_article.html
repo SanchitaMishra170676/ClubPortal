@@ -1,4 +1,8 @@
 {% extends 'base/base.html' %}
+{% block bca %}
+<li class=""><a href="{% url 'article_list' %}">&nbsp / &nbsp Article List</a></li>
+<li class="breadcrumb-item active"> &nbsp / &nbsp Update Article </li>
+ {% endblock %}
 {% load static %}
 
 {% block script %}
@@ -129,7 +133,7 @@
             placeholder="Proceed with your article" rows="30" required>{{article.content}}</textarea>
 
             <h6>Code:</h6>
-            <textarea class="form-control mb-3 mt-2" name="Content" 
+            <textarea class="form-control mb-3 mt-2" name="Code" 
             placeholder="Proceed with your article" rows="20" >{{article.code}}</textarea>
 
 

@@ -184,7 +184,7 @@
               <option value="CSIT">CSIT</option>
               <option value="CSE">CSE</option>
               <option value="CO">CO</option>
-              <option value="ECE">ECE</option>
+              <option value="EC">ECE</option>
               <option value="EN">EN</option>
               <option value="ME">ME</option>
               <option value="CE">CE</option>
@@ -193,7 +193,7 @@
               <option value="CSIT" selected>CSIT</option>
               <option value="CSE">CSE</option>
               <option value="CO">CO</option>
-              <option value="ECE">ECE</option>
+              <option value="EC">ECE</option>
               <option value="EN">EN</option>
               <option value="ME">ME</option>
               <option value="CE">CE</option>
@@ -202,7 +202,7 @@
               <option value="CSIT">CSIT</option>
               <option value="CSE" selected>CSE</option>
               <option value="CO">CO</option>
-              <option value="ECE">ECE</option>
+              <option value="EC">ECE</option>
               <option value="EN">EN</option>
               <option value="ME">ME</option>
               <option value="CE">CE</option>
@@ -211,16 +211,16 @@
               <option value="CSIT">CSIT</option>
               <option value="CSE">CSE</option>
               <option value="CO" selected>CO</option>
-              <option value="ECE">ECE</option>
+              <option value="EC">ECE</option>
               <option value="EN">EN</option>
               <option value="ME">ME</option>
               <option value="CE">CE</option>
-              {% elif clubProfile.branch == 'ECE' %}
+              {% elif clubProfile.branch == 'EC' %}
               <option value="IT">IT</option>
               <option value="CSIT">CSIT</option>
               <option value="CSE">CSE</option>
               <option value="CO">CO</option>
-              <option value="ECE" selected>ECE</option>
+              <option value="EC" selected>ECE</option>
               <option value="EN">EN</option>
               <option value="ME">ME</option>
               <option value="CE">CE</option>
@@ -229,7 +229,7 @@
               <option value="CSIT">CSIT</option>
               <option value="CSE">CSE</option>
               <option value="CO">CO</option>
-              <option value="ECE">ECE</option>
+              <option value="EC">ECE</option>
               <option value="EN" selected>EN</option>
               <option value="ME">ME</option>
               <option value="CE">CE</option>
@@ -238,7 +238,7 @@
               <option value="CSIT">CSIT</option>
               <option value="CSE">CSE</option>
               <option value="CO">CO</option>
-              <option value="ECE">ECE</option>
+              <option value="EC">ECE</option>
               <option value="EN">EN</option>
               <option value="ME" selected>ME</option>
               <option value="CE">CE</option>
@@ -247,7 +247,7 @@
               <option value="CSIT">CSIT</option>
               <option value="CSE">CSE</option>
               <option value="CO">CO</option>
-              <option value="ECE">ECE</option>
+              <option value="EC">ECE</option>
               <option value="EN">EN</option>
               <option value="ME">ME</option>
               <option value="CE" selected>CE</option>
@@ -266,34 +266,34 @@
               <select class="form-control" id="domain" name="domain" value="{{clubProfile.domain}}" disabled>
               {% if clubProfile.domain == 'Web Development' %}
               <option value="Web Development" selected>Web Development</option>
-              <option value="Android Development">Android</option>
+              <option value="Android Development">Android Development</option>
               <option value="Machine Learning">Machine Learning</option>
-              <option value="IOT">Internet of Things</option>
-              <option value="AR/VR">AR/VR</option>
+              <option value="Internet of Things">Internet of Things</option>
+              <option value="Augmented and Virtual Reality">AR/VR</option>
               {% elif clubProfile.domain == 'Android Development' %}
               <option value="Web Development">Web Development</option>
-              <option value="Android Development" selected>Android</option>
+              <option value="Android Development" selected>Android Development</option>
               <option value="Machine Learning">Machine Learning</option>
-              <option value="IOT">Internet of Things</option>
-              <option value="AR/VR">AR/VR</option>
+              <option value="Internet of Things">Internet of Things</option>
+              <option value="Augmented and Virtual Reality">AR/VR</option>
               {% elif clubProfile.domain == 'Machine Learning' %}
               <option value="Web Development">Web Development</option>
-              <option value="Android Development">Android</option>
+              <option value="Android Development">Android Development</option>
               <option value="Machine Learning" selected>Machine Learning</option>
-              <option value="IOT">Internet of Things</option>
-              <option value="AR/VR">AR/VR</option>
-              {% elif clubProfile.domain == 'IOT' %}
+              <option value="Internet of Things">Internet of Things</option>
+              <option value="Augmented and Virtual Reality">AR/VR</option>
+              {% elif clubProfile.domain == 'Internet of Things' %}
               <option value="Web Development">Web Development</option>
-              <option value="Android Development">Android</option>
+              <option value="Android Development">Android Development</option>
               <option value="Machine Learning">Machine Learning</option>
-              <option value="IOT" selected>Internet of Things</option>
-              <option value="AR/VR">AR/VR</option>
-              {% elif clubProfile.domain == 'AR/VR' %}
+              <option value="Internet of Things" selected>Internet of Things</option>
+              <option value="Augmented and Virtual Reality">AR/VR</option>
+              {% elif clubProfile.domain == 'Augmented and Virtual Reality' %}
               <option value="Web Development">Web Development</option>
-              <option value="Android Development">Android</option>
+              <option value="Android Development">Android Development</option>
               <option value="Machine Learning">Machine Learning</option>
-              <option value="IOT">Internet of Things</option>
-              <option value="AR/VR" selected>AR/VR</option>
+              <option value="Internet of Things">Internet of Things</option>
+              <option value="Augmented and Virtual Reality" selected>AR/VR</option>
               {% endif %}
               </select>
             </div>

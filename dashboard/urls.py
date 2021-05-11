@@ -30,7 +30,7 @@ urlpatterns = [
     path('resources/links/<str:category>/<str:subtopic>/',views.resources_links, name='resource_links'),
     path('resources/home/<str:category>/', views.resource_home, name ='resource_home'),
 
-# """ URL pattern for articles """
+# """ URL pattern for articles """ 
     path('add_articles/',views.add_articles,name='add_articles'),
     path('article_list/',views.article_list,name='article_list'),
     path('update_article/<int:pk>/',views.update_article,name='update_article'),

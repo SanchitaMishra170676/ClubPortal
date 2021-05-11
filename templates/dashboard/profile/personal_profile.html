@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
-
+{% block bca %}<li class="breadcrumb-item active"> &nbsp / &nbsp Personal Profile</li> {% endblock %}
 {% block script %}
 <script src="{% static 'src/js/personal_profile.js' %}"></script>
 
@@ -122,7 +122,7 @@ $('.container').on('click','.remove',function(){
       <div class="row">
         <div class="form-group col-sm-12">
           <label for="name">Name</label>
-          <input class="form-control" name="Name" value="{{personalProfile.user.name}}" id="name" type="text" placeholder="Enter your Name" Value="" disabled>
+          <input class="form-control" name="Name" value="{{personalProfile.user.name}}" id="name" type="text" required placeholder="Enter your Name" Value="" disabled>
         </div>
       </div>
       <div class="row">

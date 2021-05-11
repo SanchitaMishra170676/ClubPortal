@@ -50,8 +50,14 @@ def home(request):
         announcements = Announcement.objects.order_by('-date').all()
         try: 
             request.session['clubprofile'] = [ i.name for i in ClubProfile.objects.get(user=request.user).courses.all()]
-            request.session['image'] = ClubProfile.objects.get(user=request.user).image.url
-            request.session['gender'] = ClubProfile.objects.get(user=request.user).gender
+            try:
+                request.session['image'] = ClubProfile.objects.get(user=request.user).image.url
+            except:
+                pass
+            try:
+                request.session['gender'] = ClubProfile.objects.get(user=request.user).gender
+            except:
+                pass
             clubProfile = ClubProfile.objects.get(user=request.user)
             try:    
                 #statistics
@@ -222,7 +228,7 @@ def team(request):
 
 """ Function for Article/ Blog """
 def blog(request,the_slug):
-    try:
+    try: 
         articles = Article.objects.order_by('-date').filter(is_approved=True)[:7]
         webCnt= Article.objects.filter(is_approved=True,domain='Web_Development').count()
         androidCnt = Article.objects.filter(is_approved=True,domain='Android_Development').count()

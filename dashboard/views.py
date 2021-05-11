@@ -149,7 +149,6 @@ def add_articles(request):
             except:
                 TImage = None
             slug = slugify(user) +"-"+ slugify(Domain+ " " + Title)+"-"+ get_random_string(10,'012innogeeks3456789')
-            print(slug)
             try:
                 Image = request.FILES['Image']
             except:
@@ -208,6 +207,7 @@ def update_article(request,pk):
             article.description = request.POST['Description']
             article.subHeading = request.POST['SubHeading']
             article.content = request.POST['Content']
+            article.code = request.POST['Code']
             article.quote = request.POST['Quote']
             article.tag1 = request.POST['Tag1']
             article.tag2 = request.POST['Tag2']
