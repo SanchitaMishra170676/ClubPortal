@@ -26,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '#jy3z=!@u*2d+hsha$9-ckie33-se#=#^j2-1$apqnyfaa(ih('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
 
 # Application definition
 
@@ -93,15 +93,26 @@ WSGI_APPLICATION = 'innogeeks.wsgi.application'
 # }
 
 
-DATABASES = {
-     'default':{
-	'ENGINE': 'django.db.backends.mysql',
-	'OPTIONS': {
-	    'read_default_file': '/etc/mysql/my.cnf',
-	},
-     }
-}
+# DATABASES = {
+#      'default':{
+# 	'ENGINE': 'django.db.backends.mysql',
+# 	'OPTIONS': {
+# 	    'read_default_file': '/etc/mysql/my.cnf',
+# 	},
+#      }
+# }
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'innogeeksdb',
+        'USER': 'postgres',
+        'PASSWORD': 'Shnd@9897',
+        'HOST': 'localhost',
+        'PORT': 5432
+    }
+}
 
 # DATABASES = {
 #     'default': {
