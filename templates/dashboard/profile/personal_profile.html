@@ -78,8 +78,13 @@ $('.container').on('click','.remove',function(){
           <img id="preview_Img" src="{% static '' %}{{clubProfile.image}}" alt="Placeholder" height="180px;"
           style="border-radius: 50%;">
       {% else %}
+        {%if clubProfile.gender == 'female' %}
+          <img id="preview_Img" src="{% static 'src/img/girl.png' %}" alt="Placeholder" height="180px;"
+          style="border-radius: 50%;">
+        {% else %}
           <img id="preview_Img" src="{% static 'src/img/man.png' %}" alt="Placeholder" height="180px;"
           style="border-radius: 50%;">
+        {% endif %}
       {% endif %}
       <button class="changeImgIcon btn-success mdl-button mdl-js-button mdl-button--fab-i mdl-button--mini-fab-i"
       style="position:absolute;bottom:-5px;right:20%;background:#fff;background-color:#31c75e; width: 20%;" type="submit" form="img_save_form">
