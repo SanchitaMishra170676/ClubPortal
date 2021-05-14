@@ -139,6 +139,12 @@
 <script src="{% static 'src/js/updates.js' %}"></script>
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script src="{% static 'src/js/student-task.js' %}"></script> {% endcomment %}
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  {% if messages %}
+  {% for message in messages %}
+    <script> alertify.{{message.tags }}('{{message}}');</script>
+  {% endfor %}
+  {% endif %}
 {% block script %}
 
 {% endblock %}
