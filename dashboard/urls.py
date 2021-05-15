@@ -47,7 +47,8 @@ urlpatterns = [
 
 # """URL pattern for feedback """
     path('feedback/', views.feedback, name='feedback'),
-]
+  
+] 
 
 
 

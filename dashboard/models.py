@@ -91,6 +91,7 @@ class Hackathon(models.Model):
 """ Model for articles """
 class Article(models.Model):
     user                = models.ForeignKey(to=User,default= None, on_delete= models.CASCADE)
+    author              = models.CharField(max_length= 50, default="")
     title               = models.CharField(max_length=150)
     domain              = models.CharField(max_length=100)
     highlights          = models.CharField(max_length=200)
@@ -166,7 +167,7 @@ class SubTopic(models.Model):
 class VideoLecture(models.Model):
     subtopic             = models.ForeignKey(SubTopic,on_delete=models.CASCADE)
     title                = models.CharField(max_length=250)
-    url                  = models.CharField(max_length=255, unique=True)
+    embeded_link         = models.CharField(max_length=255, unique=True)
     date                 = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -182,13 +183,26 @@ class PDF(models.Model):
     def __str__(self):
         return self.title
 
+""" Model for resources- other links"""
+class OtherLink(models.Model):
+    subtopic             = models.ForeignKey(SubTopic, on_delete= models.CASCADE)
+    title                = models.CharField(max_length=255)
+    description          = models.TextField(blank=True)
+    link                 = models.CharField(max_length=255, unique=True)
+    date                 = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
 """ Model for Resources-Content """
 class Content(models.Model):
     subtopic            = models.ForeignKey(SubTopic, on_delete= models.DO_NOTHING)
     title               = models.CharField(max_length=255)
     paragraph1          = models.TextField()
-    paragraph2          = models.TextField()
-    image               = models.ImageField(upload_to='media/Dashboard/ContentImages/')
+    paragraph2          = models.TextField(blank=True)
+    code_heading        = models.CharField(max_length= 255, blank= True)
+    code                = models.TextField(blank=True)
+    image               = models.ImageField(blank=True, upload_to='media/Dashboard/ContentImages/')
     date                = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

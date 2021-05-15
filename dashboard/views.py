@@ -3,11 +3,12 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.utils.crypto import get_random_string
 from .models import (
-    Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, PDF, Content, ClubProfile, upcomingHackathon )
+    Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, PDF, Content, OtherLink, ClubProfile, upcomingHackathon )
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.contrib import messages
 from member.models import (CodingProfile,Profile, Education,Skill)
-
+import os
+from django.conf import settings
 
 """ Function to add achievement """
 @login_required
@@ -131,7 +132,10 @@ def personal_profile(request):
 def add_articles(request):
     if request.method == "POST":
         try:
+            cf = ClubProfile.objects.filter(user=request.user)
+            # print(cf[0].name)
             user = request.user
+            author = cf[0].name
             Title = request.POST['title']
             Domain = request.POST['domain']
             Highlights = request.POST['highlights']
@@ -153,7 +157,7 @@ def add_articles(request):
                 Image = request.FILES['Image']
             except:
                 Image =None
-            inst = Article(user=user,slug=slug, title= Title,quoteBy=quoteBy, domain= Domain, highlights = Highlights, description= Description, content=Content, code= Code, subHeading=SubHeading, quote=Quote, tag1=Tag1, tag2=Tag2, tag3=Tag3, Thumbimage1 = TImage,Thumbimage2 = Image)
+            inst = Article(user=user,author = author, slug=slug, title= Title,quoteBy=quoteBy, domain= Domain, highlights = Highlights, description= Description, content=Content, code= Code, subHeading=SubHeading, quote=Quote, tag1=Tag1, tag2=Tag2, tag3=Tag3, Thumbimage1 = TImage,Thumbimage2 = Image)
             inst.save()
             messages.success(request,'Article Added Successfully')
             return redirect('article_list')
@@ -220,7 +224,7 @@ def update_article(request,pk):
             user = request.user
             Domain= request.POST['Domain']
             Title = request.POST['Title']
-            article.slug= slugify(user) +"-"+ slugify(Domain+ " " + Title)+"-"+ get_random_string(10,'012innogeeks3456789')
+            # article.slug= slugify(user) +"-"+ slugify(Domain+ " " + Title)+"-"+ get_random_string(10,'012innogeeks3456789')
             try:
                 article.Thumbimage2 = request.FILES['Image']
             except:
@@ -511,10 +515,22 @@ def resources_links(request,category,subtopic):
         topics = Topic.objects.filter(domain=course)
         subtopics = SubTopic.objects.filter(topic__in=topics)
         exact_subtopic = subtopics.get(subtopic_name=subtopic)
-        videolectures = VideoLecture.objects.filter(subtopic=exact_subtopic)
+        vds = VideoLecture.objects.order_by("-date").filter(subtopic=exact_subtopic)
         pdfs = PDF.objects.filter(subtopic=exact_subtopic)
+        otherLinks = OtherLink.objects.filter(subtopic=exact_subtopic)
+        stopics = SubTopic.objects.filter(subtopic_name =exact_subtopic)
         contents = Content.objects.filter(subtopic=exact_subtopic)
-        context = {'videolectures': videolectures,'pdfs': pdfs,'contents':contents,'subtopic':exact_subtopic}
+        # Pagination
+        page = request.GET.get('page',1)
+        paginator = Paginator(vds,8)
+        try:
+            videolectures = paginator.page(page)
+        except PageNotAnInteger:   
+            videolectures = paginator.page(1)
+        except EmptyPage:
+            videolectures = paginator.page(paginator.num_pages)
+
+        context = {'stopic':subtopics[0], 'videolectures': videolectures,'pdfs': pdfs,'contents':contents,'otherLinks':otherLinks,'subtopic':exact_subtopic}
         return render(request, 'dashboard/resources/links.html', context)
     except:
         return redirect('404_not_found')
@@ -542,3 +558,5 @@ def not_found404(request):
 """ Function for feedback"""
 def feedback(request):
     return render(request, 'dashboard/feedback.html')
+
+

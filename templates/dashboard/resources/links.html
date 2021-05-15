@@ -1,114 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+<!--Headers-->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resource Links</title>
-  <link rel="stylesheet" href="{% static 'css/links.css' %}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="dashboard with the help of core-ui bootstrap">
+    <meta name="author" content="Harsh Gupta">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+    <title>Resources</title>
+
+    <!-- Icons -->
+    <link href="{% static 'dist/vendors/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/vendors/css/simple-line-icons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'src/css/hackathon.css' %}" rel="stylesheet">
+  
+    <!-- Main styles for this application -->
+    <link href="{% static 'dist/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'src/css/form.css' %}" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
+   
+   
+  
+    
 </head>
 
+
+
+  <link href="{% static 'src/css/home.css' %}" rel="stylesheet">
+  <link href="{% static 'src/css/personal_profile.css' %}" rel="stylesheet">
+
+<link href="{% static 'src/css/home.css' %}" rel="stylesheet">
+
+<style>
+  .pagination {
+  display: inline-block;
+  position: relative;
+
+}
+
+.pagination a {
+  color:black;
+  float: left;
+  padding: 8px 16px;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.pagination a.active {
+  background-color: rgb(0, 102, 204);
+  color: black;
+  border-radius: 50%;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: rgb(20, 19, 35);
+  color: white;
+  border-radius: 50%;
+}
+  .main-section{
+    height: 100vh !important;
+  }
+  .image-upload > input
+{
+    display: none; 
+}
+.mdl-button--fab.mdl-button--mini-fab-i {
+  height: 40px;
+  min-width: 40px;
+  width: 40px;
+}
+.mdl-button--fab-i {
+  border-radius: 40%;
+  font-size: 24px;
+  padding: 0;
+    overflow: hidden;
+    box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
+    line-height: normal;
+}
+
+  .dash-main{
+    z-index: 12;
+    display: flex;
+    flex-wrap: wrap;
+}
+.head{
+  text-align: center;
+}
+.int-sec{
+    font-size: 1.2em;
+    overflow-y: auto;
+    height: 40vh;
+}
+.int-sec p{
+    margin: 0px;
+    padding: 15px;
+    background-color: rgba(243, 243, 243, 0.973);
+}
+.int-sec p:nth-child(even){
+    background-color: rgba(216, 216, 216, 0.466);
+}
+
+.int-sec p:hover{
+    background-color:  #dddddd;
+}
+
+.main-pd {
+  padding: 4px !important;
+}
+
+.main-mgn {
+  margin-left: 7px !important;
+  margin-right: 7px !important;
+}
+
+.font1 {
+  color: rgb(20, 19, 35);
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.bg1{
+  background-color: #29363d; 
+  color: #fff;
+}
+
+.list1{
+  border: 2px solid;
+  border-color: rgb(2, 36, 99);
+  margin: 2px;
+  padding: 10px;
+}
+
+.scroll1 {
+    font-size: 1.2em;
+    overflow-y: auto;
+    height: 45vh;
+}
+
+.scroll2 {
+    font-size: 1.2em;
+    overflow-y: auto;
+    height: 60vh;
+}
+
+ /* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 13px;
+    height:50%;
+    
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none;
+    margin-right: 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(165, 165, 165, 0.712);
+    border-radius: 5px;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(85, 85, 85, 0.671);
+  }
+
+  /* TO-DO List */
+
+.container ul {
+  overflow: auto;
+}
+.add input {
+  border: none;
+  display: block;
+  line-height: 1.5;
+  padding: 8px 0 8px 10px;
+  border-bottom: 1px solid #cfcbcc;
+  outline:0;
+  border: 3px solid black;
+   }
+
+.container ul {
+  list-style: none;
+  margin-top: 15px;
+  padding: 0;
+}
+.container  ul li {
+  color: #000;
+  border-bottom: 1px solid #cfcbcc;
+  line-height: 1.2;
+  margin-top: 15px;
+} 
+.container ul li:nth-child(even){
+background-color: rgb(235, 235, 235);
+}
+
+.container ul li:hover {
+  text-decoration: line-through;
+  background-color: rgb(153, 153, 153);
+  cursor: pointer;
+}
+.conatiner ul li:last-child {
+  border-bottom: none;
+}
+
+.checked {
+  background-color: rgba(194, 194, 194, 0.555);
+  color: green !important;
+}
+
+.checked:hover {
+  text-decoration: none;
+}
+
+.checked:hover:after {
+  content: "(remove)";
+  color: tomato;
+  text-align: right;
+}
+
+@media (max-width: 500px){
+.head{
+  font-size: 1.2em;
+}
+.int-sec{
+  padding: 4px;
+}
+.para-elem{
+  font-size: .7em;
+}
+#item{
+  font-size: .7em;
+}
+}
+</style>
+
+
 <body>
+  
+<nav>
+  <div class="d-flex justify-content-center" style="background-color: #29363d; color: white; font-size: large; padding:20px;">
+    <h3>{{subtopic.subtopic_name}} &nbsp;({{subtopic.topic.topic_name}})</h3>
+  </div>
+</nav>
 
-
-    <!-- ======= Links Section ======= -->
-  <section>
-    <h1 class="heading">
-      {{subtopic.subtopic_name}}({{subtopic.topic.topic_name}})
-    </h1>
-
+    <!-- ======= RESOURCES SECTION ======= -->
+<section class="dash">
     <div class="content">
-      <div class="tabs-sec">
-        <button class="tab_button active" onclick="openTab(event,'Videos')">Practical Videos</button>
-        <button class="tab_button" onclick="openTab(event,'Theory')">Theoritical PDFs</button>
-        <button class="tab_button" onclick="openTab(event,'Content')">Content</button>
+        <div class="tabs-sec d-none d-lg-block" style="margin-left: 8px;">
+            <button style="border-radius: 25px; background-color: #151b1e !important; color: white; " class="tab4 tab_button active-tab" onclick="openTab(event,'Main')">Videos</button>
+            <button style="border-radius: 25px; background-color: #151b1e !important; color: white;" class="tab1 tab_button " onclick="openTab(event,'Ranking')">PDFs</button>
+            <button style="border-radius: 25px; background-color: #151b1e!important; color: white; " class="tab2 tab_button" onclick="openTab(event,'Statistics')">Content</button>
+            <button style="border-radius: 25px; background-color: #151b1e !important; color: white; "  class="tab3 tab_button" onclick="openTab(event,'Profile')">Other Links</button>
+         </div>
+
+        <div class="tabs-secMV d-lg-none" >
+            <button style="border-radius: 25px; background-color: #151b1e !important; color: white; " class="tab4 tab_buttonMV " onclick="openTabMV(event,'Main')">Videos</button>
+            <button style="border-radius: 25px; background-color: #151b1e !important; color: white; " class="tab1 tab_buttonMV" onclick="openTabMV(event,'Ranking')">PDFs</button>
+            <button style="border-radius: 25px; background-color: #151b1e !important;  color: white; " class="tab2 tab_buttonMV" onclick="openTabMV(event,'Statistics')">Content</button>
+            <button style="border-radius: 25px; background-color: #151b1e !important;  color: white;" class="tab3 tab_buttonMV" onclick="openTabMV(event,'Profile')">Other Links</button>
+        </div>
       </div>
 
-      <div class="main-section">
-        <div id="Theory" class="tabs" style="display:none">
-          {% if pdfs %}
-            <ul class="Theory">
-            {% for pdf in pdfs %}
-              <a href="#" style="text-decoration:None;" download={{pdf.pdf}}> <li><p>{{pdf.title}}</p></li></a>
-            {% endfor %}  
-            </ul>
+      <div class="main-section " style="overflow: scroll !important;">
+        <div id="Main" class="tabs " style="overflow: scroll !important;">
+          {% if videolectures %} 
+          <div class="row d-flex justify-content-center ">
+            
+            
+              {% for videolecture in videolectures %}
+              <div class="col-sm-6 col-lg-3  ">
+                  <div class="card booking-card  d-flex ">
+  
+                    <!-- Card image -->
+                    <div class="view overlay">
+                     <a target="blank" href="{{videolecture.embeded_link }}">
+                        <iframe width="100%" height="315" src="{{videolecture.embeded_link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+                      </a> 
+                    </div>
+                    <!-- Card content -->
+                    <div class="card-body">
+  
+                      <!-- Title -->
+                      <div style="height: 30px;" class="d-flex justify-content-center">
+                      <h4 class="card-title font-weight-bold"><a  href="{{ videolecture.embeded_link }}" target="blank" >{{ videolecture.title|truncatewords:4}}</a></h4>
+                    </div>
+                    </div>
+  
+                  </div>
+              </div>
+             
+              {% endfor %}
+              <div class="col-12" style="margin-top: 15vh;">
+                      <!--pagination-->
+              {% if videolectures.has_other_pages %}
+              <div class="pagination d-flex justify-content-center mt-4">
+              {% if videolectures.has_previous %}
+                <a href="?page={{ videolectures.previous_page_number }}">&laquo;</a>
+              {% else %}
+                <a href="#">&laquo;</a>
+              {% endif %}
+              {% for i in videolectures.paginator.page_range %}
+                {% if videolectures.number == i %}
+                <a href="#" class="active">{{i}}</a>
+                {% else%}
+                <a href="?page={{i}}">{{i}}</a>
+                {% endif %}
+              {% endfor %}
+                {% if videolectures.has_next %}
+                <a href="?page={{ videolectures.next_page_number }}">&raquo;</a>
+                {% else %}
+                  <a href="#">&raquo;</a>
+                
+                {% endif %}
+              </div>
+            {% endif%}
+                  <!-- Pagination end -->
+            </div>
+            
+           
+                               
+  
+          </div>
           {% else %}
-            <h3> No PDFs Found  </h3>
+            
+         {% comment %} <div class="row d-flex justify-content-center align-items-center"> {% endcomment %}
+          <h1 align="center" style="padding: 200px 0;"> COMING SOON!</h1>
+          {% comment %} </div> {% endcomment %}
+            
           {% endif %}
+
         </div>
 
-      <div id="Videos" class="tabs" >
-        {% if videolectures %}
+   
+     <!-- SECTION 1 -->
+<div id="Ranking" class="tabs m-3 " style="display: none;" style="overflow: scroll !important;">
+  {% if pdfs %}
+  <div >
+        <ul>
+        {% for pdf in pdfs %}
+          <a href="{{pdf.pdf.url}}" target="blank" style="text-decoration:None;" download> <li><h4>{{pdf.title}} &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i> </h4></li></a>
+        {% endfor %}  
+        </ul>
+  </div>
+  {% else %}
+    <h1 align="center" style="padding: 200px 0;" >COMING SOON!</h1>
+    {% endif %}
+</div>
 
-          <div class="Videos">
-          {% for video in videolectures %}
-            <div class="video_box">
-              <a href="{{video.url}}" target="_blank" style="text-decoration:none; color:blue;"><h5>{{video.title}}</h5></a>
-            </div>
-          {% endfor %}
-          </div>
-          {% else %}
-          <h3> No Videos Found  </h3>
-          {% endif %}
-      </div>
-
-        <div class="contents tabs" id="Content" style="display: none;"> 
+    <!-- SECTION 1 -->
+    <div id="Statistics" class="tabs m-3 " style="display: none;" style="overflow: scroll !important;">
+      <div  >
         {% if contents %}
-          {% for Content in contents %}
-          <h4 class="sec-head" onclick="drop_down('drop{{Content.id}}')">
-              <i class="fa fa-plus" aria-hidden="true" style="font-size: smaller;"></i> 
-              {{Content.title}}
-          </h4>
-          <div class="drop" id="drop{{Content.id}}" style="display: none;">
-            <div class="internal_sec">
-              <div class="list1 inner-text">
-                <div class="col-12 my-2 px-3">{{Content.paragraph1}}</div>
-                <div class="col-12 my-2 px-3 d-flex justify-content-center">
-                  <img class="img-fluid" src="{% static '' %}{{Content.image}}" alt="" srcset=""/>
-                </div>
-                <div class="col-12 my-2 px-3">{{Content.paragraph2}}</div>
-              </div>
+        {% for content in contents %}
+        <div class="card">
+                 <div class="card-header" role="tab" id="first" style="background-color: white">
+                 <h3 class="mb-0 row" style="color:black;">
+                    <div class="col-11">
+                       <a href="" class="collapsed" data-toggle="collapse" data-target="#{{content.id}}">  {{content.title}}  </a>
+                    </div>
+                    <div class="col-1 d-flex justify-content-center">
+                      <a href="" class="collapsed" data-toggle="collapse" data-target="#{{content.id}}"> + </a>
+                    </div>
+                 </h3>
+             </div>
+             <div class="collapse" id="{{content.id}}" data-parent="#accordion">
+                 <div class="card-body">
+                  <div>
+                    <div class="d-flex justify-content-center">
+                    <h3>{{content.title}}</h3>
+                  </div>
+                  {% if content.image %}
+                    <div class="d-flex justify-content-center" >
+                      <a target="blank"><img style="width:200px; height:200px;" class="card-img-top" src="{% static '' %}{{content.image}}" alt="Card image cap"></a>          
+                    </div>
+                    {% endif %}
+                    <div style="padding:10px;">
+                      <p> {{content.paragraph1|linebreaks}}</p>
+                      {% if content.code_heading %}
+                      <br>
+                      <h5>{{content.code_heading}}</h5>
+                      {% endif %}
+                      {% if content.code %}
+                      <br>
+                      <div style="background-color: #cad2d6; padding: 10px;" >
+                      <pre style="color: black;"> {{content.code}} </pre>
+                      </div>
+                      <br>
+                      {% endif %}   
+                      {% if content.paragraph2 %}
+                      <p>{{content.paragraph2|linebreaks}}</p>
+                      <br>
+                      {% endif %}
+                      <hr>
+                      <br>
+                    </div>
+                  </div>
+                 </div>
+             </div>
+         </div>
+         {% endfor %} 
+         {% else %}
+         <h1 align="center" style="padding: 200px 0;" >COMING SOON!</h1>
+         {% endif %}
             </div>
-          </div>
-          {% endfor %}  
-        {% else %}
-          <h3> No Content Found  </h3>
-       {% endif %}
-      </div>
-      
+
+
+
+    </div>   
+ 
+  <div id="Profile" class="tabs m-3 " style="display: none;" style="overflow: scroll !important;">
+    {% if stopic.image %}
+    <div class="d-flex justify-content-center" >
+      <a target="blank"><img style="width:200px; height:200px;" class="card-img-top" src="{% static '' %}{{stopic.image}}" alt="Card image cap"></a>          
     </div>
+    {% endif %}
+    {% if otherLinks %}
+    <div >
+      <ul>
+      {% for otherLink in otherLinks %}
+        <a target="blank" href="{{otherLink.link}}" style="text-decoration:None;" > <li><h4>{{otherLink.title}} </h4></li></a>
+        {% if otherLink.description%}
+        <p>{{otherLink.description}}</p>
+        {% endif %}
+      {% endfor %}  
+      </ul>
+</div>
+    {% else %}
+    <h1 align="center" style="padding: 200px 0;" >COMING SOON!</h1>
+    {% endif %}
     </div>
+
+  
+    
+  </div>
+  
 </section>
-<!-- Links section end -->
 
-  <script>
-    function openTab(evt, e) {
-      var i, tabs;
-      var x = document.getElementsByClassName("tabs");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      tabs = document.getElementsByClassName("tab_button");
-      for (i = 0; i < x.length; i++) {
-        tabs[i].className = tabs[i].className.replace(" active", "");
-      }
-      document.getElementById(e).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
-  </script>
+<!-- Dashboard Section end -->
 
-<script>
-    function drop_down(e){
-  var x = document.getElementById(e);
-  if(x.style.display === "none"){
-      x.style.display = "block";
-  }
-  else{
-      x.style.display = "none";
-  }
-}
-  </script>
+
+
+
+
+
+<!--Footer-->
+{% include 'base/footer.html' %}
+
+<!--JS-->
+<script src="{% static 'dist/vendors/js/jquery.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/popper.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/pace.min.js' %}"></script>
+
+
+<script src="{% static 'dist/js/app.js' %}"></script>
+
+<!-- Plugins and scripts required by this views -->
+
+<!-- Custom scripts required by this view -->
+<script src="{% static 'dist/js/views/main.js' %}"></script>
+<script src="{% static 'src/js/attendance.js' %}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+  
+
+<script src="{% static 'src/js/home.js' %}"></script>
+<script src="{% static 'src/js/Manage-Task.js' %}"></script>
 
 </body>
-
 </html>
+
+<!-- 
+  Tabs -done
+  PDF 
+  Errors # videos
+  Other links - image - done
+  default image
+  pagination - done
+ -->

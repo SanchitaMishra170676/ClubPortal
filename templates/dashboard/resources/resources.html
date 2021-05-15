@@ -39,14 +39,14 @@ Resources for Programming
                                 {% for subtopic in subtopics %}
                                         {% if subtopic.topic.id == topic.id %}
                                         <a href="/dashboard/resources/links/{{course.name}}/{{subtopic.subtopic_name}}/"  target="_blank" style="decoration: none; color:white;">
-                                            <div class="r_card mx-2">
+                                            <div class="r_card mx-2" >
                                                 <h4 class="card_head">
                                                     {{subtopic.subtopic_name}}
                                                 </h4>
                                                 {% if subtopic.image %}
-                                                <img src="{% static '' %}{{subtopic.image}}" alt="" srcset="">
+                                                <img  src="{% static '' %}{{subtopic.image}}" alt="" srcset="">
                                                 {% else %}
-                                                <img src="{% static 'src/img/c-img.png' %}" alt="" srcset="">
+                                                <img style="background-color: white;" src="{% static 'src/img/favicon.png' %}" alt="" srcset="">
                                                 {% endif %}
                                             </div>
                                         </a>

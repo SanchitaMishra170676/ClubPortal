@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import upcomingHackathon, Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, PDF, Content, ClubProfile, Announcement
+from .models import upcomingHackathon, Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, PDF, OtherLink, Content, ClubProfile, Announcement
 from django.core.mail import send_mail,EmailMessage
 from django.core import mail
 from django.template.loader import render_to_string
@@ -92,6 +92,20 @@ class PDFAdmin(admin.ModelAdmin):
 
 admin.site.register(PDF,PDFAdmin)
 
+class OtherLinkAdmin(admin.ModelAdmin):
+    """ Admin Panel for  OtherLink Model """
+
+    list_display = ('id','subtopic','title','date')
+    list_display_links = ('id','title','subtopic')
+    list_per_page = 60
+    search_fields = (
+        'subtopic__subtopic_name','subtopic__topic__topic_name', 'subtopic__topic__domain__name',
+        'title'
+        )  
+    list_filter = ('subtopic__topic__domain__name','subtopic__topic__topic_name')
+    ordering = ('date',)
+
+admin.site.register(OtherLink,OtherLinkAdmin)
 
 class ResumeAdmin(admin.ModelAdmin):
     """ Admin Panel for  Resume Model """
