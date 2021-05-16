@@ -217,7 +217,7 @@ def ClubProfiles(request):
                 clubProfile.branch = request.POST['branch']
                 clubProfile.name = request.POST['name']
                 clubProfile.phone = request.POST['phone']
-                clubProfile.domain = request.POST['domain']
+                # clubProfile.domain = request.POST['domain']
                 clubProfile.save()
                 messages.success(request,'Profile Updated successfully')
                 return redirect('home')  
