@@ -146,7 +146,7 @@ class Course(models.Model):
 
 """ Model for Resources-topic """
 class Topic(models.Model):
-    domain          = models.ForeignKey(Course, on_delete=models.DO_NOTHING)
+    domain          = models.ForeignKey(Course, on_delete=models.CASCADE)
     topic_name      = models.CharField(max_length=255, unique=True)
     date            = models.DateTimeField(auto_now_add=True)
     
@@ -196,7 +196,7 @@ class OtherLink(models.Model):
 
 """ Model for Resources-Content """
 class Content(models.Model):
-    subtopic            = models.ForeignKey(SubTopic, on_delete= models.DO_NOTHING)
+    subtopic            = models.ForeignKey(SubTopic, on_delete= models.CASCADE)
     title               = models.CharField(max_length=255)
     paragraph1          = models.TextField()
     paragraph2          = models.TextField(blank=True)
