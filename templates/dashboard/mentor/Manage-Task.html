@@ -2,117 +2,179 @@
 {% load static %}
 {% block script %}
 <script src="{% static 'src/js/Manage-Task.js' %}"></script>
-<script src="{% static 'src/js/Assign-Task.js' %}"></script>
 {% endblock script %}
 {% block extrahead %}
 <link href ="{% static 'src/css/Manage-task.css' %}" rel ="stylesheet">
-<link href ="{% static 'src/css/Assign-task.css' %}" rel ="stylesheet">
 {% endblock extrahead %}
+
 {% block content %}
 
-<!-- ======= Manage-Task Section ======= -->
-            <div class="tabs-sec">
-                <button class="tab_button active-tab" onclick="openTab(event,'left')">Manage Tasks</button>
-                <button class="tab_button" onclick="openTab(event,'right')">Manage Updates</button>
+<!-- ======= Assign-Task Section ======= -->
 
-            </div>
-            <section class="manage-task">
-                <div id="left" class="left tabs">
-                    <section class="int-sec">
-                        <h1 class="heading">
-                            Manage Tasks
-                        </h1>
-                        
-
-                        <ul class="tasks" style="list-style:none">
-                            
-                            <li class="element" id="random">
-                                <div class="field">
-                                    <label for="Task-name">Task name: </label>
-                                    <label for="hide">Task 1 </label>
-                                    <input type="text" name="Task-name" id="Task-name" value="Task 1" style="display:none;"><br>
-                                </div>
-                                <div class="field">
-                                    <label for="Task-duration">Duration (in hrs.): </label>
-                                    <label  for="hide"> 1 hr </label>
-                                    <input type="text" name="Task-duration" id="Task-duration" value="1 hr" style="display:none;"><br>
-                                </div>
-                                <div class="field">
-                                    <label for="Task-Description">Task Description: </label>
-                                    <label  for="hide">This is the task description </label>
-                                    <textarea name="Task-Description" id="Task-Description" cols="30" rows="4" style="display:none;">This is the task description</textarea>
-                                </div>
-                                <div class="field">
-                                    <label for="Related-resources">Related Resources: </label>
-                                    <label  for="hide">Some resources. </label>
-                                    <input type="text" name="Related-resources" id="Related-resources" value="Some resources." style="display:none;">
-                                </div>
-    
-                                <input id="Submit-button" type="submit" value="Update" style="display:none;">
-
-                                <div class="buttons">
-                                    <button class="delete" onclick="delete_element(random)">Delete</button>
-                                    <button class="edit" onclick="edit_element(random)">Edit</button>
-                                </div>
-                            </li>
-                        </ul>
-                    </section>
-
+<section class="manage-task">
+    <div id="left" class="left">
+        <section class="int-sec mb-2">
+            <h1 class="heading" onclick="drop_down1()">
+                Project Name <button class="btn btn-secondary b-btn mgn" onclick="drop_down()" style="font-weight: bold;">+ Add SubTasks</button>
+            </h1>
+            
+            <form action="" class="tasks" style="display: none">
+                <div class="field">
+                    <label for="subTask-name">Sub Task name: </label>
+                    <input type="text" name="subTask-name" id="subTask-name"><br>
                 </div>
-
-
-
-
-                <div id="right" class="right tabs" style="display: none;">
-                    <section class="int-sec">
-                        <h1 class="heading">
-                            Manage Updates
-                        </h1>
-                    
-                        <ul class="tasks" style="list-style:none">
-                            
-
-                           
-
-
-
-                           
-
-
-
-
-                            
-
-
-
-                            <li class="element" id="random1">
-                                <div class="field">
-                                    <label for="Update-name">Update name: </label>
-                                    <label for="hide">Name</label>
-                                    <input type="text" name="Update-name" id="Update-name" value="name" style="display:none;"><br>
-                                </div>
-                                <div class="field">
-                                    <label for="Task-duration">Duration (in hrs.): </label>
-                                    <label for="hide">Duration</label>
-                                    <input type="text" name="Task-duration" id="Task-duration" value="Duration" style="display:none;"><br>
-                                </div>
-                                <div class="field">
-                                    <label for="Update-Description">Update Description: </label>
-                                    <label for="hide">Description</label>
-                                    <textarea name="Update-Description" id="Update-Description" cols="30" rows="4" style="display:none;">Description</textarea><br>
-                                </div>
-    
-                                <input id="Submit-button" type="submit" value="Update" style="display:none;">
-
-                                <div class="buttons">
-                                    <button class="delete" onclick="delete_element(random1)">Delete</button>
-                                    <button class="edit" onclick="edit_element(random1)">Edit</button>
-                                </div>
-                               
-                            </li>
-                        </ul>
-                    </section>
+                <div class="field">
+                    <label for="subTask-duration">Deadline: </label>
+                    <input type="text" name="subTask-duration" id="subTask-duration"><br>
                 </div>
-            </section>
-            <!-- Manage-Task Section -->
-    {% endblock content %}
+                <div class="field">
+                    <label for="subTask-Description">Sub Task Description: </label>
+                    <textarea name="subTask-Description" id="subTask-Description" cols="30" rows="4"></textarea>
+                </div>
+                <div class="field">
+                    <label for="Related-resources">Related Tags: </label>
+                    <input type="text" name="Related-resources" id="Related-resources">
+                </div>
+                <br><br>
+                <div class="submit-button">
+                    <input id="Submit-button" type="submit" value="Create SubTask">
+                </div>    
+                </form>
+        </section>
+        <div class="subtask_table mb-4" style="display: block; overflow-x: auto;">
+        <table class="subtable" style="overflow-x: auto;">
+            <tr class="tr1">
+                <th class="th1">S.No</th>
+                <th class="th1">SubTask Name</th>
+                <th class="th1">Deadline</th>
+                <th class="th1">Tags</th>
+                <th class="th1">Manage Tasks</th>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">1.</td>
+                <td class="td1">To-do List</td>
+                <td class="td1">1 Week</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit" aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">2.</td>
+                <td class="td1">Profile builder</td>
+                <td class="td1">1 Day</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">3.</td>
+                <td class="td1">Colour Changer</td>
+                <td class="td1">2 Days</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">4.</td>
+                <td class="td1">JS Calculator</td>
+                <td class="td1">1 Week</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            </table>
+        </div>
+    </div>
+    <div id="left" class="left">
+        <section class="int-sec">
+           <h1 class="heading" onclick="drop_down2()">
+                Project Name <button class="btn btn-secondary b-btn mgn" onclick="drop_down3()" style="font-weight: bold;">+ Add SubTasks</button>
+            </h1>
+            
+            <form action="" class="tasks1" style="display: none">
+                <div class="field">
+                    <label for="subTask-name">Sub Task name: </label>
+                    <input type="text" name="subTask-name" id="subTask-name"><br>
+                </div>
+                <div class="field">
+                    <label for="subTask-duration">Deadline: </label>
+                    <input type="text" name="subTask-duration" id="subTask-duration"><br>
+                </div>
+                <div class="field">
+                    <label for="subTask-Description">Sub Task Description: </label>
+                    <textarea name="subTask-Description" id="subTask-Description" cols="30" rows="4"></textarea>
+                </div>
+                <div class="field">
+                    <label for="Related-resources">Related Tags: </label>
+                    <input type="text" name="Related-resources" id="Related-resources">
+                </div>
+                <br><br>
+                <div class="submit-button">
+                    <input id="Submit-button" type="submit" value="Create SubTask">
+                </div>    
+                </form>
+        </section>
+        <div class="subtask_table1" style="display: none; overflow-x: auto;">
+        <table class="subtable1" style="overflow-x: auto;">
+            <tr class="tr1">
+                <th class="th1">S.No</th>
+                <th class="th1">SubTask Name</th>
+                <th class="th1">Deadline</th>
+                <th class="th1">Tags</th>
+                <th class="th1">Manage</th>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">1.</td>
+                <td class="td1">To-do List</td>
+                <td class="td1">1 Week</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">2.</td>
+                <td class="td1">Profile builder</td>
+                <td class="td1">1 Day</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">3.</td>
+                <td class="td1">Colour Changer</td>
+                <td class="td1">2 Days</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">4.</td>
+                <td class="td1">JS Calculator</td>
+                <td class="td1">1 Week</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn"><i
+              class="fa fa-edit " aria-hidden="true"></i></button>&nbsp;<button
+                        class="btn btn-danger b-btn"><i
+              class="fa fa-trash " aria-hidden="true"></i></button></td>
+            </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Assing-Task end -->
+{% endblock content %}
