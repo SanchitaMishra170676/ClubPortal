@@ -1,334 +1,283 @@
-{% extends 'base/base.html' %}
-{% load static %}
+<!doctype html>
+<html lang="en">
+  <head> 
+    <!-- Bootstrap CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    {% load static %}
+     {% block script %}
+    <script src="{% static 'src/js/public_profile.js' %}"></script>
+    {% endblock script %}
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'src/css/public_profile.css' %}">
+    {% endblock extrahead %}
+    
+    <title>PUBLIC PROFILE</title>
+           
+    </head>
+    <body>
+          <div id="left"></div>
+          <div id="right"></div>
+          
+          <div class="spare">.</div>
+          <div class="header">
+                <b class="av" >PUBLIC PROFILE</b>
+                <a class="copy_text"  data-toggle="tooltip" title="Copy to Clipboard" href="http://innogeeks.kiet.edu"><i class="fa fa-share-alt fa-2x" aria-hidden="true" style="float: right; color:#fff; padding-right:2.5em; padding-top:0.5em; text-align: center; vertical-align: middle;"></i></a>
+                <!-- three dot menu -->
+                <div class="dropdown" style="color: #000;">
+                    <!-- three dots -->
+                    <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <!-- menu -->
+                    <div id="myDropdown" class="dropdown-content">
+                        <a  onclick = "gfg_Run('rgb(240, 240, 240)')">white background</a>
+                        <a  onclick="gfg_Run('rgba(255, 99, 71, 0.5)')">pink background</a>
+                        <a href="#" ><input type="file" name="" id="file" value="Click"></a>
+                    </div>
+                </div>
 
-{% block script %}
-<script src="{% static 'src/js/public_profile.js' %}"></script>
-{% endblock  %}
-
-{% block extrahead %}
-<link href="{% static 'src/css/public_profile.css' %}" rel="stylesheet">
-<style>
-@media (min-width: 767px) {
-  .card-blog {
-    margin-bottom: 3rem;
-  }
-}
-
-.card-blog .card-body {
-  position: relative;
-}
-
-.card-blog .card-category-box {
-  position: absolute;
-  text-align: center;
-  top: -16px;
-  left: 15px;
-  right: 15px;
-  line-height: 25px;
-  overflow: hidden;
-}
-
-.card-blog .card-category {
-  display: inline-block;
-  color: #fff;
-  padding: 0 15px 5px;
-  overflow: hidden;
-  background-color: #0078ff;
-  border-radius: 4px;
-}
-
-.card-blog .card-category .category {
-  color: #fff;
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: .7rem;
-  letter-spacing: .1px;
-  margin-bottom: 0;
-}
-
-.card-blog .card-title {
-  font-size: 1.3rem;
-  margin-top: .6rem;
-}
-
-.card-blog .card-description {
-  color: #4e4e4e;
-}
-
-.card-blog .post-author {
-  display: inline-block;
-}
-
-.card-blog .post-date {
-  color: #4e4e4e;
-  display: inline-block;
- 
-}
-</style>
-{% endblock extrahead %}
-
-{% block content %}
-
-<!-- ======= Public profile Section ======= -->
-<section class="about ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
-  <div class="container">
-  <div class="row d-flex no-gutters">
-   <div class="row">
-     <div class="col-md-6">
-       <img src="{% static 'src/img/about.jpg' %}" style="height: auto; width: 100%; max-height:600px; max-width: 400px;"alt="">
-     </div>
-     <div class="col-md-6 col-lg-6">
-      <div class="row justify-content-start pb-3">
-      <div class="col-md-12 heading-section ftco-animate fadeInUp ftco-animated">
-      <h1 class="big">  Profile</h1>
-      <h2 class="mb-4">About Me</h2>
-      <p>Innovative and deadline-driven Full-stack Web Developer with 3+ years of experience designing and developing user-centered websites from initial concept to final, polished deliverable.</p>
-      <ul class="about-info mt-4 px-md-0 px-2">
-      <li class="d-flex"><span>Name:</span> <span>Aditi Goyal</span></li>
-      <li class="d-flex"><span>Date of birth:</span> <span>January 1, 2001</span></li>
-      <li class="d-flex"><span>Address:</span> <span>Delhi , India</span></li>
-     
-      <li class="d-flex"><span>Email:</span> <span>aditi@gmail.com</span></li>
-      <li class="d-flex"><span>Phone: </span> <span>+91-9898989898</span></li>
-      </ul> 
-      </div>
-      </div>
-      <div class="counter-wrap ftco-animate d-flex mt-md-3 fadeInUp ftco-animated">
-        <div class="text">
-        <p class="mb-4">
-        <span class="number" data-number="9">9</span>
-        <span>Project complete</span>
-        </p>
-         </div>
-        </div>
-       
-     </div>
-   </div>
-  </section>
-<br><br>
-
-
-  
-
-    <!-- ======= professional,summary Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Summary</h2>
-          <p>Innovative and deadline-driven Full-stack Web Developer with 3+ years of experience designing and developing user-centered websites from initial concept to final, polished deliverable.Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
+            </div>
+            <div style="padding:2em;"></div>
+            <section class="about ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section" style="">
+            <div class="container">
+            <div class="row d-flex no-gutters">
+            <div class="row">
+              <div class="col-md-6">
+                <img src="{% static 'src/img/images.jpg' %}" style="height: auto; width: 100%; max-height:600px; max-width: 400px;"alt="">
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <div class="row justify-content-start pb-3">
+                <div class="col-md-12 heading-section ftco-animate fadeInUp ftco-animated">
+                
+                <h1 class="big">  Profile</h1>
+                <h2 class="mb-4"></h2>
+                  <h2 class="mb-4">
+                      <span class="text-slider-items">
+                          About Me
+                      </span>
+                      <strong class="text-slider"></strong>
             
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>b-tech in information technology</h4>
-              <h5>2019 - 2023</h5>
-              <p><em>KIET Group of Institutions, Ghaziabad, UP</em></p>
-              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-            </div>
-            <div class="resume-item">
-              <h4>Primary and secondary education</h4>
-              <h5>2006 - 2019</h5>
-              <p><em>Delhi Public School, Bulandshahr, UP</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-            </div>
-            <h3 class="resume-title">Skills</h3>
-            <div class="resume-item pb-0">
-              <h4>Full-Stack Web Developer</h4>
-              <ul>
-                <li>Frontend (HTML5, CSS3, Bootstrap, Javascript, Raect.js)</li>
-                <li>Backend (Node.js , PHP)</li>
-                <li>CP (C++ ,C )</li>
-                <li>Public Speaking</li>
-                <li>Project Management</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <h3 class="resume-title">Achievements & Internship</h3>
-            <div class="resume-item">
-              <h4>Internship as full-stack web Developer </h4>
-              <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-               
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Internship as Graphic design specialist</h4>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-              
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Internship as Frontend developer</h4>
-              
-              <p><em></em></p>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-              
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Internship as Frontend developer</h4>
-              
-              <p><em></em></p>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-              
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-    <!-- End professional,summary Section -->
-
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-      <div class="container">
-        <div id="page-2" class="page two">
-        <h2 class="heading">Projects</h2>
-      <div class="row">
-      <div class="col-md-6">
-      <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
-        
-      <span class="date">2014-2015</span>
-      <div class="row">
-        <div class="col-md-10"><h2>	App design and development</h2></div>
-        <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
-      </div>
-       
-      <span class="position">Android development</span>
-      <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-      </div>
-      <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
-      <span class="date">2014-2015</span>
-      <div class="row">
-        <div class="col-md-10"><h2>	App design and development</h2></div>
-        <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
-      </div>
-      <span class="position">Android development</span>
-      <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-      </div>
+                  </h2>
       
-      </div>
-      <div class="col-md-6">
-      
-      <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
-      <span class="date">2014-2015</span>
-      <div class="row">
-        <div class="col-md-10"><h2>	App design and development</h2></div>
-        <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
-      </div>
-      <span class="position">Android development</span>
-      <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-      </div>
-      <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
-      <span class="date">2017-2018</span>
-      <div class="row">
-        <div class="col-md-10"><h2>	App design and development</h2></div>
-        <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
-      </div>
-      <span class="position">Android development</span>
-      <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-      </div>
-      </div>
-      </div>
-      
-    </div>
-
-       <!-- ======= Blog Section ======= -->
-       <section id="blog" class="blog-mf sect-pt4 route">
-        
-            <div class="col-sm-12">
-              <div id="page-2" class="page two">
-              <h2 class="heading">Blogs</h2>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card card-blog">
-                    <div class="card-img">
-                      <a href=""><img src="{% static 'src/img/blog-post-3.jpeg' %}" alt="" class="img-fluid"></a>
-                    </div>
-                    <div class="card-body">
-                      <div class="card-category-box">
-                        <div class="card-category">
-                          <h6 class="category">Travel</h6>
-                        </div>
-                      </div>
-                      <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
-                      <p class="card-description">
-                        Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                        a pellentesque nec,
-                        egestas non nisi.
-                      </p>
-                    </div>
-                   
-                  </div>
+                <p>Innovative and deadline-driven Full-stack Web Developer with 3+ years of experience designing and developing user-centered websites from initial concept to final, polished deliverable.</p>
+                <ul class="about-info mt-4 px-md-0 px-2">
+                <li class="d-flex"><span>Name:</span> <span>Aditi Goyal</span></li>
+                <li class="d-flex"><span>Date of birth:</span> <span>January 1, 2001</span></li>
+                <li class="d-flex"><span>Address:</span> <span>Delhi , India</span></li>
+              
+                <li class="d-flex"><span>Email:</span> <span>aditi@gmail.com</span></li>
+                <li class="d-flex"><span>Phone: </span> <span>+91-9898989898</span></li>
+                </ul> 
                 </div>
-                <div class="col-md-4">
-                  <div class="card card-blog">
-                    <div class="card-img">
-                      <a href=""><img src="{% static 'src/img/blog-post-3.jpeg' %}" alt="" class="img-fluid"></a>
-                    </div>
-                    <div class="card-body">
-                      <div class="card-category-box">
-                        <div class="card-category">
-                          <h6 class="category">Web Design</h6>
-                        </div>
-                      </div>
-                      <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
-                      <p class="card-description">
-                        Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                        a pellentesque nec,
-                        egestas non nisi.
-                      </p>
-                    </div>
-                    
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card card-blog">
-                    <div class="card-img">
-                      <a href=""><img src="{% static 'src/img/blog-post-3.jpeg' %}" alt="" class="img-fluid"></a>
-                    </div>
-                    <div class="card-body">
-                      <div class="card-category-box">
-                        <div class="card-category">
-                          <h6 class="category">Web Design</h6>
-                        </div>
-                      </div>
-                      <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
-                      <p class="card-description">
-                        Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                        a pellentesque nec,
-                        egestas non nisi.
-                      </p>
-                    </div>
-                    
-                  </div>
                 </div>
               </div>
             </div>
-            </div>  
-        
-      </section>
-      <!-- End Blog Section -->
-      </div>
+            </section>
+          <br><br>
+
+          <!-- professional,summary Section -->
+          <section id="resume" class="resume">
+            <div class="container" data-aos="fade-up">
+
+              <div class="section-title">
+              
+                <h2>Summary</h2>
+                
+                <p>Innovative and deadline-driven Full-stack Web Developer with 3+ years of experience designing and developing user-centered websites from initial concept to final, polished deliverable.Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit</p>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-7">
+                  
+
+                  <h3 class="resume-title">Education</h3>
+                  <div class="resume-item">
+                    <h4>b-tech in information technology</h4>
+                    <h5>2019 - 2023</h5>
+                    <p><em>KIET Group of Institutions, Ghaziabad, UP</em></p>
+                    <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
+                  </div>
+                  <div class="resume-item">
+                    <h4>Primary and secondary education</h4>
+                    <h5>2006 - 2019</h5>
+                    <p><em>Delhi Public School, Bulandshahr, UP</em></p>
+                    <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+                  </div>
+                  </div>
+            
+          
+                  <div class="col-lg-5">
+                    <h3 class="resume-title">Skills</h3>
+                    <div class="resume-item pb-0">
+                      <h4>Full-Stack Web Developer</h4>
+                      <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>Bootstrap</li>
+                        <li>Javascript</li>
+                        <li>Raect.js</li>
+                        <li>Node.js</li>
+                        <li>PHP</li>
+                        <li>C++</li> 
+                        <li>C</li>
+                        <li>Public Speaking</li>
+                        <li>Project Management</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section><!-- End professional,summary Section -->
+            <section class="ftco-section ftco-no-pb" id="resume-section">
+              <div class="container">
+                <div id="page-2" class="page two">
+                <h2 class="heading">Projects  & Achievements</h2>
+              <div class="row">
+              <div class="col-md-6">
+              <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
+                
+              <span class="date">2014-2015</span>
+              <div class="row">
+                <div class="col-md-10"><h2>	App design and development</h2></div>
+                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
+              </div>
+              
+              <span class="position">Android development</span>
+              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+              </div>
+              <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
+              <span class="date">2014-2015</span>
+              <div class="row">
+                <div class="col-md-10"><h2>	App design and development</h2></div>
+                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
+              </div>
+              <span class="position">Android development</span>
+              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+              </div>
+              
+              </div>
+              <div class="col-md-6">
+              
+              <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
+              <span class="date">2014-2015</span>
+              <div class="row">
+                <div class="col-md-10"><h2>	App design and development</h2></div>
+                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
+              </div>
+              <span class="position">Android development</span>
+              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+              </div>
+              <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
+              <span class="date">2017-2018</span>
+              <div class="row">
+                <div class="col-md-10"><h2>	App design and development</h2></div>
+                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
+              </div>
+              <span class="position">Android development</span>
+              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+              </div>
+              </div>
+              </div>
+              
+            </div>
+              <!-- ======= Blog Section ======= -->
+              <section id="blog" class="blog-mf sect-pt4 route">
+                
+                    <div class="col-sm-12">
+                      <div id="page-2" class="page two">
+                      <h2 class="heading">Blogs</h2>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="card card-blog">
+                            <div class="card-img">
+                              <a href=""><img src="{% static 'src/img/blog.png' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="card-body">
+                              <div class="card-category-box">
+                                <div class="card-category">
+                                  <h6 class="category">Travel</h6>
+                                </div>
+                              </div>
+                              <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
+                              <p class="card-description">
+                                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
+                                a pellentesque nec,
+                                egestas non nisi.
+                              </p>
+                            </div>
+                          
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card card-blog">
+                            <div class="card-img">
+                              <a href=""><img src="{% static 'src/img/blog.png' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="card-body">
+                              <div class="card-category-box">
+                                <div class="card-category">
+                                  <h6 class="category">Web Design</h6>
+                                </div>
+                              </div>
+                              <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
+                              <p class="card-description">
+                                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
+                                a pellentesque nec,
+                                egestas non nisi.
+                              </p>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card card-blog">
+                            <div class="card-img">
+                              <a href=""><img src="{% static 'src/img/blog.png' %}" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="card-body">
+                              <div class="card-category-box">
+                                <div class="card-category">
+                                  <h6 class="category">Web Design</h6>
+                                </div>
+                              </div>
+                              <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
+                              <p class="card-description">
+                                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
+                                a pellentesque nec,
+                                egestas non nisi.
+                              </p>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>  
+                
+                  </section><!-- End Blog Section -->
+                  </div>
+                
+                  </section>
+                  <div class="lastt" >.</div>
+              <!-- Import typed.min.js file from typed.js folder -->
+              <script src=
+                  "./typed.js-master/lib/typed.min.js">
+              </script>
+                
+              <!-- Add jquery cdn -->
+              <script src=
+          "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+              </script>
+           
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
      
-      </section>
-   
-    <!-- Public Profile section end -->
-      
-      
-        
-{% endblock %} 
+  </body>
+</html>
