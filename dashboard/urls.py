@@ -11,6 +11,7 @@ urlpatterns = [
 # """ URL Pattern for profile """
     path('personal_profile/',views.personal_profile,name='personal_profile'),
     # path('public_profile/',views.public_profile,name='public_profile'),
+    # path('coding_profile/',views.coding_profile,name='coding_profile'),
     # path('resume/',views.resume,name='resume'),
 
 # """ URL pattern for hackathon """
@@ -41,6 +42,7 @@ urlpatterns = [
     # path('manage-task/',views.manage_task,name='manage_task'),
     # path('student-task/',views.student_task,name='student_task'),
     # path('mentor-update/',views.mentor_update,name='mentor_update'),
+    # path('student-section/',views.student_section,name='student_section'),
     
 # """ URL pattern 404 """
     path('404_not_found/', views.not_found404,name='404_not_found'),
