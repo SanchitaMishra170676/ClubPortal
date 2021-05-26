@@ -34,8 +34,7 @@
                     </ul>
                     <!-- menu -->
                     <div id="myDropdown" class="dropdown-content">
-                        <a  onclick = "gfg_Run('rgb(240, 240, 240)')">white background</a>
-                        <a  onclick="gfg_Run('rgba(255, 99, 71, 0.5)')">pink background</a>
+                        <a  onclick = "gfg_Run('rgb(240, 240, 240)')">Default</a>
                         <a href="#" ><input type="file" name="" id="file" value="Click"></a>
                     </div>
                 </div>
@@ -47,28 +46,61 @@
             <div class="row d-flex no-gutters">
             <div class="row">
               <div class="col-md-6">
-                <img src="{% static 'src/img/images.jpg' %}" style="height: auto; width: 100%; max-height:600px; max-width: 400px;"alt="">
+                {% if club.image %}
+                <img src="{% static '' %}{{club.image}}" style="height: auto; width: 100%; max-height:600px; max-width: 400px;"alt="profile">
+                {% elif club.gender == 'female' %}
+                <img src="{% static 'src/img/girl.png' %}" style="height: auto; width: 100%; max-height:600px; max-width: 400px;" class="img-avatar" alt="Innogeeks technical club of kiet group of institution Ghaziabad Anynumos ">
+                 {% else %}
+                <img src="{% static 'src/img/man.png' %}" style="height: auto; width: 100%; max-height:600px; max-width: 400px;" class="img-avatar" alt="Innogeeks technical club of kiet group of institution Ghaziabad Anynumos ">
+
+                  {% endif %}
+
+                
+                
               </div>
               <div class="col-md-6 col-lg-6">
                 <div class="row justify-content-start pb-3">
                 <div class="col-md-12 heading-section ftco-animate fadeInUp ftco-animated">
                 
-                <h1 class="big">  Profile</h1>
                 <h2 class="mb-4"></h2>
                   <h2 class="mb-4">
-                      
-                          Web Developer
-                      
+                      <span class="text-slider-items">
+                          About Me
+                      </span>
+                      <strong class="text-slider"></strong>
+            
                   </h2>
       
-                <p>Innovative and deadline-driven Full-stack Web Developer with 3+ years of experience designing and developing user-centered websites from initial concept to final, polished deliverable.</p>
+                <p> {{profile.shortBio}}</p>
                 <ul class="about-info mt-4 px-md-0 px-2">
-                <li class="d-flex"><span>Name:</span> <span>Aditi Goyal</span></li>
-                <li class="d-flex"><span>Date of birth:</span> <span>January 1, 2001</span></li>
-                <li class="d-flex"><span>Address:</span> <span>Delhi , India</span></li>
-              
-                <li class="d-flex"><span>Email:</span> <span>aditi@gmail.com</span></li>
-                <li class="d-flex"><span>Phone: </span> <span>+91-9898989898</span></li>
+                  {% if profile.user.name %}
+                <li class="d-flex"><span>Name:</span> <span>{{profile.user.name}}</span></li>
+                {% endif %}
+                {% if profile.dob %}
+                <li class="d-flex"><span>Date of birth:</span> <span>{{profile.dob}}</span></li>
+                {% endif %}
+                {% if profile.city %}
+                <li class="d-flex"><span>Address:</span> <span>{{profile.city}} {{profile.state}} {{profile.postal_code}}</span></li>
+                {% endif %}
+                {% if profile.email %}
+                <li class="d-flex"><span>Email:</span> <span>{{profile.email}}</span></li>
+                {% endif %}
+                {% if profile.phone %}
+                <li class="d-flex"><span>Phone: </span> <span>{{profile.phone}}</span></li>
+                {% endif %}
+                {% if resume.facebookURL %}
+                <li class="d-flex"><span>Facebook: </span> <span><a target="_blank" href="{{resume.facebookURL}}">  {{resume.facebookURL}}</a></span></li>
+                {% endif %}
+                {% if resume.twitterURL %}
+                <li class="d-flex"><span>Twitter: </span> <span><a target="_blank" href="{{resume.twitterURL}}">  {{resume.twitterURL}}</a></span></li>
+                {% endif %}
+                {% if resume.linkedinURL %}
+                <li class="d-flex"><span>LinkedIn: </span> <span><a target="_blank" href="{{resume.linkedinURL}}">  {{resume.linkedinURL}}</a></span></li>
+                {% endif %}
+                {% if resume.githubURL %}
+                <li class="d-flex"><span>Github: </span> <span><a target="_blank" href="{{resume.githubURL}}">  {{resume.githubURL}}</a></span></li>
+                {% endif %}
+                
                 </ul> 
                 </div>
                 </div>
@@ -85,174 +117,144 @@
               
                 <h2>Summary</h2>
                 
-                <p>Innovative and deadline-driven Full-stack Web Developer with 3+ years of experience designing and developing user-centered websites from initial concept to final, polished deliverable.Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit</p>
+                <p>{{profile.shortBio}}</p>
               </div>
 
               <div class="row">
+                {% if educations %}
                 <div class="col-lg-7">
-                  
-
                   <h3 class="resume-title">Education</h3>
+                  {% for education in educations %}
                   <div class="resume-item">
-                    <h4>b-tech in information technology</h4>
-                    <h5>2019 - 2023</h5>
-                    <p><em>KIET Group of Institutions, Ghaziabad, UP</em></p>
-                    <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
+                    <h4>{{education.qualification}}</h4>
+                    <h5>{{education.time_period}}</h5>
+                    <p><em>{{education.institution}}</em></p>
                   </div>
-                  <div class="resume-item">
-                    <h4>Primary and secondary education</h4>
-                    <h5>2006 - 2019</h5>
-                    <p><em>Delhi Public School, Bulandshahr, UP</em></p>
-                    <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
+                  {% endfor %}
                   </div>
-                  </div>
-            
+                  {% endif %}
           
+                  {% if skills %}
                   <div class="col-lg-5">
                     <h3 class="resume-title">Skills</h3>
                     <div class="resume-item pb-0">
-                      <h4>Full-Stack Web Developer</h4>
+                      {% for skill in skills%}
                       <ul>
-                        <li>HTML5</li>
-                        <li>CSS3</li>
-                        <li>Bootstrap</li>
-                        <li>Javascript</li>
-                        <li>Raect.js</li>
-                        <li>Node.js</li>
-                        <li>PHP</li>
-                        <li>C++</li> 
-                        <li>C</li>
-                        <li>Public Speaking</li>
-                        <li>Project Management</li>
+                        <li>{{skill.skill}}</li>
                       </ul>
+                      {% endfor %}
                     </div>
                   </div>
+                  {% endif %}
                 </div>
 
               </div>
-            </section><!-- End professional,summary Section -->
+            </section>
+            
+            <!-- End professional,summary Section -->
             <section class="ftco-section ftco-no-pb" id="resume-section">
               <div class="container">
                 <div id="page-2" class="page two">
-                <h2 class="heading">Projects  & Achievements</h2>
+                  {% if achievements%}
+                <h2 class="heading">Achievements</h2>
               <div class="row">
-              <div class="col-md-6">
+                {% for achievement in achievements %}
+              <div class="col-md-3">
               <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
+              <span class="date">{{achievement.date}}</span>
+              <div class="row">
+                <div class="col-md-10"><h2>	{{achievement.achievementName}}</h2></div>
                 
-              <span class="date">2014-2015</span>
-              <div class="row">
-                <div class="col-md-10"><h2>	App design and development</h2></div>
-                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
+                <div class="col-md-2">
+                  {% if achievement.certiURL %}
+                  <h2><a href="{{achievement.certiURL}}"><i class="fa fa-link" aria-hidden="true"></i></a></h2>
+                  {% endif %}
+                </div>
               </div>
-              
-              <span class="position">Android development</span>
-              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-              </div>
-              <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
-              <span class="date">2014-2015</span>
-              <div class="row">
-                <div class="col-md-10"><h2>	App design and development</h2></div>
-                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
-              </div>
-              <span class="position">Android development</span>
-              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-              </div>
-              
-              </div>
-              <div class="col-md-6">
-              
-              <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
-              <span class="date">2014-2015</span>
-              <div class="row">
-                <div class="col-md-10"><h2>	App design and development</h2></div>
-                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
-              </div>
-              <span class="position">Android development</span>
-              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-              </div>
-              <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
-              <span class="date">2017-2018</span>
-              <div class="row">
-                <div class="col-md-10"><h2>	App design and development</h2></div>
-                <div class="col-md-2"><h2><a href=""><i class="fa fa-link" aria-hidden="true"></i></a></h2></div>
-              </div>
-              <span class="position">Android development</span>
-              <p class="mt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+             
+              {% if achievement.image %}
+              <img class="card-img-top" src="{% static '' %}{{achievement.image}}" alt="Card image cap">
+              {% else %}
+              <img class="card-img-top" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Card image cap">
+              {% endif %}
+
+              <span class="position">{{achievement.category}} ( {{achievement.role}} )</span>
+              <p class="mt-4">{{achievement.description}}</p>
               </div>
               </div>
+              {% endfor %}
               </div>
               
             </div>
+            {% endif %}
+
+            <!-- Projects Section-->
+
+            <div id="page-2" class="page two">
+              {% if projects %}
+            <h2 class="heading">Projects</h2>
+          <div class="row">
+            {% for project in projects %}
+          <div class="col-md-3">
+          <div class="resume-wrap ftco-animate fadeInUp ftco-animated">
+          <span class="date">{{project.date}}</span>
+          <div class="row">
+            <div class="col-md-10"><h2>	{{project.projectName}}</h2></div>
+           
+            <div class="col-md-2">
+              {% if project.githubURL%}
+              <h2><a href="{{project.githubURL}}"><i class="fa fa-link" aria-hidden="true"></i></a></h2>
+              {% endif %}
+            </div>
+          </div>
+          
+          {% if project.image %}
+          <img class="card-img-top" src="{% static '' %}{{project.image}}" alt="Card image cap">
+          {% else %}
+          <img class="card-img-top" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Card image cap">
+          {% endif %}
+
+          <span class="position">{{project.category}} ( {{project.yourRole}} )</span>
+          <p class="mt-4">{{project.description}}</p>
+          </div>
+          </div>
+          {% endfor %}
+          </div>
+          
+        </div>
+        {% endif %}
+
+
+
               <!-- ======= Blog Section ======= -->
               <section id="blog" class="blog-mf sect-pt4 route">
                 
                     <div class="col-sm-12">
+                      
                       <div id="page-2" class="page two">
+                        {% if blogs%}
                       <h2 class="heading">Blogs</h2>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="card card-blog">
-                            <div class="card-img">
-                              <a href=""><img src="{% static 'src/img/blog.png' %}" alt="" class="img-fluid"></a>
-                            </div>
+                      <div class="row row-cols-1 row-cols-md-3">
+                        {% for blog in blogs %}
+                        <div class="col mb-4">
+                          <div class="card post">
+                            {% if blog.Thumbimage1 %}
+                            <img class="card-img-top" src="{% static '' %}{{blog.Thumbimage1}}" alt="Card image cap">
+                            {% else %}
+                            <img class="card-img-top" src="{% static 'src/img/placeholder-img.jpg' %}" alt="Card image cap">
+                            {% endif %}
                             <div class="card-body">
-                              <div class="card-category-box">
-                                <div class="card-category">
-                                  <h6 class="category">Travel</h6>
-                                </div>
-                              </div>
-                              <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
-                              <p class="card-description">
-                                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                                a pellentesque nec,
-                                egestas non nisi.
-                              </p>
+                              <h3 class="mb-0">{{blog.title|truncatewords:7}}</h3>
+                        <div class="mb-1 text-muted">{{blog.date}}</div>
+                        <p class="card-text mb-auto">{{blog.highlights|truncatewords:30}}</p>
+                        <a href="/blog/{{blog.slug}}/" class="stretched-link" target="_blank">Continue reading</a>
                             </div>
-                          
                           </div>
                         </div>
-                        <div class="col-md-4">
-                          <div class="card card-blog">
-                            <div class="card-img">
-                              <a href=""><img src="{% static 'src/img/blog.png' %}" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="card-body">
-                              <div class="card-category-box">
-                                <div class="card-category">
-                                  <h6 class="category">Web Design</h6>
-                                </div>
-                              </div>
-                              <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
-                              <p class="card-description">
-                                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                                a pellentesque nec,
-                                egestas non nisi.
-                              </p>
-                            </div>
-                            
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="card card-blog">
-                            <div class="card-img">
-                              <a href=""><img src="{% static 'src/img/blog.png' %}" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="card-body">
-                              <div class="card-category-box">
-                                <div class="card-category">
-                                  <h6 class="category">Web Design</h6>
-                                </div>
-                              </div>
-                              <h3 class="card-title"><a href="">See more ideas about Travel</a></h3>
-                              <p class="card-description">
-                                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                                a pellentesque nec,
-                                egestas non nisi.
-                              </p>
-                            </div>
-                            
-                          </div>
-                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                
                       </div>
                     </div>
                     </div>  
@@ -279,3 +281,12 @@
      
   </body>
 </html>
+
+<!--  url - slug fetch
+      -->
+
+
+
+
+      <!-- images
+      dynamic -->

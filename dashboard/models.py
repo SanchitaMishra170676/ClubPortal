@@ -3,6 +3,25 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 # Create your models here.
 
+""" Model for PublicProfile """
+class PublicProfile(models.Model):
+    gender_choices  = (
+        ('male','male'),
+        ('female','female'),
+        ('rather not say','rather not say')
+        )   
+   
+    user            = models.OneToOneField(to=User,default= None, on_delete= models.CASCADE)
+    Name            = models.CharField(max_length=150)
+    Dob             = models.DateTimeField(auto_now_add=True)
+    city            = models.CharField(max_length=50)
+    state           = models.CharField(max_length=50)
+    email           = models.EmailField(max_length=255)
+    phone           = models.CharField(max_length=20, blank=True)
+    shortBio        = models.TextField(max_length=500,blank=True)
+
+
+
 """ Model for resume """
 class Resume(models.Model):
     user            = models.OneToOneField(to=User,default= None, on_delete= models.CASCADE)
@@ -91,7 +110,6 @@ class Hackathon(models.Model):
 """ Model for articles """
 class Article(models.Model):
     user                = models.ForeignKey(to=User,default= None, on_delete= models.CASCADE)
-    author              = models.CharField(max_length= 50, default="")
     title               = models.CharField(max_length=150)
     domain              = models.CharField(max_length=100)
     highlights          = models.CharField(max_length=200)
@@ -146,7 +164,7 @@ class Course(models.Model):
 
 """ Model for Resources-topic """
 class Topic(models.Model):
-    domain          = models.ForeignKey(Course, on_delete=models.CASCADE)
+    domain          = models.ForeignKey(Course, on_delete=models.DO_NOTHING)
     topic_name      = models.CharField(max_length=255, unique=True)
     date            = models.DateTimeField(auto_now_add=True)
     
@@ -167,7 +185,7 @@ class SubTopic(models.Model):
 class VideoLecture(models.Model):
     subtopic             = models.ForeignKey(SubTopic,on_delete=models.CASCADE)
     title                = models.CharField(max_length=250)
-    embeded_link         = models.CharField(max_length=255, unique=True)
+    url                  = models.CharField(max_length=255, unique=True)
     date                 = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -183,26 +201,13 @@ class PDF(models.Model):
     def __str__(self):
         return self.title
 
-""" Model for resources- other links"""
-class OtherLink(models.Model):
-    subtopic             = models.ForeignKey(SubTopic, on_delete= models.CASCADE)
-    title                = models.CharField(max_length=255)
-    description          = models.TextField(blank=True)
-    link                 = models.CharField(max_length=255, unique=True)
-    date                 = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
-
 """ Model for Resources-Content """
 class Content(models.Model):
-    subtopic            = models.ForeignKey(SubTopic, on_delete= models.CASCADE)
+    subtopic            = models.ForeignKey(SubTopic, on_delete= models.DO_NOTHING)
     title               = models.CharField(max_length=255)
     paragraph1          = models.TextField()
-    paragraph2          = models.TextField(blank=True)
-    code_heading        = models.CharField(max_length= 255, blank= True)
-    code                = models.TextField(blank=True)
-    image               = models.ImageField(blank=True, upload_to='media/Dashboard/ContentImages/')
+    paragraph2          = models.TextField()
+    image               = models.ImageField(upload_to='media/Dashboard/ContentImages/')
     date                = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -210,7 +215,13 @@ class Content(models.Model):
 
 """ Model for clubprofile """
 class ClubProfile(models.Model):
-    
+    domain_choices = (
+        ('Web Development','Web Development'),
+        ('Android Development','Android Development'),
+        ('IOT','IOT '),
+        ('Machine Learning','Machine Learning'),        
+        ('AR/VR','AR/VR')
+        )
     gender_choices  = (
         ('male','male'),
         ('female','female'),
@@ -233,18 +244,18 @@ class ClubProfile(models.Model):
     name            = models.CharField(max_length=255)
     phone           = models.CharField(max_length=20, blank=True)
     college_email   = models.EmailField(max_length=200, unique=True)
-    personal_email   = models.EmailField(max_length=200,blank=True)
-    domain          = models.CharField(max_length=200)    
+    personal_email  = models.EmailField(max_length=200,blank=True)
+    domain          = models.CharField(max_length=200, choices= domain_choices)    
     batch           = models.CharField(max_length=100,default="2020-2024")
     courses         = models.ManyToManyField(Course,blank=True)
     image           = models.ImageField(upload_to='media/dashboard/clubprofile/',blank=True)
     date            = models.DateTimeField(auto_now_add=True)
-    hostel_status = models.CharField(max_length=255,blank=True)
+    hostel_status   = models.CharField(max_length=255,blank=True)
     is_active       = models.BooleanField(default=True)
     is_mentor       = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.college_email
+        return str(self.user) 
 
 """ Model for announcement """
 class Announcement(models.Model):    
@@ -268,7 +279,6 @@ class upcomingHackathon(models.Model):
     deadline        = models.DateTimeField()
     image           = models.ImageField(upload_to='media/dashboard/upcomingHackathon/',blank=True)
     is_active       = models.BooleanField(default=True)
-    date            = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.name

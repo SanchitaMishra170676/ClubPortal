@@ -40,7 +40,7 @@
                 {% comment %} <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a> {% endcomment %}
                 {% comment %} <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-secondary">42</span></a> {% endcomment %}
                 <a class="dropdown-item" href="{% url 'personal_profile' %}"><i class="fa fa-user"></i> Profile {{request.session.clubProfile.image}}</a>
-                <!-- <a class="dropdown-item" href="{% url 'feedback' %}"><i class="fa fa-user"></i> Feedback</a> -->
+                {% comment %}  <!-- <a class="dropdown-item" href="{% url 'feedback' %}"><i class="fa fa-user"></i> Feedback</a> -->{%endcomment %}}
                 <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a>
             </div>
         </li>
