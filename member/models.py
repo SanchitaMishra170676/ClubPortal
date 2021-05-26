@@ -5,7 +5,7 @@ from dashboard.models import ClubProfile
 
 """ Model for coding profiles of users"""
 class CodingProfile(models.Model):
-    user = models.OneToOneField(ClubProfile,on_delete=models.CASCADE)
+    user = models.OneToOneField(ClubProfile,on_delete=models.DO_NOTHING)
     codechef = models.CharField(max_length=255,default='N/A',blank=True)
     codeforces = models.CharField(max_length=255,default='N/A',blank=True)
     spoj = models.CharField(max_length=255,default='N/A',blank=True)
@@ -23,7 +23,7 @@ class Profile(models.Model):
         ('female','female'),
         ('other', 'other')
     )
-    user=  models.OneToOneField(ClubProfile, on_delete=models.CASCADE)
+    user=  models.OneToOneField(ClubProfile, on_delete=models.DO_NOTHING)
     gender = models.CharField(max_length=255,default='male')    
     phone = models.CharField(max_length=15,blank=True)
     dob = models.DateField(blank=True, null=True)
@@ -33,7 +33,7 @@ class Profile(models.Model):
     email = models.EmailField(max_length=255,blank=True)
     short_bio   = models.TextField(blank=True)
     date = models.DateTimeField(auto_now_add=True)
-
+    username = models.SlugField(max_length = 200, unique=True, default='')
     def __str__(self):
         return self.user.user.username
 

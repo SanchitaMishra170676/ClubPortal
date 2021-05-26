@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
-from .models import CodingProfile, Education,Skill
-from dashboard.models import ClubProfile
+from django.template.defaultfilters import slugify
+from dashboard.models import ClubProfile, Article,Resume, Project, Achievement
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
-from .models import  (Profile, Skill, Education) 
+from .models import  (CodingProfile, Profile, Skill, Education,) 
 # Create your views here.
 
 """ Function for coding profiles [Update -> Save] """
@@ -16,12 +16,12 @@ def coding_profile(request):
                 codingProfile = CodingProfile.objects.get(user=cpuser)
                 codingProfile.codechef = request.POST['codechef']
                 codingProfile.codeforces = request.POST['codeforces']
-                codingProfile.spoj = request.POST['spoj'] 
+                codingProfile.spoj = request.POST['spoj']
                 codingProfile.interviewbit = request.POST['interviewbit']
                 codingProfile.leetcode = request.POST['leetcode']
                 codingProfile.save()
                 messages.success(request,'Coding Profiles updated successfully!')
-                return redirect('personal_profile')
+                return redirect('home')
 
             except:
                 user = cpuser
@@ -33,7 +33,7 @@ def coding_profile(request):
                 codingProfile = CodingProfile(user=user, codeforces=codeforces,codechef=codechef,interviewbit=interviewbit,spoj=spoj,leetcode=leetcode)
                 codingProfile.save()
                 messages.success(request,'Coding Profiles Created Successfully!')
-                return redirect('personal_profile')
+                return redirect('home')
             
         except:
             messages.error(request,"No Club profile exist, please contact admin")
@@ -98,6 +98,7 @@ def personal_profile_section(request,section):
                     info = Profile.objects.get( user=user)
 
                     # info.name = request.POST['Name']
+                    uname= request.POST['Username']
                     info.dob= request.POST['Dob']   
                     info.email= request.POST['Email']
                     info.city= request.POST['City']
@@ -105,8 +106,14 @@ def personal_profile_section(request,section):
                     info.postal_code = request.POST['Postalcode']
                     info.short_bio = request.POST['Bio']
                     user.name = request.POST['Name']
-                    user.save()
-                    info.save()
+                    try:
+                        info.username = slugify(uname)
+                        user.save()
+                        info.save()
+                    except:
+                        messages.error(request,"This username already exist, Kindly enter a unique username")
+                        return redirect('/dashboard/personal_profile/')
+
                 
                     messages.success(request,"Response updated")
                     return redirect('/dashboard/personal_profile/')
@@ -114,13 +121,15 @@ def personal_profile_section(request,section):
 
                     user.name = request.POST['Name']
                     user.save()
+                    Uname = request.POST['Username']
+                    Username = slugify(Uname)
                     Dob= request.POST['Dob']
                     Email= request.POST['Email']
                     City= request.POST['City']
                     State = request.POST['State']
                     Postal_code = request.POST['Postalcode']
                     Bio = request.POST['Bio']
-                    inst = Profile(user= user, dob = Dob, email=Email, city=City, state=State, postal_code=Postal_code,short_bio=Bio)
+                    inst = Profile(user= user, dob = Dob, email=Email, city=City, state=State, username= Username, postal_code=Postal_code,short_bio=Bio)
                     inst.save()
                     messages.success(request,"Sucessfuly Created")
                     return redirect('/dashboard/personal_profile/')
@@ -150,7 +159,7 @@ def personal_image_save(request):
     if request.method == "POST":
         try:
             user = ClubProfile.objects.get(user=request.user)
-            # print(user)
+            print(user)
             if user:
                 try:
                     user.image = request.FILES['image']
@@ -160,7 +169,7 @@ def personal_image_save(request):
                     pass
                 return redirect('/dashboard/personal_profile')
             else:
-                messages.error(request,"No such Club Profile exists")
+                messages.error(request,"Nosuch Club Profile exists")
         except:
             messages.error(request,"Pls Contact to Core team for Account !")
         return redirect('/dashboard/personal_profile/')
@@ -217,7 +226,7 @@ def ClubProfiles(request):
                 clubProfile.branch = request.POST['branch']
                 clubProfile.name = request.POST['name']
                 clubProfile.phone = request.POST['phone']
-                # clubProfile.domain = request.POST['domain']
+                clubProfile.domain = request.POST['domain']
                 clubProfile.save()
                 messages.success(request,'Profile Updated successfully')
                 return redirect('home')  
@@ -246,3 +255,24 @@ def delete_skill(request,pk):
     else:
         messages.error(request,"No CLub Profile exists")
         return redirect('404_not_found')
+
+""" Function to display Public Proflie"""
+def publicProfile(request, the_slug):
+    try:      
+        profile = Profile.objects.get(username= the_slug)
+        iuser = profile.user
+        educations = Education.objects.filter(user = iuser)
+        skills = Skill.objects.filter(user=iuser)
+        projects = Project.objects.order_by('-date').filter(user=iuser.user, is_public = True)
+        achievements = Achievement.objects.order_by('-date').filter(user=iuser.user, is_public=True)
+        blogs = Article.objects.order_by('-date').filter(user=iuser.user)
+        club = ClubProfile.objects.get(user=iuser.user)
+        try:
+            resume = Resume.objects.get(user = iuser.user)
+            context = {'profile':profile, 'educations':educations,'skills':skills, 'projects':projects, 'achievements': achievements,'blogs':blogs, 'resume':resume, 'club':club}
+            return render(request, 'dashboard/profile/public_profile.html', context)
+        except:
+            context = {'profile':profile, 'educations':educations,'skills':skills, 'projects':projects, 'achievements': achievements,'blogs':blogs, 'club':club}
+            return render(request, 'dashboard/profile/public_profile.html', context)
+    except:
+            return render(request, 'dashboard/404.html')        

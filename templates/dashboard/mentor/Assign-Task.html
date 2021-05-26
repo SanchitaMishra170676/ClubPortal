@@ -10,64 +10,82 @@
 {% block content %}
 
 <!-- ======= Assign-Task Section ======= -->
-            <div class="tabs-sec">
-                <button class="tab_button active-tab" onclick="openTab(event,'left')">Create Task</button>
-                <button class="tab_button" onclick="openTab(event,'right')">Create New Update</button>
-              </div>
 
-            <section class="assign-task">
-                <div id="left" class="left tabs">
-                    <section class="int-sec">
-                        <h1 class="heading">
-                            Create New Task 
-                        </h1>
-                        <form action="" class="tasks">
-                            <div class="field">
-                                <label for="Task-name">Task name: </label>
-                                <input type="text" name="Task-name" id="Task-name"><br>
-                            </div>
-                            <div class="field">
-                                <label for="Task-duration">Duration (in hrs.): </label>
-                                <input type="text" name="Task-duration" id="Task-duration"><br>
-                            </div>
-                            <div class="field">
-                                <label for="Task-Description">Task Description: </label>
-                                <textarea name="Task-Description" id="Task-Description" cols="30" rows="4"></textarea>
-                            </div>
-                            <div class="field">
-                                <label for="Related-resources">Related Resources: </label>
-                                <input type="text" name="Related-resources" id="Related-resources">
-                            </div>
-
-                            <input id="Submit-button" type="submit" value="Create Task">
-                        </form>
-                    </section>
-
+<section class="assign-task">
+    <div id="left" class="left">
+        <section class="int-sec mb-2">
+            <h1 class="heading" onclick="drop_down()">
+                <i class="fa fa-bars" aria-hidden="true"></i>  Add Project
+            </h1>
+            <form action="" class="tasks" style="display: none">
+                <div class="field">
+                    <label for="Task-name">Project name: </label>
+                    <input type="text" name="Task-name" id="Task-name"><br>
                 </div>
-                <div id="right" class="right tabs"  style="display: none;">
-                    <section class="int-sec">
-                        <h1 class="heading">
-                            Create New Update
-                        </h1>
-                        <form action="" class="tasks">
-                            <div class="field">
-                                <label for="Update-name">Update name: </label>
-                                <input type="text" name="Update-name" id="Update-name"><br>
-                            </div>
-                            <div class="field">
-                                <label for="Task-duration">Duration (in hrs.): </label>
-                                <input type="text" name="Task-duration" id="Task-duration"><br>
-                            </div>
-                            <div class="field">
-                                <label for="Update-Description">Update Description: </label>
-                                <textarea name="Update-Description" id="Update-Description" cols="30" rows="4"></textarea><br>
-                            </div>
-                            <input id="Submit-button" type="submit" value="Add Update">
-                        </form>
-
-                    </section>
+                <div class="field">
+                    <label for="Task-duration">Deadline: </label>
+                    <input type="text" name="Task-duration" id="Task-duration"><br>
                 </div>
-            </section>
+                <div class="field">
+                    <label for="Task-Description">Project Description: </label>
+                    <textarea name="Task-Description" id="Task-Description" cols="30" rows="4"></textarea>
+                </div>
+                <div class="field">
+                    <label for="Related-resources">Related Tags: </label>
+                    <input type="text" name="Related-resources" id="Related-resources">
+                </div>
+                <br><br>
+                <div class="submit-button">
+                    <input id="Submit-button" type="submit" value="Create Task">
+                </div>    
+                </form>
+        </section>
 
-            <!-- Assing-Task end-->
-    {% endblock content %}
+    <div class="task_table mb-1" style="overflow-x: auto;">
+        <table class="table1" style="overflow-x: auto;">
+            <tr class="tr1">
+                <th class="th1">S.No</th>
+                <th class="th1">Project Name</th>
+                <th class="th1">Deadline</th>
+                <th class="th1">Tags</th>
+                <th class="th1">Manage</th>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">1.</td>
+                <td class="td1">To-do List</td>
+                <td class="td1">1 Week</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn">Edit</button>&nbsp;<button
+                        class="btn btn-danger b-btn">Delete</button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">2.</td>
+                <td class="td1">Profile builder</td>
+                <td class="td1">1 Day</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn">Edit</button>&nbsp;<button
+                        class="btn btn-danger b-btn">Delete</button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">3.</td>
+                <td class="td1">Colour Changer</td>
+                <td class="td1">2 Days</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn">Edit</button>&nbsp;<button
+                        class="btn btn-danger b-btn">Delete</button></td>
+            </tr>
+            <tr class="tr1">
+                <td class="td1">4.</td>
+                <td class="td1">JS Calculator</td>
+                <td class="td1">1 Week</td>
+                <td class="td1">#JavaScript</td>
+                <td class="td1"><button class="btn btn-primary b-btn">Edit</button>&nbsp;<button
+                        class="btn btn-danger b-btn">Delete</button></td>
+            </tr>
+            </table>
+        </div>
+        </div>
+</section>
+
+<!-- Assing-Task end-->
+{% endblock content %}
