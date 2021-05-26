@@ -16,7 +16,5 @@ urlpatterns = [
     
     path('delete_skill/<int:pk>',views.delete_skill,name='delete_skill'),
 
-
-
-
+    path('profile/<slug:the_slug>/',views.publicProfile,name='publicProfile'),
 ] 
