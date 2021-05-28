@@ -3,7 +3,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.utils.crypto import get_random_string
 from .models import (
-    Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, PDF, Content, ClubProfile, upcomingHackathon, PublicProfile )
+    Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, PDF, OtherLink, Content, ClubProfile, upcomingHackathon, PublicProfile )
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.contrib import messages
 from member.models import (CodingProfile,Profile, Education,Skill)
@@ -123,12 +123,16 @@ def personal_profile(request):
 
 
 
+
 """ Function to add articles """
 @login_required
 def add_articles(request):
     if request.method == "POST":
         try:
+            cf = ClubProfile.objects.filter(user=request.user)
+            # print(cf[0].name)
             user = request.user
+            author = cf[0].name
             Title = request.POST['title']
             Domain = request.POST['domain']
             Highlights = request.POST['highlights']
@@ -146,25 +150,23 @@ def add_articles(request):
             except:
                 TImage = None
             slug = slugify(user) +"-"+ slugify(Domain+ " " + Title)+"-"+ get_random_string(10,'012innogeeks3456789')
-            print(slug)
             try:
                 Image = request.FILES['Image']
             except:
                 Image =None
-            inst = Article(user=user,slug=slug, title= Title,quoteBy=quoteBy, domain= Domain, highlights = Highlights, description= Description, content=Content, code= Code, subHeading=SubHeading, quote=Quote, tag1=Tag1, tag2=Tag2, tag3=Tag3, Thumbimage1 = TImage,Thumbimage2 = Image)
+            inst = Article(user=user,author = author, slug=slug, title= Title,quoteBy=quoteBy, domain= Domain, highlights = Highlights, description= Description, content=Content, code= Code, subHeading=SubHeading, quote=Quote, tag1=Tag1, tag2=Tag2, tag3=Tag3, Thumbimage1 = TImage,Thumbimage2 = Image)
             inst.save()
             messages.success(request,'Article Added Successfully')
-            return redirect('article_list')   
+            return redirect('article_list')
         except:
             messages.error(request, 'An error occurred, Contact to team')
             return redirect('add_articles')        
     return render(request,'dashboard/articles/add_articles.html')
 
-
 """ Function to display all articles """
 @login_required
 def article_list(request):
-    atcls = Article.objects.filter(user=request.user)
+    atcls = Article.objects.order_by('-date').filter(user=request.user)
     # Pagination
     page = request.GET.get('page',1)
     paginator = Paginator(atcls,6)
@@ -205,6 +207,7 @@ def update_article(request,pk):
             article.description = request.POST['Description']
             article.subHeading = request.POST['SubHeading']
             article.content = request.POST['Content']
+            article.code = request.POST['Code']
             article.quote = request.POST['Quote']
             article.tag1 = request.POST['Tag1']
             article.tag2 = request.POST['Tag2']
@@ -217,7 +220,6 @@ def update_article(request,pk):
             user = request.user
             Domain= request.POST['Domain']
             Title = request.POST['Title']
-            article.slug= slugify(user) +"-"+ slugify(Domain+ " " + Title)+"-"+ get_random_string(10,'012innogeeks3456789')
             try:
                 article.Thumbimage2 = request.FILES['Image']
             except:
@@ -307,7 +309,7 @@ def update_project(request,pk):
 """ Function to display list of all projects"""
 @login_required
 def project(request):
-    prjs = Project.objects.filter(user=request.user)
+    prjs = Project.objects.order_by('-date').filter(user=request.user)
     # Pagination
     page = request.GET.get('page',1)
     paginator = Paginator(prjs,6)
@@ -325,7 +327,7 @@ def project(request):
 """ Function to display upcoming hacakathons (created by admin)"""
 @login_required
 def hackathon(request):
-    hack = upcomingHackathon.objects.filter(is_active = True)
+    hack = upcomingHackathon.objects.order_by('-date').filter(is_active = True)
     # Pagination
     page = request.GET.get('page',1)
     paginator = Paginator(hack,8)
@@ -511,6 +513,8 @@ def mentor_update(request):
 def student_section(request):
     return render(request,'dashboard/student/student-section.html')
   
+
+""" Function to display detailed resources of a acategory of domain"""
 @login_required
 def resources_links(request,category,subtopic): 
     try:
@@ -519,10 +523,22 @@ def resources_links(request,category,subtopic):
         topics = Topic.objects.filter(domain=course)
         subtopics = SubTopic.objects.filter(topic__in=topics)
         exact_subtopic = subtopics.get(subtopic_name=subtopic)
-        videolectures = VideoLecture.objects.filter(subtopic=exact_subtopic)
+        vds = VideoLecture.objects.order_by("-date").filter(subtopic=exact_subtopic)
         pdfs = PDF.objects.filter(subtopic=exact_subtopic)
+        otherLinks = OtherLink.objects.filter(subtopic=exact_subtopic)
+        stopics = SubTopic.objects.filter(subtopic_name =exact_subtopic)
         contents = Content.objects.filter(subtopic=exact_subtopic)
-        context = {'videolectures': videolectures,'pdfs': pdfs,'contents':contents,'subtopic':exact_subtopic}
+        # Pagination
+        page = request.GET.get('page',1)
+        paginator = Paginator(vds,8)
+        try:
+            videolectures = paginator.page(page)
+        except PageNotAnInteger:   
+            videolectures = paginator.page(1)
+        except EmptyPage:
+            videolectures = paginator.page(paginator.num_pages)
+
+        context = {'stopic':subtopics[0], 'videolectures': videolectures,'pdfs': pdfs,'contents':contents,'otherLinks':otherLinks,'subtopic':exact_subtopic}
         return render(request, 'dashboard/resources/links.html', context)
     except:
         return redirect('404_not_found')
@@ -541,7 +557,7 @@ def resource_home(request,category):
     except:
         return redirect('404_not_found')
 
-
+        
 """ Function to render 404 page"""
 def not_found404(request):
     return render(request, 'dashboard/404.html')
@@ -558,3 +574,6 @@ def publicProfileRedirect(request):
         return render(request, 'dashboard/404.html')
 
 
+""" Function for feedback"""
+def feedback(request):
+    return render(request, 'dashboard/feedback.html')

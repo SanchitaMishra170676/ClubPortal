@@ -111,6 +111,7 @@ class Hackathon(models.Model):
 class Article(models.Model):
     user                = models.ForeignKey(to=User,default= None, on_delete= models.CASCADE)
     title               = models.CharField(max_length=150)
+    author              = models.CharField(max_length= 50, default="")
     domain              = models.CharField(max_length=100)
     highlights          = models.CharField(max_length=200)
     description         = models.TextField()
@@ -129,7 +130,7 @@ class Article(models.Model):
     slug                = models.SlugField(max_length = 200, unique=True, default="")
      
     def __str__(self):
-        return self.title 
+        return self.title  
 
 """ Model for task """
 class Task(models.Model):
@@ -185,7 +186,7 @@ class SubTopic(models.Model):
 class VideoLecture(models.Model):
     subtopic             = models.ForeignKey(SubTopic,on_delete=models.CASCADE)
     title                = models.CharField(max_length=250)
-    url                  = models.CharField(max_length=255, unique=True)
+    embeded_link         = models.CharField(max_length=255, unique=True)
     date                 = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -206,8 +207,10 @@ class Content(models.Model):
     subtopic            = models.ForeignKey(SubTopic, on_delete= models.DO_NOTHING)
     title               = models.CharField(max_length=255)
     paragraph1          = models.TextField()
-    paragraph2          = models.TextField()
-    image               = models.ImageField(upload_to='media/Dashboard/ContentImages/')
+    paragraph2          = models.TextField(blank=True)
+    code_heading        = models.CharField(max_length= 255, blank= True)
+    code                = models.TextField(blank=True)
+    image               = models.ImageField(blank=True, upload_to='media/Dashboard/ContentImages/')
     date                = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

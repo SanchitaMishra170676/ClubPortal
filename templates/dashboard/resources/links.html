@@ -255,7 +255,7 @@ background-color: rgb(235, 235, 235);
   
 <nav>
   <div class="d-flex justify-content-center" style="background-color: #29363d; color: white; font-size: large; padding:20px;">
-    <h3>{{subtopic.subtopic_name}} &nbsp;({{subtopic.topic.topic_name}})</h3>
+    <h3>{{subtopic.subtopic_name}} &nbsp({{subtopic.topic.topic_name}})</h3>
   </div>
 </nav>
 
@@ -278,8 +278,9 @@ background-color: rgb(235, 235, 235);
       </div>
 
       <div class="main-section " style="overflow: scroll !important;">
+        {% if videolectures %} 
         <div id="Main" class="tabs " style="overflow: scroll !important;">
-          {% if videolectures %} 
+         
           <div class="row d-flex justify-content-center ">
             
             
@@ -306,46 +307,47 @@ background-color: rgb(235, 235, 235);
               </div>
              
               {% endfor %}
-              <div class="col-12" style="margin-top: 15vh;">
-                      <!--pagination-->
-              {% if videolectures.has_other_pages %}
-              <div class="pagination d-flex justify-content-center mt-4">
-              {% if videolectures.has_previous %}
-                <a href="?page={{ videolectures.previous_page_number }}">&laquo;</a>
-              {% else %}
-                <a href="#">&laquo;</a>
-              {% endif %}
-              {% for i in videolectures.paginator.page_range %}
-                {% if videolectures.number == i %}
-                <a href="#" class="active">{{i}}</a>
-                {% else%}
-                <a href="?page={{i}}">{{i}}</a>
-                {% endif %}
-              {% endfor %}
-                {% if videolectures.has_next %}
-                <a href="?page={{ videolectures.next_page_number }}">&raquo;</a>
-                {% else %}
-                  <a href="#">&raquo;</a>
-                
-                {% endif %}
-              </div>
-            {% endif%}
-                  <!-- Pagination end -->
+         <div class="col-12" style="margin-top: 15vh;">
+                <!--pagination-->
+        {% if videolectures.has_other_pages %}
+        <div class="pagination d-flex justify-content-center mt-4">
+        {% if videolectures.has_previous %}
+          <a href="?page={{ videolectures.previous_page_number }}">&laquo;</a>
+        {% else %}
+          <a href="#">&laquo;</a>
+        {% endif %}
+        {% for i in videolectures.paginator.page_range %}
+          {% if videolectures.number == i %}
+          <a href="#" class="active">{{i}}</a>
+          {% else%}
+          <a href="?page={{i}}">{{i}}</a>
+          {% endif %}
+        {% endfor %}
+          {% if videolectures.has_next %}
+          <a href="?page={{ videolectures.next_page_number }}">&raquo;</a>
+          {% else %}
+            <a href="#">&raquo;</a>
+          
+          {% endif %}
+        </div>
+      {% endif%}
+            <!-- Pagination end -->
             </div>
             
            
                                
   
           </div>
-          {% else %}
-            
-         {% comment %} <div class="row d-flex justify-content-center align-items-center"> {% endcomment %}
-          <h1 align="center" style="padding: 200px 0;"> No Videos Available!</h1>
-          {% comment %} </div> {% endcomment %}
-            
-          {% endif %}
 
         </div>
+          {% else %}
+            
+          <div id="Main" class="tabs d-flex justify-content-center align-items-center" style="overflow: scroll !important;">
+         
+          <h1 > COMING SOON!</h1>
+            
+        </div>
+          {% endif %}
 
    
      <!-- SECTION 1 -->
@@ -354,12 +356,12 @@ background-color: rgb(235, 235, 235);
   <div >
         <ul>
         {% for pdf in pdfs %}
-          <a href="{{pdf.pdf.url}}" target="blank" style="text-decoration:None;" download> <li><h4>{{pdf.title}} &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i> </h4></li></a>
+          <a href="{{pdf.pdf.url}}" target="blank" style="text-decoration:None;" download> <li><h4>{{pdf.title}} &nbsp <i class="fa fa-arrow-right" aria-hidden="true"></i> </h4></li></a>
         {% endfor %}  
         </ul>
   </div>
   {% else %}
-    <h1 align="center" style="padding: 200px 0;" >No Pdfs Available!</h1>
+    <h1 align="center" style="padding: 200px 0;" >COMING SOON!</h1>
     {% endif %}
 </div>
 
@@ -387,7 +389,7 @@ background-color: rgb(235, 235, 235);
                   </div>
                   {% if content.image %}
                     <div class="d-flex justify-content-center" >
-                      <a target="blank"><img style="width:200px; height:200px;" class="card-img-top" src="{% static '' %}{{content.image}}" alt="Card image cap"></a>          
+                      <a target="blank" "><img style="width:200px; height:200px;" class="card-img-top" src="{% static '' %}{{content.image}}" alt="Card image cap"></a>          
                     </div>
                     {% endif %}
                     <div style="padding:10px;">
@@ -399,7 +401,7 @@ background-color: rgb(235, 235, 235);
                       {% if content.code %}
                       <br>
                       <div style="background-color: #cad2d6; padding: 10px;" >
-                      <pre style="color: black;"> {{content.code}} </pre>
+                      <pre style="color: black"> {{content.code}} </pre>
                       </div>
                       <br>
                       {% endif %}   
@@ -416,7 +418,7 @@ background-color: rgb(235, 235, 235);
          </div>
          {% endfor %} 
          {% else %}
-         <h1 align="center" style="padding: 200px 0;" >No Content Available!</h1>
+         <h1 align="center" style="padding: 200px 0;" >COMING SOON!</h1>
          {% endif %}
             </div>
 
@@ -425,7 +427,11 @@ background-color: rgb(235, 235, 235);
     </div>   
  
   <div id="Profile" class="tabs m-3 " style="display: none;" style="overflow: scroll !important;">
-    
+    {% if stopic.image %}
+    <div class="d-flex justify-content-center" >
+      <a target="blank" "><img style="width:200px; height:200px;" class="card-img-top" src="{% static '' %}{{stopic.image}}" alt="Card image cap"></a>          
+    </div>
+    {% endif %}
     {% if otherLinks %}
     <div >
       <ul>
@@ -438,7 +444,7 @@ background-color: rgb(235, 235, 235);
       </ul>
 </div>
     {% else %}
-    <h1 align="center" style="padding: 200px 0;" >Will be available soon!</h1>
+    <h1 align="center" style="padding: 200px 0;" >COMING SOON!</h1>
     {% endif %}
     </div>
 
