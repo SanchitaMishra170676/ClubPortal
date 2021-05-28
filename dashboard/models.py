@@ -213,6 +213,17 @@ class Content(models.Model):
     def __str__(self):
         return self.title
 
+""" Model for resources- other links"""
+class OtherLink(models.Model):
+    subtopic             = models.ForeignKey(SubTopic, on_delete= models.CASCADE)
+    title                = models.CharField(max_length=255)
+    description          = models.TextField(blank=True)
+    link                 = models.CharField(max_length=255, unique=True)
+    date                 = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
 """ Model for clubprofile """
 class ClubProfile(models.Model):
     domain_choices = (

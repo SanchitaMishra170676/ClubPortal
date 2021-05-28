@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import upcomingHackathon, Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, PDF, Content, ClubProfile, Announcement, PublicProfile
+from django.core.mail import send_mail,EmailMessage
+from django.core import mail
+from django.template.loader import render_to_string
+from home.admin import send_html_mail
+from .models import upcomingHackathon, Resume, Achievement, Project, Hackathon, Article, Task, Update, Course, Topic, SubTopic,  VideoLecture, OtherLink, PDF, Content, ClubProfile, Announcement, PublicProfile
 
 
 admin.site.register(Announcement)
@@ -15,6 +19,20 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(Course,CourseAdmin)
 
+class OtherLinkAdmin(admin.ModelAdmin):
+    """ Admin Panel for  OtherLink Model """
+
+    list_display = ('id','subtopic','title','date')
+    list_display_links = ('id','title','subtopic')
+    list_per_page = 60
+    search_fields = (
+        'subtopic__subtopic_name','subtopic__topic__topic_name', 'subtopic__topic__domain__name',
+        'title'
+        )  
+    list_filter = ('subtopic__topic__domain__name','subtopic__topic__topic_name')
+    ordering = ('date',)
+
+admin.site.register(OtherLink,OtherLinkAdmin)
 
 class TopicAdmin(admin.ModelAdmin):
     """ Admin Panel for  Topic Model """
@@ -193,12 +211,34 @@ admin.site.register(Update,UpdateAdmin)
 class ClubProfileAdmin(admin.ModelAdmin):
     """ Admin Panel for  ClubProfile Model """
 
-    list_display = ('id','user','name','branch','domain','gender','batch','is_mentor','date')
+    list_display = ('id','user','name','branch','domain','gender','batch','is_mentor','is_active','college_email')
     list_display_links = ('id','name')
     list_per_page = 60
-    search_fields = ('user__username','hackathonName','teamMembers','teamName')  
-    list_filter = ('branch','domain','gender','batch','is_mentor')
+    search_fields = ('user__username','user__email')  
+    list_filter = ('branch','domain','gender','batch','is_mentor','is_active')
     ordering = ('date',)
+    actions = ['send_Activation_AccountEmail']
+
+    def send_Activation_AccountEmail(self, request, queryset):
+        connection = mail.get_connection()
+        # connection.open()
+        pl =[]
+        connection.open()
+        for i in queryset:
+            
+            message= render_to_string('emails/AccountActivationEmail.html',{'username': i.user.username})
+            send_html_mail("Credentials For Activated Account",message,[i.user.email]) 
+            i.is_active = True
+            i.save()
+            # # print(i.email)
+            # if i.email:
+            #     pl.append(i.email)
+            # # else:
+        connection.close()
+        self.message_user(request, "Mail sent successfully ")
+    send_Activation_AccountEmail.short_description = "Send Account Activation Email"
+
+
 
 admin.site.register(ClubProfile,ClubProfileAdmin)
 
@@ -213,3 +253,4 @@ class upcomingHackathonAdmin(admin.ModelAdmin):
     ordering = ('deadline',)
 
 admin.site.register(upcomingHackathon,upcomingHackathonAdmin)
+
