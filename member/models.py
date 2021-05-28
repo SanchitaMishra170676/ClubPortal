@@ -1,9 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from dashboard.models import ClubProfile
+import random
 # Create your models here.
 
-""" Model for coding profiles of users"""
+""" Function to get random string """
+def getRandomString():
+    return str(random.randbytes(64))
+
+""" Model for coding profiles of users """
 class CodingProfile(models.Model):
     user = models.OneToOneField(ClubProfile,on_delete=models.DO_NOTHING)
     codechef = models.CharField(max_length=255,default='N/A',blank=True)
@@ -33,7 +38,7 @@ class Profile(models.Model):
     email = models.EmailField(max_length=255,blank=True)
     short_bio   = models.TextField(blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    username = models.SlugField(max_length = 200, unique=True, default='')
+    username = models.SlugField(max_length = 200, unique=True, default=getRandomString)
     def __str__(self):
         return self.user.user.username
 
