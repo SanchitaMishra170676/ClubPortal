@@ -21,7 +21,7 @@ def coding_profile(request):
                 codingProfile.leetcode = request.POST['leetcode']
                 codingProfile.save()
                 messages.success(request,'Coding Profiles updated successfully!')
-                return redirect('home')
+                return redirect('personal_profile')
 
             except:
                 user = cpuser
@@ -33,11 +33,11 @@ def coding_profile(request):
                 codingProfile = CodingProfile(user=user, codeforces=codeforces,codechef=codechef,interviewbit=interviewbit,spoj=spoj,leetcode=leetcode)
                 codingProfile.save()
                 messages.success(request,'Coding Profiles Created Successfully!')
-                return redirect('home')
+                return redirect('personal_profile')
             
         except:
             messages.error(request,"No Club profile exist, please contact admin")
-            return redirect('home')
+            return redirect('personal_profile')
     return redirect('404_not_found')
 
 
@@ -169,7 +169,7 @@ def personal_image_save(request):
                     pass
                 return redirect('/dashboard/personal_profile')
             else:
-                messages.error(request,"Nosuch Club Profile exists")
+                messages.error(request,"No such Club Profile exists")
         except:
             messages.error(request,"Pls Contact to Core team for Account !")
         return redirect('/dashboard/personal_profile/')
@@ -226,7 +226,6 @@ def ClubProfiles(request):
                 clubProfile.branch = request.POST['branch']
                 clubProfile.name = request.POST['name']
                 clubProfile.phone = request.POST['phone']
-                clubProfile.domain = request.POST['domain']
                 clubProfile.save()
                 messages.success(request,'Profile Updated successfully')
                 return redirect('home')  
