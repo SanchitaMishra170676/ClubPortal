@@ -572,7 +572,8 @@ def publicProfileRedirect(request):
         temp = username.username    
         return redirect('publicProfile', temp)
     except:
-        return render(request, 'dashboard/404.html')
+        messages.error(request,"Kindly complete your Presonal Profile")
+        return redirect('personal_profile')
 
 
 """ Function for feedback"""
