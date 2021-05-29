@@ -126,11 +126,11 @@ $('.container').on('click','.remove',function(){
         {% csrf_token %}
       <div class="row">
         <div class="form-group col-sm-6">
-          <label for="name">Name</label>
+          <label for="name">Name*</label>
           <input class="form-control" name="Name" value="{{personalProfile.user.name}}" id="name" type="text" placeholder="Enter your Name" Value="" required disabled>
         </div>
         <div class="form-group col-sm-6">
-          <label for="name">Username:</label>
+          <label for="name">Username*</label>
           <input class="form-control" name="Username" value="{{personalProfile.username}}" id="username" type="text" required placeholder="Choose your unique Username" Value="" disabled>
         </div>
       </div>
@@ -138,25 +138,25 @@ $('.container').on('click','.remove',function(){
 
         
         <div class="form-group col-sm-6">
-          <label for="">Date Of Birth</label>
+          <label for="">Date Of Birth*</label>
           <input  class="form-control" id="dateinput" value="{{personalProfile.dob}}" type="text" name="Dob" placeholder="date" required disabled>
         </div>
         <div class="form-group col-sm-6">
-          <label for="email">Email</label>
+          <label for="email">Email*</label>
           <input class="form-control" id="email" type="email" value="{{personalProfile.email}}" name="Email" placeholder="example@gmail.com" required disabled>
         </div>
       </div>
       <div class="row">
         <div class="form-group col-sm-6">
-          <label for="city">City</label>
+          <label for="city">City*</label>
           <input class="form-control" id="city" value="{{personalProfile.city}}" name="City" type="text" placeholder="Enter your city" required disabled>
         </div>
         <div class="form-group col-sm-3">
-          <label for="State">State</label>
+          <label for="State">State*</label>
           <input class="form-control" id="State" value="{{personalProfile.state}}" name="State" type="text" placeholder="Enter your State" required disabled>
         </div>
         <div class="form-group col-sm-3">
-          <label for="postal-code">Postal Code</label>
+          <label for="postal-code">Postal Code*</label>
           <input class="form-control" id="postalcode" value="{{personalProfile.postal_code}}" name="Postalcode" type="text" placeholder="Postal Code" required disabled>
         </div>
       </div>
@@ -246,21 +246,21 @@ $('.container').on('click','.remove',function(){
       
     <div class="row">
       <div class="form-group col-sm-8">
-        <label for="name">Institue</label>
+        <label for="name">Institue*</label>
         <input required name="institution" value="" class="form-control" id="institute_name" type="text" placeholder="Enter your Institute Name" disabled>
       </div>
       <div class="form-group col-sm-4">
-        <label for="name">Grade</label>
+        <label for="name">Grade*</label>
         <input required name="grade" class="form-control" id="grade" type="text" placeholder="Enter your Grade"  value="" disabled>
       </div>
     </div>
     <div class="row">
       <div class="form-group col-sm-6">
-        <label for="ccyear">Time Period</label>
+        <label for="ccyear">Time Period*</label>
         <input required name="time_period" class="form-control" id="ccyear" type="text" placeholder="Enter your Grade"  value="" disabled>
       </div>
       <div class="form-group col-sm-6">
-        <label for="ccyear">Qualification</label>
+        <label for="ccyear">Qualification*</label>
         
         <select required name="qualification" class="form-control" id="Qualification" disabled>
           <option value="X">X</option>
