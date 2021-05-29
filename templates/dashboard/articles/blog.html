@@ -97,7 +97,7 @@
             {% if article.Thumbimage1 %}
             <div class="post-thumbnail"><br><br><img src="{% static '' %}{{article.Thumbimage1}}" alt="innogeeks-article" class="img-fluid"></div>
             {% endif %}
-            <div class="post-details">
+            <div class="post-details" >
               <div class="post-meta d-flex justify-content-between">
                 <div class="category"><a href="#">Innogeeks</a><a href="#">{{article.domain}}</a></div>
               </div>
@@ -107,7 +107,7 @@
                   <div class="" style="color: antiquewhite;">{{article.date}}</div>
                 
               </div>
-              <div class="post-body">
+              <div class="post-body" style="background-color: rgb(5,4,19) !important;">
                 <p class="lead">{{article.highlights|linebreaks}}</p>
                 <p>{{article.description|linebreaks}}</p>
                 {% if article.Thumbimage2 %}
@@ -117,7 +117,7 @@
                 <h3>{{article.subHeading}}</h3>
                 {% endif %}
                 <p>{{article.content|linebreaks }}</p>
-                <pre style="color: antiquewhite;"> {{article.code}} </pre>
+                <pre style="color: rgb(255, 220, 174);"> {{article.code}} </pre>
                 {% if article.quote %}
                 <blockquote class="blockquote">
                  

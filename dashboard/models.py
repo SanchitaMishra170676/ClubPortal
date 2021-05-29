@@ -113,7 +113,7 @@ class Article(models.Model):
     title               = models.CharField(max_length=150)
     author              = models.CharField(max_length= 50, default="")
     domain              = models.CharField(max_length=100)
-    highlights          = models.CharField(max_length=200)
+    highlights          = models.TextField()
     description         = models.TextField()
     content             = models.TextField()
     code                = models.TextField(blank=True)
