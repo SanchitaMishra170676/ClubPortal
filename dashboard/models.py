@@ -232,7 +232,7 @@ class ClubProfile(models.Model):
     domain_choices = (
         ('Web Development','Web Development'),
         ('Android Development','Android Development'),
-        ('IOT','IOT '),
+        ('IOT','IOT'),
         ('Machine Learning','Machine Learning'),        
         ('AR/VR','AR/VR')
         )
