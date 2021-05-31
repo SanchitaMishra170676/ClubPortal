@@ -110,11 +110,11 @@
             </tr>
             <tr class="tr1">
                 
-                <td class="td1">Interviewbit</td>
-                {% if codingProfile.interviewbit%}
-                <td class="td1"><a href="https://www.interviewbit.com/profile/{{codingProfile.interviewbit}}" target="_blank">{{codingProfile.interviewbit}}</a></td>
-                {% else %}
+                <td class="td1">Geeks for Geeks</td>
+                {% if codingProfile.gfg == 'N/A' %}
                 <td class="td1"><a href="#">N/A</a></td>
+                {% else %}
+                <td class="td1"><a href="https://auth.geeksforgeeks.org/user/{{codingProfile.gfg}}/practice/" target="_blank">{{codingProfile.gfg}}</a></td>
                 {% endif %}
                 
             </tr>
@@ -322,7 +322,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th colspan="2" class="text-center">Interview Bit</th>
+          <th colspan="2" class="text-center">Geeks for Geeks</th>
           <th colspan="2" class="text-center">CodeChef</th>
           <th colspan="2" class="text-center">LeetCode</th>
           <th colspan="2" class="text-center">SPOJ</th>
