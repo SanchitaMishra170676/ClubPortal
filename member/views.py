@@ -17,7 +17,7 @@ def coding_profile(request):
                 codingProfile.codechef = request.POST['codechef']
                 codingProfile.codeforces = request.POST['codeforces']
                 codingProfile.spoj = request.POST['spoj']
-                codingProfile.interviewbit = request.POST['interviewbit']
+                codingProfile.gfg = request.POST['gfg']
                 codingProfile.leetcode = request.POST['leetcode']
                 codingProfile.save()
                 messages.success(request,'Coding Profiles updated successfully!')
@@ -27,10 +27,10 @@ def coding_profile(request):
                 user = cpuser
                 codechef = request.POST['codechef']
                 codeforces = request.POST['codeforces']
-                interviewbit = request.POST['interviewbit']
+                gfg = request.POST['gfg']
                 spoj = request.POST['spoj']
                 leetcode = request.POST['leetcode']
-                codingProfile = CodingProfile(user=user, codeforces=codeforces,codechef=codechef,interviewbit=interviewbit,spoj=spoj,leetcode=leetcode)
+                codingProfile = CodingProfile(user=user, codeforces=codeforces,codechef=codechef,gfg=gfg,spoj=spoj,leetcode=leetcode)
                 codingProfile.save()
                 messages.success(request,'Coding Profiles Created Successfully!')
                 return redirect('personal_profile')

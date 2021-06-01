@@ -140,14 +140,14 @@
                       </tr>
                       <tr class="tr1">
                           <td class="td1">5.</td>
-                          <td class="td1">Interviewbit</td>
-                          {% if codingProfile.interviewbit%}
-                          <td class="td1">{{codingProfile.interviewbit}}</td>
-                          <td class="td1"><a href="https://www.interviewbit.com/profile/{{codingProfile.interviewbit}}" target="_blank">https://www.interviewbit.com/profile/{{codingProfile.interviewbit}}</a></td>
-                          {% else %}
+                          <td class="td1">Geeks for Geeks</td>
+                          {% if codingProfile.gfg == 'N/A' %}
                           <td class="td1">N/A</td>
 
                           <td class="td1"><a href="#">N/A</a></td>
+                          {% else %}
+                          <td class="td1">{{codingProfile.gfg}}</td>
+                          <td class="td1"><a href="https://auth.geeksforgeeks.org/user/{{codingProfile.gfg}}/practice/" target="_blank">https://auth.geeksforgeeks.org/user/{{codingProfile.gfg}}/practice/</a></td>
                           {% endif %}
 
                       </tr>
